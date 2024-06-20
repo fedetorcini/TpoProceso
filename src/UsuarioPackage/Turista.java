@@ -10,4 +10,9 @@ public void Registrar(Usuario usuario)
 public void BuscarGuia(String ciudad)
 {}
 
+public String GetNombre() {
+	// TODO Auto-generated method stub
+	return "NomrbeTurista";
+}
+
 }

@@ -4,11 +4,15 @@ import java.util.Date;
 
 public class Guia {
 
-public String pais;
-public String ciudad;
-public Date fecha;
+private String pais;
+private String ciudad;
 
 public void EnviarMensaje(String mensaje)
 {}
+
+public String GetCiudad() {
+	// TODO Auto-generated method stub
+	return ciudad;
+}
 
 }

@@ -2,7 +2,6 @@ package src.FacturaPackage;
 
 import java.util.Date;
 
-import src.Itinerario;
 import src.Pago;
 import src.ViajePackage.Viaje;
 
@@ -20,10 +19,6 @@ public void GenerarFactura(Viaje viaje)
 }
 
 public void Enviar(Factura factura)
-{
-}
-
-public void CalcularImporte(Itinerario itinerario)
 {
 }
 

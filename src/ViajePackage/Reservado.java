@@ -4,32 +4,23 @@ public class Reservado implements IEstadoViaje{
 
 @Override
 public void Confirmar(Viaje viaje) {
-	// TODO Auto-generated method stub
-	
+	viaje.CambiarEstado(new Confirmado());
 }
 
 @Override
 public void Cancelar(Viaje viaje) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public void Reservar(Viaje viaje) {
-	// TODO Auto-generated method stub
+	viaje.CambiarEstado(new Cancelado());
 	
 }
 
 @Override
 public void Iniciar(Viaje viaje) {
-	// TODO Auto-generated method stub
-	
+	System.out.println("El viaje debe confirmarse antes de ser iniciado.");	
 }
 
 @Override
 public void Finalizar(Viaje viaje) {
-	// TODO Auto-generated method stub
-	
+	System.out.println("El viaje debde iniciarse antes de finalizar.");
 }
 
 }

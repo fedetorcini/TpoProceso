@@ -1,6 +1,4 @@
-package src.EstadosReserva;
-
-import src.Reserva;
+package src.ReservaPackage;
 
 public interface IEstadoReserva {
 

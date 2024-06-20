@@ -1,4 +1,4 @@
-package src.Usuario;
+package src.UsuarioPackage;
 
 import java.util.HashMap;
 
@@ -43,7 +43,6 @@ private void SetMail(String mail) {
 	this.mail = mail;
 }
 
-
 public static Usuario RegistrarUsuario(String nombre, String apellido, String mail)
 {
 
@@ -58,5 +57,6 @@ public static Usuario RegistrarUsuario(String nombre, String apellido, String ma
 	System.out.println("Usuario " + nombre + " " + apellido + " registrado exitosamente");
 	return myUsuario;
 }
+
 
 }

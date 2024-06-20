@@ -1,4 +1,4 @@
-package src.Usuario;
+package src.UsuarioPackage;
 
 public interface IObservador {	
 	

@@ -1,6 +1,4 @@
-package src.EstadosViaje;
-
-import src.Viaje;
+package src.ViajePackage;
 
 public interface IEstadoViaje {
 

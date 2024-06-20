@@ -1,9 +1,9 @@
-package src;
+package src.ReservaPackage;
 
 import java.util.Date;
 
-import src.Usuario.Guia;
-import src.Usuario.Turista;
+import src.UsuarioPackage.Guia;
+import src.UsuarioPackage.Turista;
 
 public class Reserva {
 

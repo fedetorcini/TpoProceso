@@ -1,5 +1,7 @@
 package src;
 
+import src.Usuario.Trofeo;
+import src.Usuario.Turista;
 import src.Usuario.Usuario;
 
 public class Application {
@@ -14,6 +16,8 @@ public class Application {
 		String mail = "ftorcini@uade.edu.ar";
 		
 		Usuario usuario = Usuario.RegistrarUsuario(nombre, apellido, mail);
-		
+		Turista turista = new Turista();
+		Trofeo trofeo = Trofeo.RegistrarTrofeo(3);
+		turista.Suscribir(trofeo);
 	}
 }

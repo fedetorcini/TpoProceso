@@ -1,7 +1,10 @@
 package src.Usuario;
 
+import java.util.HashMap;
+
 public class Usuario {
 
+private static HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 private static int IDs = 0;
 private int myId;
 private String nombre;
@@ -51,6 +54,7 @@ public static Usuario RegistrarUsuario(String nombre, String apellido, String ma
 	myUsuario.SetMail(mail);
 	IDs++;
 	
+	usuarios.put(nombre + apellido, myUsuario);
 	System.out.println("Usuario " + nombre + " " + apellido + " registrado exitosamente");
 	return myUsuario;
 }

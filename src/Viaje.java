@@ -1,6 +1,8 @@
 package src;
 
 import src.EstadosViaje.IEstadoViaje;
+import src.Usuario.Guia;
+import src.Usuario.Turista;
 
 public class Viaje {
 

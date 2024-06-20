@@ -2,6 +2,9 @@ package src;
 
 import java.util.Date;
 
+import src.Usuario.Guia;
+import src.Usuario.Turista;
+
 public class Reserva {
 
 public int nroReserva;

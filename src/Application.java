@@ -10,11 +10,10 @@ public class Application {
 	
 public static void main(String[] args)
 {			
-	String nombre = "Federico";
-	String apellido = "Torcini";
-	String mail = "ftorcini@uade.edu.ar";
-	Usuario usuario = Usuario.RegistrarUsuario(nombre, apellido, mail); // Usuario Federico Torcini registrado exitosamente
-	Turista turista = new Turista();		
+	String nombreTurista = "Federico";
+	String apellidoTurista = "Torcini";
+	String mailTurista = "ftorcini@uade.edu.ar";
+	Turista turista = Turista.RegistrarTurista(nombreTurista, apellidoTurista, mailTurista); // Turista Federico Torcini registrado exitosamente	
 	
 	Trofeo trofeoTresReseñas = Trofeo.RegistrarTrofeo(3); // Trofeo con id 0 y rese�as necesarias 3 fue creado exitosamente.
 	turista.Suscribir(trofeoTresReseñas); // Suscripcion realizada con exito

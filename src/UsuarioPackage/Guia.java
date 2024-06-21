@@ -2,21 +2,11 @@ package src.UsuarioPackage;
 
 import java.util.HashMap;
 
-public class Guia {
+public class Guia extends Usuario{
 
-private static HashMap<String, Guia> guias = new HashMap<String, Guia>();
-private static int IDs = 0;
-private int id;
+private static HashMap<Integer, Guia> guias = new HashMap<Integer, Guia>();
 private String pais;
 private String ciudad;
-
-private int GetId() {
-	return id;
-}
-
-private void SetId(int id) {
-	this.id = id;
-}
 
 private String GetPais() {
 	return pais;
@@ -44,7 +34,7 @@ public static Guia RegistrarGuia(String pais, String ciudad) {
 	miGuia.SetId(IDs);
 	IDs ++;
 	
-	guias.put(miGuia.toString(), miGuia);
+	guias.put(miGuia.GetId(), miGuia);
 	
 	System.out.println("Guia " + miGuia.GetCiudad() + " | " + miGuia.GetPais() + " fue creado exitosamente");
 	return miGuia;

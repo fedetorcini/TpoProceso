@@ -1,12 +1,9 @@
 package src.UsuarioPackage;
 
-import java.util.HashMap;
-
 public class Usuario {
 
-private static HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
-private static int IDs = 0;
-private int myId;
+protected static int IDs = 0;
+private int id;
 private String nombre;
 private String apellido;
 private String mail;
@@ -14,51 +11,36 @@ private String sexo;
 private int dni;
 private int telefono;
 
-private int GetMyId() {
-	return myId;
+protected int GetId() {
+	return id;
 }
 
-private void SetMyId(int myId) {
-	this.myId = myId;
+protected void SetId(int myId) {
+	this.id = myId;
 }
 
-private String GetApellido() {
+protected String GetApellido() {
 	return apellido;
 }
 
-private void SetApellido(String apellido) {
+protected void SetApellido(String apellido) {
 	this.apellido = apellido;
 }
 
-private String GetNombre() {
+protected String GetNombre() {
 	return nombre;
 }
 
-private void SetNombre(String nombre) {
+protected void SetNombre(String nombre) {
 	this.nombre = nombre;
 }
 
-private String GetMail() {
+protected String GetMail() {
 	return mail;
 }
 
-private void SetMail(String mail) {
+protected void SetMail(String mail) {
 	this.mail = mail;
 }
-
-public static Usuario RegistrarUsuario(String nombre, String apellido, String mail)
-{
-	Usuario myUsuario = new Usuario();
-	myUsuario.SetApellido(apellido);
-	myUsuario.SetNombre(nombre);
-	myUsuario.SetMyId(IDs);
-	myUsuario.SetMail(mail);
-	IDs++;
-	
-	usuarios.put(nombre + apellido, myUsuario);
-	System.out.println("Usuario " + nombre + " " + apellido + " registrado exitosamente");
-	return myUsuario;
-}
-
 
 }

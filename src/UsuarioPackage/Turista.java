@@ -7,15 +7,16 @@ public class Turista extends Usuario {
 private static HashMap<Integer, Turista> turistas = new HashMap<Integer, Turista>();
 private Observable observable;
 
-private Turista()
-{
+
+public Turista(String nombre, String apellido, String mail, String sexo, int dni, int telefono) {
+	super(nombre, apellido, mail, sexo, dni, telefono);
 	observable = new Observable();
 }
 
 @Override
 public String toString()
 {
-	return "NombreTurista";
+	return nombre + " " + apellido;
 }
 
 public void Suscribir(IObservador observer) {
@@ -33,14 +34,9 @@ public void Publicar()
 }
 
 
-public static Turista RegistrarTurista(String nombre, String apellido, String mail)
+public static Turista RegistrarTurista(String nombre, String apellido, String mail, String sexo, int dni, int telefono)
 {
-	Turista miTurista = new Turista();
-	miTurista.SetApellido(apellido);
-	miTurista.SetNombre(nombre);
-	miTurista.SetId(IDs);
-	miTurista.SetMail(mail);
-	IDs++;
+	Turista miTurista = new Turista(nombre, apellido, mail, sexo, dni, telefono);
 	
 	turistas.put(miTurista.GetId(), miTurista);
 	System.out.println("Turista " + nombre + " " + apellido + " registrado exitosamente");

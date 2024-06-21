@@ -2,7 +2,7 @@ package src.ReservaPackage;
 
 import java.util.Date;
 
-import src.FacturaPackage.Pago;
+import src.PagoPackage.Pago;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 

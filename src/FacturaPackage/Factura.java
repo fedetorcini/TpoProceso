@@ -2,6 +2,7 @@ package src.FacturaPackage;
 
 import java.util.Date;
 
+import src.PagoPackage.Pago;
 import src.ViajePackage.Viaje;
 
 import java.util.ArrayList;
@@ -30,11 +31,15 @@ public void Pagar(double monto)
 {
 	double totalPagado = 0;
 	
-	pagos.add(new Pago(monto));
-	
-	for(Pago pago : pagos)
+	Pago miPago = Pago.RegistrarPago(monto);
+	if (miPago.Completado())
 	{
-		totalPagado += pago.GetMonto();
+		pagos.add(miPago);		
+	}
+	
+	for(Pago unPago : pagos)
+	{
+		totalPagado += unPago.GetMonto();
 	}
 }
 }

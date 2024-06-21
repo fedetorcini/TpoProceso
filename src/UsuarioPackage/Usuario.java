@@ -2,14 +2,27 @@ package src.UsuarioPackage;
 
 public class Usuario {
 
+public static final String MASCULINO = "Masculino";
+public static final String FEMENINO = "Femenino";
 protected static int IDs = 0;
-private int id;
-private String nombre;
-private String apellido;
-private String mail;
-private String sexo;
-private int dni;
-private int telefono;
+protected int id;
+protected String nombre;
+protected String apellido;
+protected String mail;
+protected String sexo;
+protected int dni;
+protected int telefono;
+
+protected Usuario(String nombre, String apellido, String mail, String sexo, int dni, int telefono) {
+	this.id = IDs;
+	IDs++;
+	this.nombre = nombre;
+	this.apellido = apellido;
+	this.mail = mail;
+	this.sexo = sexo;
+	this.dni = dni;
+	this.telefono = telefono;
+}
 
 protected int GetId() {
 	return id;

@@ -13,13 +13,21 @@ public Observable()
 
 public void Suscribir(IObservador observador)
 {
-	observadores.add(observador);
-	System.out.println("Suscripcion realizada con exito");
+	if (!observadores.contains(observador))
+	{
+		observadores.add(observador);
+		System.out.println("Suscripcion realizada con exito");
+	}
+	else
+	{		
+		System.out.println("Suscripcion ya existente");
+	}
 }
 
 public void Desuscribir(IObservador observador)
 {
 	observadores.remove(observador);	
+	System.out.println("Desuscripto con exito");
 }
 
 public void Publicar()

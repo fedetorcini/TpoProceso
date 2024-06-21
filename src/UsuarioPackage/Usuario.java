@@ -10,6 +10,9 @@ private int myId;
 private String nombre;
 private String apellido;
 private String mail;
+private String sexo;
+private int dni;
+private int telefono;
 
 private int GetMyId() {
 	return myId;
@@ -45,7 +48,6 @@ private void SetMail(String mail) {
 
 public static Usuario RegistrarUsuario(String nombre, String apellido, String mail)
 {
-
 	Usuario myUsuario = new Usuario();
 	myUsuario.SetApellido(apellido);
 	myUsuario.SetNombre(nombre);

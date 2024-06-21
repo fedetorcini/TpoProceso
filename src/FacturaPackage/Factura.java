@@ -2,7 +2,6 @@ package src.FacturaPackage;
 
 import java.util.Date;
 
-import src.Pago;
 import src.ViajePackage.Viaje;
 
 import java.util.ArrayList;
@@ -27,4 +26,15 @@ public void CambiarEstado(IEstadoFactura nuevoEstado)
 	estado = nuevoEstado;
 }
 
+public void Pagar(double monto)
+{
+	double totalPagado = 0;
+	
+	pagos.add(new Pago(monto));
+	
+	for(Pago pago : pagos)
+	{
+		totalPagado += pago.GetMonto();
+	}
+}
 }

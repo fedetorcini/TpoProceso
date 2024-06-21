@@ -15,4 +15,10 @@ public String GetNombre() {
 	return "NomrbeTurista";
 }
 
+@Override
+public String toString()
+{
+	return "NombreTurista";
+}
+
 }

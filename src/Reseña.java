@@ -60,7 +60,7 @@ public static Reseña RegistrarReseña(String mensaje, Turista turista, Guia gui
 
 private static String ObtenerKeyDeGuiaTurista(Turista turista, Guia guia)
 {
-	return turista.GetNombre() + guia.GetCiudad();		
+	return turista.toString() + guia.toString();		
 }
 
 }

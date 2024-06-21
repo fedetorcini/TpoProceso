@@ -2,7 +2,7 @@ package src.ReservaPackage;
 
 import java.util.Date;
 
-import src.Pago;
+import src.FacturaPackage.Pago;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 
@@ -11,7 +11,7 @@ public class Reserva {
 private int nroReserva;
 private Turista turista;
 private Guia guia;
-private Date fechaREserva;
+private Date fechaReserva;
 private Pago pago;
 private IEstadoReserva estado;
 

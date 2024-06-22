@@ -1,6 +1,7 @@
 package src.NotificadorPackage.Push;
 
 import src.NotificadorPackage.IMedioNotificacion;
+import src.NotificadorPackage.Mensaje;
 
 public class NotificacionPush implements IMedioNotificacion{
 
@@ -11,7 +12,7 @@ public class NotificacionPush implements IMedioNotificacion{
 	}
 	
 	@Override
-	public void Enviar(String mensaje) {
+	public void Enviar(Mensaje mensaje) {
 		adapter.Enviar(mensaje);
 	}
 }

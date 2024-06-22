@@ -33,7 +33,7 @@ public static void main(String[] args)
 	TrofeoReseña trofeoPrimerReseña = TrofeoReseña.RegistrarTrofeo(1); // Trofeo con id 1 y rese�as necesarias 1 fue creado exitosamente.
 	turista.Suscribir(trofeoPrimerReseña); // Suscripcion realizada con exito
 	
-
+	
 	String nombreGuia = "Un";
 	String apellidoGuia = "Guia";
 	String mailGuia = "uguia@uade.edu.ar";
@@ -48,6 +48,7 @@ public static void main(String[] args)
 	guia.Suscribir(trofeoCalificacionCuatroEstrellas); // Suscripcion realizada con exito
 	guia.Suscribir(trofeoCalificacionCuatroEstrellas); // Suscripcion ya existente
 
+	
 	Notificador centroDeNotificacion = new Notificador();
 	trofeoTresReseñas.Suscribir(centroDeNotificacion); // Suscripcion realizada con exito
 	trofeoPrimerReseña.Suscribir(centroDeNotificacion); // Suscripcion realizada con exito
@@ -60,8 +61,10 @@ public static void main(String[] args)
 	turista.AgregarViaje(viaje);
 	guia.AgregarViaje(viaje);
 	
-	viaje.chat.Suscribir(centroDeNotificacion);
+	turista.AgregarReseña(viaje.GetId());
+	
 	turista.EnviarMensajeEnViaje(viaje.GetId(), "Hola como estas?");
+	guia.EnviarMensajeEnViaje(viaje.GetId(), "Yo bien y vos?");
 	
 }
 

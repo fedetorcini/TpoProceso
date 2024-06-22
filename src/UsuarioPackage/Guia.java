@@ -3,6 +3,7 @@ package src.UsuarioPackage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import src.Reseña;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
 
 public class Guia extends Usuario<Guia>{
@@ -32,19 +33,25 @@ public static Guia RegistrarGuia(IMedioLogin medioLogin, String nombre, String a
 @Override
 public String toString()
 {
-	return ciudad + " | " + pais;
+	return ciudad + ", " + pais;
 }
 
 
-public int GetPromedio() {
-	// TODO Auto-generated method stub
-	return 0;
+public float GetPromedio() {
+	float promedio = 0;
+	for(Float calificacion : calificaciones)
+	{
+		promedio += calificacion;
+	}
+	return promedio / calificaciones.size();
 }
 
-public void AgregarCalificacion(float calificacion)
+public void AgregarReseña(Reseña reseña)
 {
-	calificaciones.add(calificacion);
+	calificaciones.add(reseña.GetCalificacion());
 	Publicar(this);
 }
+
+
 
 }

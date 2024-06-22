@@ -38,10 +38,12 @@ public String toString()
 	return nombre + " " + apellido;
 }
 
-public void EnviarMensajeEnViaje(int viajeId, String texto) {
+public void AgregarReseña(int viajeId) {
 	if (viajes.containsKey(viajeId))
 	{
-		viajes.get(viajeId).PublicarAlChatDeViaje(new Mensaje(this, texto));
+		viajes.get(viajeId).RegistrarReseña("Que buen servicio!", 4.5f);
+		Publicar(this);
 	}
 }
+
 }

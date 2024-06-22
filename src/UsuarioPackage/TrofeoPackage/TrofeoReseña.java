@@ -2,6 +2,7 @@ package src.UsuarioPackage.TrofeoPackage;
 
 import java.util.HashMap;
 
+import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Turista;
 
 public class TrofeoReseña extends Trofeo<Turista>{
@@ -35,17 +36,16 @@ public static TrofeoReseña RegistrarTrofeo(int reseñasNecesarias)
 
 public void Notificar(Turista object) 
 {
+	int nuevaCuenta = 1;
 	if (reseñasPorUsuario.containsKey(object))
 	{
-		reseñasPorUsuario.put(object, reseñasPorUsuario.get(object) + 1);
-		if (reseñasNecesarias >= reseñasPorUsuario.get(object));
-		{
-			Publicar("Gracias por realizar " + reseñasNecesarias + ". con tu feedback podemos mejorar como empresa.");
-		}
+		nuevaCuenta = reseñasPorUsuario.get(object) + 1;
 	}
-	else
+	
+	reseñasPorUsuario.put(object, nuevaCuenta);
+	if (this.reseñasNecesarias <= reseñasPorUsuario.get(object))
 	{
-		reseñasPorUsuario.put(object, 1);
+		Publicar(new Mensaje("Has Recibido un nuevo trofeo!!! Gracias por realizar " + reseñasNecesarias + ". con tu feedback podemos mejorar como empresa."));
 	}
 }
 

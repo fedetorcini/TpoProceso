@@ -8,7 +8,7 @@ import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
 
-public class Chat extends Observable<String>{
+public class Chat extends Observable<Mensaje>{
 
 public Usuario<Turista> turista;
 public Usuario<Guia> guia;
@@ -25,7 +25,7 @@ public Chat(Turista turista, Guia guia)
 public void EnviarMensaje(Mensaje nuevoMensaje)
 {
 	mensajes.add(nuevoMensaje);
-	Publicar(nuevoMensaje.GetDescripcion());		
+	Publicar(nuevoMensaje);		
 }
 
 }

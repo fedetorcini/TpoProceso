@@ -1,24 +1,23 @@
 package src.NotificadorPackage;
 
-import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
 
 public class Mensaje {
 
 private Usuario emisor;
 private String descripcion;
-private Usuario receptor;
+private Notificador notificador;
 
-public Mensaje(Usuario turista, String texto) {
+public Mensaje(Usuario turista, String texto, Notificador notificador) {
 	this.emisor = emisor;
 	this.descripcion = texto;
+	this.notificador = notificador;
 }
-public Usuario GetReceptor() {
-	return receptor;
+
+public Mensaje(String mensaje) {
+	this.descripcion = mensaje;
 }
-public void SetReceptor(Usuario receptor) {
-	this.receptor = receptor;
-}
+
 public Usuario GetEmisor() {
 	return emisor;
 }
@@ -30,6 +29,25 @@ public String GetDescripcion() {
 }
 public void SetDescripcion(String descripcion) {
 	this.descripcion = descripcion;
+}
+
+@Override
+public String toString()
+{
+	return descripcion;
+}
+
+public boolean SoyElEmisor(Notificador evaluado) {
+	
+	boolean evaluacion = false;
+	if (evaluado != null)
+	{
+		if (evaluado == this.notificador)
+		{
+			evaluacion = true;
+		}
+	}
+	return evaluacion;
 }
 	
 }

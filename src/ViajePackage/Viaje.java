@@ -89,9 +89,10 @@ public double CalcularPenalidad()
 public void CambiarEstado(IEstadoViaje estado)
 {}
 
-public void RegistrarReseña(String mensaje)
+public void RegistrarReseña(String descripcion, float calificacion)
 {
-	reseña = Reseña.RegistrarReseña(mensaje, turista, guia, 5);
+	reseña = Reseña.RegistrarReseña(descripcion, turista, guia, calificacion);
+	guia.AgregarReseña(reseña);
 }
 
 public void SeleccionarGuia(Guia nuevoGuia) {
@@ -116,6 +117,8 @@ public void Reservar() {
 		System.out.println("Viaje reservado con exito.");
 		CambiarEstado(new Reservado());	
 		chat = new Chat(turista, guia);
+		chat.Suscribir(turista.GetNotificador());
+		chat.Suscribir(guia.GetNotificador());
 	}
 	else {
 		System.out.println("Viaje no puede ser reservado sin guia.");

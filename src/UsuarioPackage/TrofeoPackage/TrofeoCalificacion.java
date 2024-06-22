@@ -1,5 +1,6 @@
 package src.UsuarioPackage.TrofeoPackage;
 
+import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Guia;
 
 public class TrofeoCalificacion extends Trofeo<Guia>{
@@ -34,7 +35,7 @@ public void Notificar(Guia object)
 {
 	if (object.GetPromedio() >= calificacionNecesaria)
 	{
-		Publicar("Felicidades tu calificacion promedio es de " + object.GetPromedio() + ". Continua el gran trabajo.");
+		Publicar(new Mensaje("Has Recibido un nuevo trofeo!!! Felicidades tu calificacion promedio es de " + object.GetPromedio() + ". Continua el gran trabajo."));
 	}
 }
 

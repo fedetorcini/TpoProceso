@@ -3,6 +3,7 @@ package src.UsuarioPackage;
 import java.util.HashMap;
 
 import src.NotificadorPackage.IMedioNotificacion;
+import src.NotificadorPackage.Mensaje;
 import src.NotificadorPackage.Notificador;
 import src.ObserverPackage.Observable;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
@@ -35,6 +36,7 @@ protected Usuario(IMedioLogin medioLogin, String nombre, String apellido, String
 	this.dni = dni;
 	this.telefono = telefono;
 	this.viajes = new HashMap<Integer, Viaje>();
+	this.notificador = new Notificador();
 }
 
 protected int GetId() {
@@ -79,9 +81,21 @@ public void CambiarMetodoNotificacion(IMedioNotificacion nuevoMedio)
 	
 }
 
+public void EnviarMensajeEnViaje(int viajeId, String texto) {
+	if (viajes.containsKey(viajeId))
+	{
+		viajes.get(viajeId).PublicarAlChatDeViaje(new Mensaje(this, "Tienes un nuevo mensaje... " + this + ": " + texto, notificador));
+	}
+}
+
 public void AgregarViaje(Viaje nuevoViaje)
 {
 	viajes.put(nuevoViaje.GetId(), nuevoViaje);
+}
+
+public Notificador GetNotificador()
+{
+	return notificador;
 }
 
 }

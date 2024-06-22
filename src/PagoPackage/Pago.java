@@ -51,9 +51,7 @@ private boolean RealizarPago() {
 	return metodoDePago.RealizarPago(monto);
 }
 
-
 public boolean Completado() {
-	// TODO Auto-generated method stub
 	return fueExitoso;
 }
 

@@ -1,5 +1,8 @@
 package src.UsuarioPackage;
 
+import src.UsuarioPackage.LoginPackage.IMedioLogin;
+import src.UsuarioPackage.LoginPackage.Mail;
+
 public class Usuario {
 
 public static final String MASCULINO = "Masculino";
@@ -12,8 +15,9 @@ protected String mail;
 protected String sexo;
 protected int dni;
 protected int telefono;
+protected IMedioLogin medioLogin;
 
-protected Usuario(String nombre, String apellido, String mail, String sexo, int dni, int telefono) {
+protected Usuario(String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	this.id = IDs;
 	IDs++;
 	this.nombre = nombre;
@@ -22,6 +26,7 @@ protected Usuario(String nombre, String apellido, String mail, String sexo, int 
 	this.sexo = sexo;
 	this.dni = dni;
 	this.telefono = telefono;
+	this.medioLogin = new Mail();
 }
 
 protected int GetId() {
@@ -54,6 +59,11 @@ protected String GetMail() {
 
 protected void SetMail(String mail) {
 	this.mail = mail;
+}
+
+public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
+{
+	medioLogin = nuevoMedio;
 }
 
 }

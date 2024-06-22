@@ -2,6 +2,7 @@ package src.UsuarioPackage;
 
 import java.util.HashMap;
 
+import src.NotificadorPackage.IMedioNotificacion;
 import src.NotificadorPackage.Notificador;
 import src.ObserverPackage.Observable;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
@@ -71,6 +72,11 @@ protected void SetMail(String mail) {
 public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
 {
 	medioLogin = nuevoMedio;
+}
+
+public void CambiarMetodoNotificacion(IMedioNotificacion nuevoMedio)
+{
+	
 }
 
 public void AgregarViaje(Viaje nuevoViaje)

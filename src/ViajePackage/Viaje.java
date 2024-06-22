@@ -108,7 +108,6 @@ public static Viaje CrearViaje(Turista turista) {
 	return viaje;
 }
 
-
 public void Reservar() {
 	if (guia != null)
 	{
@@ -116,7 +115,7 @@ public void Reservar() {
 		CambiarEstado(new Reservado());		
 	}
 	else {
-		System.out.println("Viaje no puede ser reservado sing guia.");
+		System.out.println("Viaje no puede ser reservado sin guia.");
 	}
 }
 

@@ -1,12 +1,14 @@
 package src;
 
+import src.Notificador.Notificador;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.LoginPackage.Apple;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
 import src.UsuarioPackage.LoginPackage.Mail;
-import src.UsuarioPackage.TrofeoPackage.Trofeo;
+import src.UsuarioPackage.TrofeoPackage.TrofeoCalificacion;
+import src.UsuarioPackage.TrofeoPackage.TrofeoReseña;
 import src.ViajePackage.Viaje;
 
 public class Application {
@@ -20,17 +22,18 @@ public static void main(String[] args)
 	String sexoTurista = Usuario.MASCULINO;
 	int dniTurista = 42496679;
 	int telefonoTurista = 1167254331;
-	IMedioLogin medioLoginTurista = new Apple();
-	Turista turista = Turista.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini no a podido ser registrado
+	IMedioLogin medioLoginTurista = new Apple(); // No es posible conectarse con los servidores de Apple, intente otro metodo
+	Turista turista = Turista.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini no a podido ser registrado.
 	medioLoginTurista = new Mail();
 	turista = Turista.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente	
 
-	Trofeo trofeoTresReseñas = Trofeo.RegistrarTrofeo(3); // Trofeo con id 0 y rese�as necesarias 3 fue creado exitosamente.
+	TrofeoReseña trofeoTresReseñas = TrofeoReseña.RegistrarTrofeo(3); // Trofeo con id 0 y rese�as necesarias 3 fue creado exitosamente.
 	turista.Suscribir(trofeoTresReseñas); // Suscripcion realizada con exito
 	
-	Trofeo trofeoPrimerReseña = Trofeo.RegistrarTrofeo(1); // Trofeo con id 1 y rese�as necesarias 1 fue creado exitosamente.
+	TrofeoReseña trofeoPrimerReseña = TrofeoReseña.RegistrarTrofeo(1); // Trofeo con id 1 y rese�as necesarias 1 fue creado exitosamente.
 	turista.Suscribir(trofeoPrimerReseña); // Suscripcion realizada con exito
 	
+
 	String nombreGuia = "Un";
 	String apellidoGuia = "Guia";
 	String mailGuia = "uguia@uade.edu.ar";
@@ -41,8 +44,17 @@ public static void main(String[] args)
 	IMedioLogin medioLoginGuia = new Mail();
 	Guia guia = Guia.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
 	
+	TrofeoCalificacion trofeoCalificacionCuatroEstrellas = TrofeoCalificacion.RegistrarTrofeo(4); // Trofeo con id 2 y calificacion necesaria 4 fue creado exitosamente.
+	guia.Suscribir(trofeoCalificacionCuatroEstrellas); // Suscripcion realizada con exito
+	guia.Suscribir(trofeoCalificacionCuatroEstrellas); // Suscripcion ya existente
+
+	Notificador centroDeNotificacion = new Notificador();
+	trofeoTresReseñas.Suscribir(centroDeNotificacion); // Suscripcion realizada con exito
+	trofeoPrimerReseña.Suscribir(centroDeNotificacion); // Suscripcion realizada con exito
+	trofeoCalificacionCuatroEstrellas.Suscribir(centroDeNotificacion); // Suscripcion realizada con exito
+	
 	Viaje viaje = Viaje.CrearViaje(turista); // Viaje creado con exito
-	viaje.Reservar(); // Viaje no puede ser reservado sing guia.
+	viaje.Reservar(); // Viaje no puede ser reservado sin guia.
 	viaje.SeleccionarGuia(guia);
 	viaje.Reservar(); // Viaje reservado con exito.	
 }

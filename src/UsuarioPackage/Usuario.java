@@ -1,9 +1,10 @@
 package src.UsuarioPackage;
 
+import src.Observer.Observable;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
 import src.UsuarioPackage.LoginPackage.Mail;
 
-public class Usuario {
+public class Usuario<T> extends Observable<T>{
 
 public static final String MASCULINO = "Masculino";
 public static final String FEMENINO = "Femenino";

@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import src.Notificador.Mensaje;
-import src.Observer.Observable;
+import src.NotificadorPackage.Mensaje;
+import src.ObserverPackage.Observable;
 
 public class Pago extends Observable<String>{
 

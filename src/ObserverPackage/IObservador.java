@@ -1,4 +1,4 @@
-package src.Observer;
+package src.ObserverPackage;
 
 public interface IObservador<T> {	
 	

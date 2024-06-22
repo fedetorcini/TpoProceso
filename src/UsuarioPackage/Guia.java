@@ -12,17 +12,17 @@ private String pais;
 private String ciudad;
 private ArrayList<Float> calificaciones;
 
-private Guia(String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
-	super(nombre, apellido, mail, contraseña, sexo, dni, telefono);
+private Guia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
+	super(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 	this.ciudad = ciudad;
 	this.pais = pais;
 	this.calificaciones = new ArrayList<Float>();
 }
 
-public static Guia RegistrarGuia(IMedioLogin medioLoginGuia, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
-	Guia miGuia = new Guia(nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
+public static Guia RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
+	Guia miGuia = new Guia(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
 	
-	boolean success = miGuia.medioLogin.RegistrarUsuario(mail, contraseña);
+	boolean success = medioLogin.RegistrarUsuario(mail, contraseña);
 	guias.put(miGuia.GetId(), miGuia);
 	
 	System.out.println("Guia " + miGuia + " fue creado exitosamente");

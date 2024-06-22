@@ -1,8 +1,8 @@
-package src.Observer;
+package src.ObserverPackage;
 
 import java.util.ArrayList;
 
-import src.Notificador.Mensaje;
+import src.NotificadorPackage.Mensaje;
 
 public class Observable<T>{
 

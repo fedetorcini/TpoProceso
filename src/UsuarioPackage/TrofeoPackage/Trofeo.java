@@ -1,7 +1,7 @@
 package src.UsuarioPackage.TrofeoPackage;
 
-import src.Observer.IObservador;
-import src.Observer.Observable;
+import src.ObserverPackage.IObservador;
+import src.ObserverPackage.Observable;
 
 public abstract class Trofeo<T> extends Observable<String> implements IObservador<T>{
 

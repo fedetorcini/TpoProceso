@@ -1,5 +1,6 @@
-package src.Notificador;
+package src.NotificadorPackage;
 
+import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
 
 public class Mensaje {
@@ -8,6 +9,10 @@ private Usuario emisor;
 private String descripcion;
 private Usuario receptor;
 
+public Mensaje(Usuario turista, String texto) {
+	this.emisor = emisor;
+	this.descripcion = texto;
+}
 public Usuario GetReceptor() {
 	return receptor;
 }

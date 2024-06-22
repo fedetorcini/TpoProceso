@@ -1,6 +1,6 @@
 package src;
 
-import src.Notificador.Notificador;
+import src.NotificadorPackage.Notificador;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
@@ -57,6 +57,12 @@ public static void main(String[] args)
 	viaje.Reservar(); // Viaje no puede ser reservado sin guia.
 	viaje.SeleccionarGuia(guia);
 	viaje.Reservar(); // Viaje reservado con exito.	
+	turista.AgregarViaje(viaje);
+	guia.AgregarViaje(viaje);
+	
+	viaje.chat.Suscribir(centroDeNotificacion);
+	turista.EnviarMensajeEnViaje(viaje.GetId(), "Hola como estas?");
+	
 }
 
 }

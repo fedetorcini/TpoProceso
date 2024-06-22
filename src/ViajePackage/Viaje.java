@@ -3,6 +3,7 @@ package src.ViajePackage;
 import java.util.HashMap;
 
 import src.Reseña;
+import src.NotificadorPackage.Mensaje;
 import src.ReservaPackage.Reserva;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
@@ -19,6 +20,7 @@ private double costoTotal;
 private double penalidad;
 private IEstadoViaje estadoViaje;
 private Reseña reseña;
+public Chat chat;
 
 private Reserva GetReserva() {
 	return reserva;
@@ -68,7 +70,7 @@ private void SetEstadoViaje(IEstadoViaje estadoViaje) {
 	this.estadoViaje = estadoViaje;
 }
 
-private int GetId() {
+public int GetId() {
 	return id;
 }
 
@@ -112,7 +114,8 @@ public void Reservar() {
 	if (guia != null)
 	{
 		System.out.println("Viaje reservado con exito.");
-		CambiarEstado(new Reservado());		
+		CambiarEstado(new Reservado());	
+		chat = new Chat(turista, guia);
 	}
 	else {
 		System.out.println("Viaje no puede ser reservado sin guia.");
@@ -121,6 +124,11 @@ public void Reservar() {
 
 public void Pagar() {
 	estadoViaje.Confirmar(this);
+}
+
+public void PublicarAlChatDeViaje(Mensaje mensaje)
+{
+	chat.EnviarMensaje(mensaje);
 }
 
 

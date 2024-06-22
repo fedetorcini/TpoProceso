@@ -1,6 +1,6 @@
-package src.Notificador;
+package src.NotificadorPackage;
 
-import src.Observer.IObservador;
+import src.ObserverPackage.IObservador;
 
 public class Notificador implements IObservador<String>{
 	@Override

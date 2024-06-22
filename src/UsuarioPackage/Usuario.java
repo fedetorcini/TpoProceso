@@ -1,8 +1,11 @@
 package src.UsuarioPackage;
 
-import src.Observer.Observable;
+import java.util.HashMap;
+
+import src.NotificadorPackage.Notificador;
+import src.ObserverPackage.Observable;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
-import src.UsuarioPackage.LoginPackage.Mail;
+import src.ViajePackage.Viaje;
 
 public class Usuario<T> extends Observable<T>{
 
@@ -17,17 +20,20 @@ protected String sexo;
 protected int dni;
 protected int telefono;
 protected IMedioLogin medioLogin;
+protected HashMap<Integer, Viaje> viajes;
+protected Notificador notificador;
 
-protected Usuario(String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
+protected Usuario(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	this.id = IDs;
 	IDs++;
+	this.medioLogin = medioLogin;
 	this.nombre = nombre;
 	this.apellido = apellido;
 	this.mail = mail;
 	this.sexo = sexo;
 	this.dni = dni;
 	this.telefono = telefono;
-	this.medioLogin = new Mail();
+	this.viajes = new HashMap<Integer, Viaje>();
 }
 
 protected int GetId() {
@@ -65,6 +71,11 @@ protected void SetMail(String mail) {
 public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
 {
 	medioLogin = nuevoMedio;
+}
+
+public void AgregarViaje(Viaje nuevoViaje)
+{
+	viajes.put(nuevoViaje.GetId(), nuevoViaje);
 }
 
 }

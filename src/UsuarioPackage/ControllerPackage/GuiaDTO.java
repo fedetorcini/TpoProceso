@@ -3,6 +3,7 @@ package src.UsuarioPackage.ControllerPackage;
 import java.util.ArrayList;
 
 import src.UsuarioPackage.Guia;
+import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class GuiaDTO {
 
@@ -71,6 +72,16 @@ public void setIdiomas(ArrayList<String> idiomas) {
 }
 
 public GuiaDTO(Guia guia) {
+}
+
+public String GetMail() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public int GetId() {
+	// TODO Auto-generated method stub
+	return 0;
 }
 
 }

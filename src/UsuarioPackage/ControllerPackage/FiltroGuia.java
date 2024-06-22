@@ -2,6 +2,8 @@ package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
 
+import src.ViajePackage.ServicioPackage.ServicioDTO;
+
 public class FiltroGuia {
 
 protected String nombre;
@@ -48,7 +50,7 @@ public void Validar(GuiaDTO guia) {
 			boolean encontrado = false;
 			for (ServicioDTO servicioGuia : guia.getServicios())
 			{
-				if (servicioGuia.GetTipo() == servicioFiltro.GetTipo())
+				if (servicioGuia.getTipo() == servicioFiltro.getTipo())
 				{
 					encontrado = true;
 				}

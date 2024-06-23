@@ -2,48 +2,90 @@ package src.UsuarioPackage;
 
 import java.util.HashMap;
 
-import src.NotificadorPackage.Mensaje;
+import src.Reseña;
+import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
+import src.ViajePackage.Viaje;
 
 public class Turista extends Usuario<Turista>{
 
 private static HashMap<Integer, Turista> turistas = new HashMap<Integer, Turista>();
 
-public Turista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
-	super(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+private void Initialize(Turista turista) {
+	Initialize(turista.medioLogin, turista.nombre, turista.apellido, turista.mail, "", turista.sexo, turista.dni, turista.telefono);
+	this.viajes = turista.viajes;
 }
 
-public static Turista RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono)
-{
-	Turista miTurista = null;
-	
+public void Initialize(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
+	InitializeUsuario(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+}
+
+public void RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	if (medioLogin.RegistrarUsuario(mail, contraseña))
 	{
-		miTurista = new Turista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
-		turistas.put(miTurista.GetId(), miTurista);
+		Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+		this.id = IDs;
+		IDs++;
+		turistas.put(id, this);
 		System.out.println("Turista " + nombre + " " + apellido + " registrado exitosamente.");
-		
 	}
 	else
 	{
 		System.out.println("Turista " + nombre + " " + apellido + " no a podido ser registrado.");	
+	}	
+}
+
+public boolean Login(String email, String contraseña) {
+	return medioLogin.Login(email, contraseña);
+}
+
+public TuristaDTO ToDTO() {
+	return new TuristaDTO(this);
+}
+
+public boolean GetPorId(int id) {
+
+	boolean success = false;
+
+	for(Turista turista : turistas.values()) {
+		if (turista.id == id) {
+			Initialize(turista);
+			success = true;
+		}
 	}
-	
-	return miTurista;
+	return success;
 }
 
-@Override
-public String toString()
-{
-	return nombre + " " + apellido;
+public boolean GetPorMail(String email) {
+
+	boolean success = false;
+
+	for(Turista turista : turistas.values()) {
+		if (turista.mail == email) {
+			Initialize(turista);
+			success = true;
+		}
+	}
+	return success;
 }
 
-public void AgregarReseña(int viajeId) {
-	if (viajes.containsKey(viajeId))
-	{
-		viajes.get(viajeId).RegistrarReseña("Que buen servicio!", 4.5f);
+public boolean GetPorDTO(TuristaDTO turistaDTO) {
+	return GetPorMail(turistaDTO.GetMail());
+}
+
+public void AgregarViaje(Viaje viaje) {
+	viajes.put(viaje.GetId(), viaje);
+	turistas.put(id, this);
+}
+
+public void AgregarReseña(Reseña reseña) {
+	if (viajes.containsKey(reseña.GetViajeId())){
 		Publicar(this);
 	}
 }
+@Override
+public String toString() {
+		return nombre + " " + apellido;
+	}
 
 }

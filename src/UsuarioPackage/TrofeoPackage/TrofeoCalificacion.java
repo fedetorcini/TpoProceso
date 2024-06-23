@@ -1,34 +1,23 @@
 package src.UsuarioPackage.TrofeoPackage;
 
+import java.util.HashMap;
+
 import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Guia;
+import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 
 public class TrofeoCalificacion extends Trofeo<Guia>{
 
-private int calificacionNecesaria;
+private HashMap<Integer, TrofeoCalificacion> trofeos = new HashMap<Integer, TrofeoCalificacion>();
+private float calificacionNecesaria;
 
-protected TrofeoCalificacion(int calificacionNecesaria)
+public void RegistrarTrofeo(float calificacionNecesaria)
 {
 	this.calificacionNecesaria = calificacionNecesaria;
-}
-
-private int GetCalificacionNecesaria() {
-	return calificacionNecesaria;
-}
-
-private void SetCalificacionNecesaria(int calificacionNecesaria) {
-	this.calificacionNecesaria = calificacionNecesaria;
-}
-
-public static TrofeoCalificacion RegistrarTrofeo(int calificacionNecesaria)
-{
-	TrofeoCalificacion myTrofeo = new TrofeoCalificacion(calificacionNecesaria);
-	myTrofeo.SetCalificacionNecesaria(calificacionNecesaria);
-	myTrofeo.SetTrofeoId(IDs);
+	this.trofeoId = IDs;
 	IDs++;
 	
-	System.out.println("Trofeo con id " + myTrofeo.GetTrofeoId() + " y calificacion necesaria " + calificacionNecesaria + " fue creado exitosamente.");
-	return myTrofeo;
+	trofeos.put(this.trofeoId, this);
 }
 
 public void Notificar(Guia object) 
@@ -39,4 +28,18 @@ public void Notificar(Guia object)
 	}
 }
 
+public boolean GetPorDTO(TrofeoDTO trofeoDTO) {
+
+	boolean encontrado = false;
+	for (TrofeoCalificacion trofeo : trofeos.values())
+	{
+		if (trofeo.trofeoId == trofeoDTO.GetID())
+		{
+			this.calificacionNecesaria = trofeo.calificacionNecesaria;
+			this.trofeoId = trofeo.trofeoId;
+			encontrado = true;
+		}
+	}
+	return encontrado;
+}
 }

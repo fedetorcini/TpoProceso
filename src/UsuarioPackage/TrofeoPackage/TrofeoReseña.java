@@ -4,34 +4,24 @@ import java.util.HashMap;
 
 import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Turista;
+import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 
 public class TrofeoReseña extends Trofeo<Turista>{
 
+private HashMap<Integer, TrofeoReseña> trofeos = new HashMap<Integer, TrofeoReseña>();
 private HashMap<Turista, Integer> reseñasPorUsuario;
 private int reseñasNecesarias;
 
-protected TrofeoReseña(int reseñasNecesarias)
-{
-	reseñasPorUsuario = new HashMap<Turista, Integer>();
+public TrofeoReseña() {
 }
 
-private int GetReseñasNecesarias() {
-	return reseñasNecesarias;
-}
-
-private void SetReseñasNecesarias(int reseñasNecesarias) {
+public void RegistrarTrofeo(int reseñasNecesarias) {
+	this.reseñasPorUsuario = new HashMap<Turista, Integer>();
 	this.reseñasNecesarias = reseñasNecesarias;
-}
-
-public static TrofeoReseña RegistrarTrofeo(int reseñasNecesarias)
-{
-	TrofeoReseña myTrofeo = new TrofeoReseña(reseñasNecesarias);
-	myTrofeo.SetReseñasNecesarias(reseñasNecesarias);
-	myTrofeo.SetTrofeoId(IDs);
+	this.trofeoId = IDs;
 	IDs++;
-	
-	System.out.println("Trofeo con id " + myTrofeo.GetTrofeoId() + " y reseñas necesarias " + reseñasNecesarias + " fue creado exitosamente.");
-	return myTrofeo;
+
+	trofeos.put(this.trofeoId, this);
 }
 
 public void Notificar(Turista object) 
@@ -47,6 +37,22 @@ public void Notificar(Turista object)
 	{
 		Publicar(new Mensaje("Has Recibido un nuevo trofeo!!! Gracias por realizar " + reseñasNecesarias + ". con tu feedback podemos mejorar como empresa."));
 	}
+}
+
+public boolean GetPorDTO(TrofeoDTO trofeoDTO) {
+
+	boolean encontrado = false;
+	for (TrofeoReseña trofeo : trofeos.values())
+	{
+		if (trofeo.trofeoId == trofeoDTO.GetID())
+		{
+			this.reseñasNecesarias = trofeo.reseñasNecesarias;
+			this.reseñasPorUsuario = trofeo.reseñasPorUsuario;
+			this.trofeoId = trofeo.trofeoId;
+			encontrado = true;
+		}
+	}
+	return encontrado;
 }
 
 }

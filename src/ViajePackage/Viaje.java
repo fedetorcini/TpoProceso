@@ -1,5 +1,6 @@
 package src.ViajePackage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import src.Reseña;
@@ -7,6 +8,8 @@ import src.NotificadorPackage.Mensaje;
 import src.ReservaPackage.Reserva;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
+import src.ViajePackage.Controller.MensajeDTO;
+import src.ViajePackage.Controller.ViajeDTO;
 
 public class Viaje {
 
@@ -14,126 +17,123 @@ private static HashMap<Integer, Viaje> viajes = new HashMap<Integer, Viaje>();
 private static int IDs = 0;
 private int id;
 private Reserva reserva;
-private Guia guia;
-private Turista turista;
+private int guiaId;
+private int turistaId;
 private double costoTotal;
 private double penalidad;
 private IEstadoViaje estadoViaje;
 private Reseña reseña;
-public Chat chat;
+private Chat chat;
 
-private Reserva GetReserva() {
-	return reserva;
+public Viaje() {
+	id = -1;
+	guiaId = -1;
+	turistaId = -1;
+	costoTotal = -1;
+	penalidad = 0;
+	reserva = new Reserva();
+	estadoViaje = new Reservado();
+	chat = new Chat(turistaId, guiaId);
+	reseña = new Reseña();
 }
 
-private void SetReserva(Reserva reserva) {
-	this.reserva = reserva;
-}
+public void ResgistrarReserva(Reserva reserva) {}
 
-private Guia GetGuia() {
-	return guia;
-}
-
-private void SetGuia(Guia guia) {
-	this.guia = guia;
-}
-
-private Turista GetTurista() {
-	return turista;
-}
-
-private void SetTurista(Turista turista) {
-	this.turista = turista;
-}
-
-private double GetCostoTotal() {
-	return costoTotal;
-}
-
-private void SetCostoTotal(double costoTotal) {
-	this.costoTotal = costoTotal;
-}
-
-private double GetPenalidad() {
+public double CalcularPenalidad() {
 	return penalidad;
 }
 
-private void SetPenalidad(double penalidad) {
-	this.penalidad = penalidad;
+public void CambiarEstado(IEstadoViaje estado) {
+	this.estadoViaje = estado;
 }
 
-private IEstadoViaje GetEstadoViaje() {
-	return estadoViaje;
-}
+public void RegistrarReseña(String descripcion, float calificacion) {
+	Reseña reseña = new Reseña();
+	reseña.RegistrarReseña(descripcion, turistaId, guiaId, 0, calificacion);
 
-private void SetEstadoViaje(IEstadoViaje estadoViaje) {
-	this.estadoViaje = estadoViaje;
-}
-
-public int GetId() {
-	return id;
-}
-
-private void SetId(int id) {
-	this.id = id;
-}
-
-public void ResgistrarReserva(Reserva reserva)
-{}
-
-public double CalcularPenalidad()
-{
-	return penalidad;
-}
-
-public void CambiarEstado(IEstadoViaje estado)
-{}
-
-public void RegistrarReseña(String descripcion, float calificacion)
-{
-	reseña = Reseña.RegistrarReseña(descripcion, turista, guia, calificacion);
+	Guia guia = new Guia();
+	guia.GetPorId(guia.GetId());
 	guia.AgregarReseña(reseña);
 }
 
-public void SeleccionarGuia(Guia nuevoGuia) {
-	guia = nuevoGuia;
-}
-
-public static Viaje CrearViaje(Turista turista) {
-	Viaje viaje = new Viaje();
-	viaje.SetTurista(turista);
-	viaje.SetId(IDs);
+public Viaje CrearViaje(Turista turista, Guia guia) {
+	this.turistaId = turista.GetId();
+	this.guiaId = guia.GetId();
+	this.id = IDs;
 	IDs++;
-	
-	viajes.put(viaje.GetId(), viaje);
-	
+
+	chat = new Chat(turistaId, guiaId);
+	chat.Suscribir(turista.GetNotificador());
+	chat.Suscribir(guia.GetNotificador());
+
+	viajes.put(id, this);
+
 	System.out.println("Viaje creado con exito");
-	return viaje;
+	return this;
 }
 
 public void Reservar() {
-	if (guia != null)
-	{
-		System.out.println("Viaje reservado con exito.");
-		CambiarEstado(new Reservado());	
-		chat = new Chat(turista, guia);
-		chat.Suscribir(turista.GetNotificador());
-		chat.Suscribir(guia.GetNotificador());
-	}
-	else {
-		System.out.println("Viaje no puede ser reservado sin guia.");
-	}
+	System.out.println("Viaje reservado con exito.");
+	CambiarEstado(new Reservado());
+	viajes.put(GetId(), this);
 }
 
 public void Pagar() {
 	estadoViaje.Confirmar(this);
 }
 
-public void PublicarAlChatDeViaje(Mensaje mensaje)
-{
+public void PublicarAlChatDeViaje(Mensaje mensaje) {
 	chat.EnviarMensaje(mensaje);
 }
 
+public boolean GetPorDTO(ViajeDTO dto) {
 
+	boolean encontrado = false;
+	for (Viaje viaje : viajes.values()) {
+		if (viaje.id == dto.GetId()) {
+			this.turistaId = viaje.turistaId;
+			this.guiaId = viaje.guiaId;
+			this.id = viaje.id;
+			this.estadoViaje = viaje.estadoViaje;
+			this.reserva = viaje.reserva;
+			encontrado = true;
+		}
+	}
+	return encontrado;
+}
+
+public Reseña GetReseña() {
+	return reseña;
+}
+
+public ArrayList<MensajeDTO> GetMensajes() {
+	return chat.GetMensajes();
+}
+
+public int GetId() {
+		return id;
+}
+
+public double GetCosto() {
+	return costoTotal;
+}
+
+public double GetPenalidad(){ return penalidad;}
+
+public String GetEstadoReserva() {
+	return reserva.toString();
+}
+
+public String GetEstadoViaje() {
+	return estadoViaje.toString();
+}
+
+public int GetTuristaId(){
+	return turistaId;
+}
+
+public int GetGuiaId(){
+	return guiaId;
+}
 
 }

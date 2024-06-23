@@ -4,28 +4,32 @@ import java.util.ArrayList;
 
 import src.NotificadorPackage.Mensaje;
 import src.ObserverPackage.Observable;
-import src.UsuarioPackage.Guia;
-import src.UsuarioPackage.Turista;
-import src.UsuarioPackage.Usuario;
+import src.ViajePackage.Controller.MensajeDTO;
 
 public class Chat extends Observable<Mensaje>{
 
-public Usuario<Turista> turista;
-public Usuario<Guia> guia;
+public int turistaId;
+public int guiaId;
 private ArrayList<Mensaje> mensajes;
-	
-public Chat(Turista turista, Guia guia)
-{
-	this.turista = turista;
-	this.guia = guia;
+
+public Chat(int turistaId, int guiaId) {
+	this.turistaId = turistaId;
+	this.guiaId = guiaId;
 	this.mensajes = new ArrayList<Mensaje>();
-	System.out.println("Chat establecido con exito");
 }
 	
-public void EnviarMensaje(Mensaje nuevoMensaje)
-{
+public void EnviarMensaje(Mensaje nuevoMensaje) {
 	mensajes.add(nuevoMensaje);
 	Publicar(nuevoMensaje);		
+}
+
+public ArrayList<MensajeDTO> GetMensajes() {
+	ArrayList<MensajeDTO> mensajesDto = new ArrayList<MensajeDTO>();
+
+	for (Mensaje mensaje : mensajes){
+		mensajesDto.add(new MensajeDTO(mensaje));
+	}
+	return mensajesDto;
 }
 
 }

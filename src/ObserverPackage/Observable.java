@@ -13,27 +13,21 @@ public Observable()
 	observadores = new ArrayList<IObservador<T>>();
 }
 
-public void Suscribir(IObservador<T> observador)
-{
-	if (!observadores.contains(observador))
-	{
+public void Suscribir(IObservador<T> observador) {
+	if (!observadores.contains(observador)) {
 		observadores.add(observador);
-		System.out.println("Suscripcion realizada con exito");
 	}
-	else
-	{		
+	else {
 		System.out.println("Suscripcion ya existente");
 	}
 }
 
-public void Desuscribir(IObservador<T> observador)
-{
+public void Desuscribir(IObservador<T> observador) {
 	observadores.remove(observador);	
 	System.out.println("Desuscripto con exito");
 }
 
-public void Publicar(T mensaje)
-{
+public void Publicar(T mensaje) {
 	for(IObservador<T> observador : observadores)
 	{
 		observador.Notificar(mensaje);

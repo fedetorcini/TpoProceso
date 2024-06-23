@@ -3,13 +3,12 @@ package src.UsuarioPackage;
 import java.util.HashMap;
 
 import src.NotificadorPackage.IMedioNotificacion;
-import src.NotificadorPackage.Mensaje;
 import src.NotificadorPackage.Notificador;
 import src.ObserverPackage.Observable;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
 import src.ViajePackage.Viaje;
 
-public class Usuario<T> extends Observable<T>{
+public abstract class Usuario<T> extends Observable<T>{
 
 public static final String MASCULINO = "Masculino";
 public static final String FEMENINO = "Femenino";
@@ -25,9 +24,12 @@ protected IMedioLogin medioLogin;
 protected HashMap<Integer, Viaje> viajes;
 protected Notificador notificador;
 
-protected Usuario(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
-	this.id = IDs;
-	IDs++;
+protected Usuario()
+{
+	viajes = new HashMap<Integer, Viaje>();
+}
+
+protected void InitializeUsuario(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	this.medioLogin = medioLogin;
 	this.nombre = nombre;
 	this.apellido = apellido;
@@ -39,63 +41,46 @@ protected Usuario(IMedioLogin medioLogin, String nombre, String apellido, String
 	this.notificador = new Notificador();
 }
 
-protected int GetId() {
-	return id;
-}
-
-protected void SetId(int myId) {
-	this.id = myId;
-}
-
-protected String GetApellido() {
-	return apellido;
-}
-
-protected void SetApellido(String apellido) {
-	this.apellido = apellido;
-}
-
-protected String GetNombre() {
-	return nombre;
-}
-
-protected void SetNombre(String nombre) {
-	this.nombre = nombre;
-}
-
-protected String GetMail() {
-	return mail;
-}
-
-protected void SetMail(String mail) {
-	this.mail = mail;
-}
-
 public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
 {
 	medioLogin = nuevoMedio;
 }
 
-public void CambiarMetodoNotificacion(IMedioNotificacion nuevoMedio)
-{
-	
-}
-
-public void EnviarMensajeEnViaje(int viajeId, String texto) {
-	if (viajes.containsKey(viajeId))
-	{
-		viajes.get(viajeId).PublicarAlChatDeViaje(new Mensaje(this, "Tienes un nuevo mensaje... " + this + ": " + texto, notificador));
-	}
-}
-
-public void AgregarViaje(Viaje nuevoViaje)
-{
-	viajes.put(nuevoViaje.GetId(), nuevoViaje);
+public void CambiarMetodoNotificacion(IMedioNotificacion nuevoMedio) {
 }
 
 public Notificador GetNotificador()
 {
 	return notificador;
+}
+
+public String GetMail() {
+	return mail;
+}
+
+public int GetId()
+{
+	return id;
+}
+
+public String GetNombre() {
+	return nombre;
+}
+
+public String GetApellido() {
+	return apellido;
+}
+
+public int GetDni() {
+	return dni;
+}
+
+public int GetTelefono() {
+	return telefono;
+}
+
+public String GetSexo() {
+	return sexo;
 }
 
 }

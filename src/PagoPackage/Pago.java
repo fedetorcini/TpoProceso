@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import src.NotificadorPackage.Mensaje;
 import src.ObserverPackage.Observable;
 
 public class Pago extends Observable<String>{
@@ -17,29 +16,24 @@ private Date fecha;
 private IAdapterPago metodoDePago;
 private boolean fueExitoso;
 
-private Pago(double nuevoMonto)
-{
-	monto = nuevoMonto;
-	fecha = Calendar.getInstance().getTime();
-	fueExitoso = false;
-	metodoDePago = new StripAdapter();
-	id = IDs;
-	IDs++;
-}
-
 public double GetMonto() {
 	return monto;
 }
 
-public static Pago RegistrarPago(double monto)
+public void RegistrarPago(double monto)
 {
-	Pago miPago = new Pago(monto);
-	boolean success = miPago.RealizarPago();
-	pagos.put(miPago.id, miPago);
+	this.monto = monto;
+	this.fecha = Calendar.getInstance().getTime();
+	this.metodoDePago = new StripAdapter();
+	this.fueExitoso = RealizarPago();
+	this.id = IDs;
+	IDs++;
+	
+	pagos.put(id, this);
 
 	String mensaje;	
 	
-	if (success)
+	if (fueExitoso)
 	{
 		mensaje = "Pago de: " + monto + " realizado con exito.";
 	}
@@ -48,10 +42,8 @@ public static Pago RegistrarPago(double monto)
 		mensaje = "Pago por el monto de: " + monto + " falló.";
 	}
 	
-	miPago.Publicar(mensaje);
+	Publicar(mensaje);
 	System.out.println(mensaje);
-	
-	return miPago;
 }
 
 private boolean RealizarPago() {

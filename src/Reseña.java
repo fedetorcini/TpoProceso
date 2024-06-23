@@ -4,14 +4,18 @@ import java.util.HashMap;
 
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
+import src.ViajePackage.Viaje;
+import src.ViajePackage.Controller.ReseñaDTO;
+import src.ViajePackage.Controller.ViajeDTO;
 
 public class Reseña {
 
 private static HashMap<String, Reseña> reseñas = new HashMap<String, Reseña>();
 private String texto;
 private float estrellas;
-private Turista turista;
-private Guia guia;
+private int turistaId;
+private int guiaId;
+private int viajeId;
 
 private String GetTexto() {
 	return texto;
@@ -29,42 +33,33 @@ private void SetEstrellas(float calificacion) {
 	this.estrellas = calificacion;
 }
 
-private Turista GetTurista() {
-	return turista;
-}
-
-private void SetTurista(Turista turista) {
-	this.turista = turista;
-}
-
-private Guia GetGuia() {
-	return guia;
-}
-
-private void SetGuia(Guia guia) {
-	this.guia = guia;
-}
-
-public static Reseña RegistrarReseña(String mensaje, Turista turista, Guia guia, float calificacion)
-{
-	Reseña miReseña = new Reseña();
-	reseñas.put(ObtenerKeyDeGuiaTurista(turista, guia), miReseña);
-	miReseña.SetEstrellas(calificacion);
-	miReseña.SetTurista(turista);
-	miReseña.SetGuia(guia);
-	miReseña.SetTexto(mensaje);
+public Reseña RegistrarReseña(String mensaje, int turistaId, int guiaId, int viajeId, float calificacion) {
+	reseñas.put(ObtenerKeyDeGuiaTurista(turistaId, guiaId), this);
+	this.estrellas = calificacion;
+	this.turistaId = turistaId;
+	this.guiaId = guiaId;
+	this.viajeId = viajeId;
+	this.texto = mensaje;
 	
 	System.out.println("Reseña : " + mensaje + ". Creada con exito!");
-	return miReseña;
+	return this;
 }
 
-private static String ObtenerKeyDeGuiaTurista(Turista turista, Guia guia)
-{
+private static String ObtenerKeyDeGuiaTurista(Integer turista, Integer guia) {
 	return turista.toString() + guia.toString();		
 }
 
 public Float GetCalificacion() {
 	return estrellas;
 }
+
+public void RegistrarReseña(ReseñaDTO reseñaDto) {
+	RegistrarReseña(reseñaDto.GetTexto(), reseñaDto.GetTurista().GetId(), reseñaDto.GetGuia().GetId(), reseñaDto.GetViaje().GetId(), reseñaDto.GetEstrellas());
+}
+
+public Integer GetViajeId() {
+	return viajeId;
+}
+
 
 }

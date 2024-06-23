@@ -9,13 +9,12 @@ public abstract class Trofeo<T> extends Observable<Mensaje> implements IObservad
 protected static int IDs = 0;
 protected int trofeoId;
 
-protected int GetTrofeoId() {
+public int GetId() {
 	return trofeoId;
 }
 
-protected void SetTrofeoId(int trofeoId) {
+public void SetId(int trofeoId) {
 	this.trofeoId = trofeoId;
 }
-
 
 }

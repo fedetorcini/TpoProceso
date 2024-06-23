@@ -31,7 +31,9 @@ public void Pagar(double monto)
 {
 	double totalPagado = 0;
 	
-	Pago miPago = Pago.RegistrarPago(monto);
+	Pago miPago = new Pago();
+	miPago.RegistrarPago(monto);
+	
 	if (miPago.Completado())
 	{
 		pagos.add(miPago);		

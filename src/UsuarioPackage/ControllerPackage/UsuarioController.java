@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
-import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
-import src.ViajePackage.Controller.ViajeDTO;
 
 public class UsuarioController {
 
-public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter)
-{
+public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
 	if (filter != null)
 	{		
 		ArrayList<GuiaDTO> filtrado = new ArrayList<GuiaDTO>();
@@ -28,34 +25,31 @@ public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter)
 	}
 }
 
-public void RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono)
-{
+public TuristaDTO RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	Turista turista = new Turista();
 	turista.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.	
+	return new TuristaDTO(turista);
 }
 
-public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad)
-{
+public GuiaDTO RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
 	Guia guia = new Guia();
 	guia.RegistrarGuia(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad); // Turista Federico Torcini no a podido ser registrado.	
+	return new GuiaDTO(guia);
 }
 
-public TuristaDTO LoginTurista(String email, String contraseña)
-{
+public TuristaDTO LoginTurista(String email, String contraseña) {
 	Turista turista = new Turista();
 	turista.GetPorMail(email);
 	boolean success = turista.Login(email, contraseña);
 	
 	TuristaDTO dto = null;	
-	if (success)
-	{
+	if (success) {
 		dto = turista.ToDTO();
 	}
 	return dto;
 }
 
-public GuiaDTO LoginGuia(String email, String contraseña)
-{
+public GuiaDTO LoginGuia(String email, String contraseña) {
 	Guia guia = new Guia();
 	guia.GetPorMail(email);
 	boolean success = guia.Login(email, contraseña);
@@ -67,6 +61,5 @@ public GuiaDTO LoginGuia(String email, String contraseña)
 	}
 	return dto;
 }
-
 
 }

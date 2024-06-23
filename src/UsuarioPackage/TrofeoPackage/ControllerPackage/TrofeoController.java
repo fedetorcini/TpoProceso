@@ -9,37 +9,36 @@ import src.UsuarioPackage.TrofeoPackage.TrofeoReseña;
 
 public class TrofeoController {
 
-	public void RegistrarTrofeoCalificacion(float calificacionNecesaria) {
-		TrofeoCalificacion trofeo = new TrofeoCalificacion(); 
-		trofeo.RegistrarTrofeo(calificacionNecesaria); // Trofeo con id n y reseñas necesarias reseñasNecesarias fue creado exitosamente.		
-	}
+public TrofeoDTO RegistrarTrofeoCalificacion(float calificacionNecesaria) {
+	TrofeoCalificacion trofeo = new TrofeoCalificacion(); 
+	trofeo.RegistrarTrofeo(calificacionNecesaria);
+	return new TrofeoDTO(trofeo);
+}
+
+public TrofeoDTO RegistrarTrofeoReseña(int reseñasNecesarias) {
+	TrofeoReseña trofeo = new TrofeoReseña(); 
+	trofeo.RegistrarTrofeo(reseñasNecesarias);
+	return new TrofeoDTO(trofeo);
+}
+
+public void Suscribir(TrofeoDTO trofeoDTO, TuristaDTO turistaDTO) {
+	Turista turista = new Turista();
+	turista.GetPorDTO(turistaDTO);
 	
-	public TrofeoDTO RegistrarTrofeoReseña(int reseñasNecesarias) {
-		TrofeoReseña trofeo = new TrofeoReseña(); 
-		trofeo.RegistrarTrofeo(reseñasNecesarias); // Trofeo con id n y reseñas necesarias reseñasNecesarias fue creado exitosamente.		
-		return new TrofeoDTO();
-	}
+	TrofeoReseña trofeo = new TrofeoReseña();
+	trofeo.GetPorDTO(trofeoDTO);
+	
+	turista.Suscribir(trofeo);
+}
 
-	public void Suscribir(TrofeoDTO trofeoDTO, TuristaDTO turistaDTO) {
-		Turista turista = new Turista();
-		turista.GetPorDTO(turistaDTO);
-		
-		TrofeoReseña trofeo = new TrofeoReseña();
-		trofeo.GetPorDTO(trofeoDTO);
-		
-		turista.Suscribir(trofeo);
-	}
-
-	public void Suscribir(TrofeoDTO trofeoDTO, GuiaDTO guiaDTO) {
-		Guia guia = new Guia();
-		guia.GetPorDTO(guiaDTO);
-		
-		TrofeoCalificacion trofeo = new TrofeoCalificacion();
-		trofeo.GetPorDTO(trofeoDTO);
-		
-		guia.Suscribir(trofeo);
-	}
-
-
+public void Suscribir(TrofeoDTO trofeoDTO, GuiaDTO guiaDTO) {
+	Guia guia = new Guia();
+	guia.GetPorDTO(guiaDTO);
+	
+	TrofeoCalificacion trofeo = new TrofeoCalificacion();
+	trofeo.GetPorDTO(trofeoDTO);
+	
+	guia.Suscribir(trofeo);
+}
 
 }

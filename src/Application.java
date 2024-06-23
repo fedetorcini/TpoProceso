@@ -15,8 +15,7 @@ import src.ViajePackage.Controller.ViajeDTO;
 
 public class Application {
 	
-public static void main(String[] args)
-{			
+public static void main(String[] args) {
 	UsuarioController usuario = new UsuarioController();
 	TrofeoController trofeo = new TrofeoController();
 	ViajeController viaje = new ViajeController();

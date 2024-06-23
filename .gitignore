@@ -27,3 +27,5 @@ bin/
 .project
 .settings/
 .classpath
+.idea
+TPO_Procesos.iml

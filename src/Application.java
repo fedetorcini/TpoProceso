@@ -1,5 +1,6 @@
 package src;
 
+import GUI.Principal;
 import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
@@ -88,6 +89,7 @@ public static void main(String[] args) {
 		viaje.EnviarMensaje(miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
 	}
 
+	Principal GUI = new Principal();
 }
 
 }

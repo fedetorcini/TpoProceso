@@ -1,35 +1,36 @@
 package GUI;
 
+import GUI.Pantallas.LoginTurista;
+import GUI.Pantallas.Main;
+import GUI.Pantallas.Pantalla;
+import GUI.Pantallas.RegistroUsuario;
+import src.UsuarioPackage.ControllerPackage.TuristaDTO;
+import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.UsuarioPackage.Usuario;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Stack;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
-//import Exceptions.CantidadDeFrutasInvalidaException;
-//import Exceptions.NoHaySaldoSuficienteException;
-//import Exceptions.NoSePuedePagarPremioException;
-//import Exceptions.YaExistePremioConEsaCombinacionException;
-//import src.Casino;
-//import src.view.PremioView;
-//import src.view.TicketView;
-//import src.view.TragamonedasView;
-
-
 public class Principal extends JFrame {
 
 	private JGradientButton cajaButton;
 	private FedeJTextField cajaTextField;
 	
-	private JGradientButton cargarMaquinaButton;
-	private FedeJTextField cargarMaquinaTextField;
-	
+	private JGradientButton botonLogin;
+	private JGradientButton botonRegistrar;
+	private FedeJTextField mailTexto;
+	private FedeJTextField contraseñaTexto;
+
 	private JGradientButton crearMaquinaButton;
 	private FedeJTextField precioJugadaTextField;
 	private FedeJTextField recaudacionIncialTextField;
@@ -42,41 +43,38 @@ public class Principal extends JFrame {
 	private JLabel frutasElegidas;
 	private ArrayList<Integer> frutasList = new ArrayList<Integer>();
 
-	
 	private CircleButton jugarButton;
-
 	private CircleButton retirarButton;
-
 	private JLabel creditGUI;
-//	private JComboBox<TragamonedasView> machineList;
-//	private Casino controlador;
+	//private JComboBox<TragamonedasView> machineList;
+	//private Casino controlador;
 	private Container container;
 		
 	private int WINDOW_HEIGHT = 800;
 	private int WINDOW_WIDTH = 900;
-	
+
 	private long deltaTime = 33;
-	private Color mainColor = Color.GRAY.brighter();
-	private Color secondary = Color.WHITE;
-	private Color mainBackgroundColor = new Color(245, 245, 245);
-	
-	
-	
+	private Color mainColor = Color.GREEN.darker();
+	private Color secondary = Color.YELLOW.brighter();
+	private Color mainBackgroundColor = Color.LIGHT_GRAY;
+
 	public Principal(){
-		this.setTitle("Fede's Saloon");
-		//controlador = new Casino();
+		this.setTitle("Hotel? TRIVAGO");
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		//configurar();
-		this.setVisible(true);
+		this.configurar();
+		this.setVisible(true); // This should be executed after configurar()
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	/*private void configurar()
-	{
-		
+	private void configurar() {
 		initializeContainer();
-		
-		setComprarTicketForm();
+
+		Pantalla main = new Main(mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		Pantalla loginTurista = new LoginTurista(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		Pantalla registroUsuario =  new RegistroUsuario(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		registroUsuario.Hide();
+
+		/*setComprarTicketForm();
 		setCargarTicketForm();
 		setMachineList();
 		setTragamonedasDisplay();
@@ -84,19 +82,16 @@ public class Principal extends JFrame {
 		setCreateMachineForm();
 		setCrearPremioForm();
 		setJugarButton();
-		setRetirarButton();
+		setRetirarButton();*/
 	}
-	
 
-	private void initializeContainer() 
-	{
+	private void initializeContainer() {
 		container = this.getContentPane();
 		container.setLayout(null);
 		container.setBackground(mainBackgroundColor);		
 	}
 
-
-	private void setCreditBanner()
+	/*private void setCreditBanner()
 	{
 		creditGUI = new JLabel("temp name", SwingConstants.CENTER);
 		creditGUI.setBounds( WINDOW_WIDTH - 250, WINDOW_HEIGHT - 100, 200, 50);

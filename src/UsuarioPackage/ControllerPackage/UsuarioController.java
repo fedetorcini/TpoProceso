@@ -3,10 +3,15 @@ package src.UsuarioPackage.ControllerPackage;
 import java.util.ArrayList;
 
 import src.UsuarioPackage.Guia;
+import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
-import src.UsuarioPackage.LoginPackage.IMedioLogin;
 
 public class UsuarioController {
+
+public static final String MEDIO_LOGIN_APPLE = "Apple";
+public static final String MEDIO_LOGIN_MAIL = "Mail";
+public static final String MEDIO_LOGIN_GOOGLE= "Google";
+public static final String MEDIO_LOGIN_FACEBOOK = "Facebook";
 
 public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
 	if (filter != null)
@@ -25,28 +30,31 @@ public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
 	}
 }
 
-public TuristaDTO RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
+public TuristaDTO RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	Turista turista = new Turista();
-	turista.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.	
+	turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.
 	return new TuristaDTO(turista);
 }
 
-public GuiaDTO RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
+public GuiaDTO RegistrarGuia(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
 	Guia guia = new Guia();
-	guia.RegistrarGuia(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad); // Turista Federico Torcini no a podido ser registrado.	
+	guia.RegistrarGuia(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad); // Turista Federico Torcini no a podido ser registrado.
 	return new GuiaDTO(guia);
 }
 
 public TuristaDTO LoginTurista(String email, String contraseña) {
+
+	TuristaDTO output = null;
+
 	Turista turista = new Turista();
-	turista.GetPorMail(email);
-	boolean success = turista.Login(email, contraseña);
-	
-	TuristaDTO dto = null;	
-	if (success) {
-		dto = turista.ToDTO();
+	if (turista.GetPorMail(email))
+	{
+		if (turista.Login(email, contraseña)) {
+			output = turista.ToDTO();
+		}
 	}
-	return dto;
+
+	return output;
 }
 
 public GuiaDTO LoginGuia(String email, String contraseña) {
@@ -61,5 +69,22 @@ public GuiaDTO LoginGuia(String email, String contraseña) {
 	}
 	return dto;
 }
+
+private IMedioLogin StringToMedioLogin(String medioLogin) {
+
+	switch(medioLogin)
+	{
+		case MEDIO_LOGIN_FACEBOOK:
+			return new Facebook();
+		case MEDIO_LOGIN_GOOGLE:
+			return new Google();
+		case MEDIO_LOGIN_APPLE :
+			return new Apple();
+		case MEDIO_LOGIN_MAIL:
+		default:
+			return new Mail();
+	}
+}
+
 
 }

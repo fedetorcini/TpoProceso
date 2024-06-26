@@ -1,5 +1,7 @@
 package src.UsuarioPackage.LoginPackage;
 
+import com.sun.tools.jconsole.JConsoleContext;
+
 import java.util.HashMap;
 
 public class Mail implements IMedioLogin {
@@ -27,7 +29,7 @@ public boolean Login(String mail, String contraseña) {
 	boolean success = false;
 	if(usuarios.containsKey(mail))
 	{
-		if (contraseña == usuarios.get(mail))
+		if (usuarios.get(mail).equals(contraseña))
 		{
 			System.out.println("Usuario loggeado con exito.");
 			success = true;

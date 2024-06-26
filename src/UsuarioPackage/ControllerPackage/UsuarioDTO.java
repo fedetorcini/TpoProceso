@@ -36,4 +36,8 @@ public int GetId(){
 	return id;
 }
 
+public String toString(){
+	return nombre + " " + apellido;
+}
+
 }

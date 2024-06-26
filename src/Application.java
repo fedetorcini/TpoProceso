@@ -25,6 +25,19 @@ public static void main(String[] args) {
 	GuiaDTO guia = null;
 	ViajeDTO miViaje = null;
 
+	// Crear Turista para pruebas
+	{
+		String nombreTurista = "Federico";
+		String apellidoTurista = "Torcini";
+		String mailTurista = "mail";
+		String contraseñaTurista = "contra";
+		String sexoTurista = Usuario.MASCULINO;
+		int dniTurista = 42496679;
+		int telefonoTurista = 1167254331;
+		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
+		TuristaDTO turistaPrueba = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
+	}
+
 	// Crear Turista
 	{
 		String nombreTurista = "Federico";
@@ -34,9 +47,9 @@ public static void main(String[] args) {
 		String sexoTurista = Usuario.MASCULINO;
 		int dniTurista = 42496679;
 		int telefonoTurista = 1167254331;
-		IMedioLogin medioLoginTurista = new Apple(); // No es posible conectarse con los servidores de Apple, intente otro metodo
+		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_APPLE; // No es posible conectarse con los servidores de Apple, intente otro metodo
 		turista = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini no a podido ser registrado.
-		medioLoginTurista = new Mail();
+		medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
 		turista = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
 	}
 
@@ -49,7 +62,7 @@ public static void main(String[] args) {
 		String sexoGuia = Usuario.MASCULINO;
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
-		IMedioLogin medioLoginGuia = new Mail();
+		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
 		guia = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
 	}
 

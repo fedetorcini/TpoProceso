@@ -31,7 +31,7 @@ public void RegistrarTurista(IMedioLogin medioLogin, String nombre, String apell
 	}
 	else
 	{
-		System.out.println("Turista " + nombre + " " + apellido + " no a podido ser registrado.");	
+		System.out.println("Turista " + nombre + " " + apellido + " no a podido ser registrado.");
 	}	
 }
 
@@ -61,9 +61,10 @@ public boolean GetPorMail(String email) {
 	boolean success = false;
 
 	for(Turista turista : turistas.values()) {
-		if (turista.mail == email) {
+		if (turista.mail.equals(email)) {
 			Initialize(turista);
 			success = true;
+			break;
 		}
 	}
 	return success;

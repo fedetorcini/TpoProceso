@@ -9,7 +9,7 @@ import java.awt.Point;
 
 import javax.swing.JButton;
 
-final class JGradientButton extends JButton{
+public final class JGradientButton extends JButton{
 
 	private Color mDarker;
 	private Color mLighter;
@@ -26,9 +26,9 @@ final class JGradientButton extends JButton{
          g2.setPaint(new GradientPaint(
                  new Point(0, 0), 
                  mDarker, 
-                 new Point(0, getHeight()/3), 
+                 new Point(0, getHeight()/2),
                  mLighter));
-         g2.fillRect(0, 0, getWidth(), getHeight()/3);
+         g2.fillRect(0, 0, getWidth(), getHeight()/2);
          g2.setPaint(new GradientPaint(
         		 new Point(0, getHeight()/2), 
         		 mLighter, 

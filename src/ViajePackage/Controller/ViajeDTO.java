@@ -2,6 +2,8 @@ package src.ViajePackage.Controller;
 
 import java.util.ArrayList;
 
+import src.UsuarioPackage.ControllerPackage.FiltroGuia;
+import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Viaje;
 
 public class ViajeDTO {
@@ -34,5 +36,10 @@ public class ViajeDTO {
 
 	public int GetTuristaId() {
 		return turistaId;
+	}
+
+	public String toString(){
+
+		return "Viaje ID : " + id;
 	}
 }

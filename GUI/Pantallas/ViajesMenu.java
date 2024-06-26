@@ -17,7 +17,7 @@ public class ViajesMenu extends Pantalla {
         classId = id;
 
         viajes = new JComboBox<>();
-        viajes.setBounds((WINDOW_WIDTH / 2) , (WINDOW_HEIGHT / 2), 400, 40);
+        viajes.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 300, 400, 40);
         viajes.setOpaque(false);
         viajes.setBackground(mainBackgroundColor);
         container.add(viajes);
@@ -30,6 +30,11 @@ public class ViajesMenu extends Pantalla {
         return Pantalla.GetById(classId);
     }
 
-    public void Actualizar(ArrayList<ViajeDTO> viajes) {
+    public void Actualizar(ArrayList<ViajeDTO> viajesDtos) {
+        viajes.removeAllItems();
+
+        for(ViajeDTO viajeDto : viajesDtos){
+            viajes.addItem(viajeDto);
+        }
     }
 }

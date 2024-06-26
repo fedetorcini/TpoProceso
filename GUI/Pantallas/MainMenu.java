@@ -72,6 +72,7 @@ public class MainMenu extends Pantalla {
 
                     ViajesMenu viajesMenu = (ViajesMenu) ViajesMenu.GetInstance();
                     subpantallas.add(viajesMenu);
+                    viajesMenu.Show();
 
                     ViajeController vc = new ViajeController();
                     viajesMenu.Actualizar(vc.GetViajesDe(UsuarioController.GetLoggedTurista()));

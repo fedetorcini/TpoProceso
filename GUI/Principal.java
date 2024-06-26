@@ -67,6 +67,9 @@ public class Principal extends JFrame {
 		Pantalla seleccionarRol = new SeleccionarRol(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		seleccionarRol.Show();
 		loginTurista.Hide();
+		Pantalla loginGuia = new LoginGuia(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		loginGuia.Hide();
+
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();

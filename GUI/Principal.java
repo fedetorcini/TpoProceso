@@ -55,6 +55,7 @@ public class Principal extends JFrame {
 
 		Pantalla main = new Main(mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		Pantalla loginTurista = new LoginTurista(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		loginTurista.Hide();
 		Pantalla registroUsuario =  new RegistroUsuario(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		registroUsuario.Hide();
 		Pantalla mainMenu = new MainMenu(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
@@ -63,6 +64,7 @@ public class Principal extends JFrame {
 		perfilMenu.Hide();
 		Pantalla viajesMenu = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
+
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();

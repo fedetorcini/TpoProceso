@@ -6,15 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SeleccionarRol extends Pantalla{
     private static int classId = -1;
 
     private JGradientButton botonGuia;
     private JGradientButton botonTurista;
+
     public SeleccionarRol(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
         classId = id;
+        components = new ArrayList<>();
 
         botonGuia = new JGradientButton(mainColor, secondary);
         botonGuia.setBounds( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) + 200, 100, 50);
@@ -49,17 +52,14 @@ public class SeleccionarRol extends Pantalla{
                 }
             }
         });
+
+        components.add(botonGuia);
+        components.add(botonTurista);
     }
 
-    @Override
-    public void Show() {
-        botonGuia.show();
-        botonTurista.show();
+    public static Pantalla GetInstance() {
+        return Pantalla.GetById(classId);
     }
 
-    @Override
-    public void Hide() {
-        botonGuia.hide();
-        botonTurista.hide();
-    }
+
 }

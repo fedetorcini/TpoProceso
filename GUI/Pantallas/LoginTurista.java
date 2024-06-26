@@ -9,12 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class LoginTurista extends Pantalla {
 
     private static int classId = -1;
-    private Pantalla yo = this;
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
     private FedeJTextField mailTexto;
@@ -48,13 +48,15 @@ public class LoginTurista extends Pantalla {
                     UsuarioController temp = new UsuarioController();
                     TuristaDTO turista = temp.LoginTurista(email, contraseña);
 
-                    if (turista != null)
+                    //if (turista != null)
                     {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center> " + turista +"  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "<html><h3><center> " + turista +"  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
+                        Hide();
+                        MainMenu.GetInstance().Show();
                     }
-                    else
+                    //else
                     {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
                     }
 
                 } catch (NumberFormatException error){
@@ -74,29 +76,21 @@ public class LoginTurista extends Pantalla {
         });
 
         // Create Form
-        mailTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Mail");
+        mailTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, /*"Ingresar Mail"*/"mail");
         container.add(mailTexto);
-        contraseñaTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Contraseña");
+        contraseñaTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, /*"Ingreasar Contraseña"*/"contra");
         container.add(contraseñaTexto);
+
+        // Add components
+        components = new ArrayList<JComponent>();
+        components.add(botonLogin);
+        components.add(botonRegistrar);
+        components.add(mailTexto);
+        components.add(contraseñaTexto);
     }
 
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
     }
 
-    @Override
-    public void Show() {
-        botonLogin.show();
-        botonRegistrar.show();
-        mailTexto.show();
-        contraseñaTexto.show();
-    }
-
-    @Override
-    public void Hide() {
-        botonLogin.hide();
-        botonRegistrar.hide();
-        mailTexto.hide();
-        contraseñaTexto.hide();
-    }
 }

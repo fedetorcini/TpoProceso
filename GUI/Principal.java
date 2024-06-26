@@ -1,31 +1,19 @@
 package GUI;
 
-import GUI.Pantallas.LoginTurista;
-import GUI.Pantallas.Main;
-import GUI.Pantallas.Pantalla;
-import GUI.Pantallas.RegistroUsuario;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
-import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.Usuario;
+import GUI.Pantallas.*;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Stack;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 
 public class Principal extends JFrame {
 
 	private JGradientButton cajaButton;
 	private FedeJTextField cajaTextField;
-	
+
 	private JGradientButton botonLogin;
 	private JGradientButton botonRegistrar;
 	private FedeJTextField mailTexto;
@@ -46,10 +34,8 @@ public class Principal extends JFrame {
 	private CircleButton jugarButton;
 	private CircleButton retirarButton;
 	private JLabel creditGUI;
-	//private JComboBox<TragamonedasView> machineList;
-	//private Casino controlador;
 	private Container container;
-		
+
 	private int WINDOW_HEIGHT = 800;
 	private int WINDOW_WIDTH = 900;
 
@@ -73,6 +59,10 @@ public class Principal extends JFrame {
 		Pantalla loginTurista = new LoginTurista(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		Pantalla registroUsuario =  new RegistroUsuario(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		registroUsuario.Hide();
+		Pantalla mainMenu = new MainMenu(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		mainMenu.Hide();
+		Pantalla perfil = new Perfil(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		perfil.Hide();
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();
@@ -88,7 +78,7 @@ public class Principal extends JFrame {
 	private void initializeContainer() {
 		container = this.getContentPane();
 		container.setLayout(null);
-		container.setBackground(mainBackgroundColor);		
+		container.setBackground(mainBackgroundColor);
 	}
 
 	/*private void setCreditBanner()

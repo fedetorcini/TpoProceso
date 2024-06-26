@@ -19,7 +19,6 @@ public final class JGradientButton extends JButton{
         mLighter = lighter;
         setContentAreaFilled(false);
     }
-
 	 @Override
      protected void paintComponent(Graphics g) {
          final Graphics2D g2 = (Graphics2D) g.create();

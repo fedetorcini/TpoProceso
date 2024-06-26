@@ -1,11 +1,14 @@
 package GUI.Pantallas;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Pantalla {
 
     protected static HashMap<Integer, Pantalla> pantallas = new HashMap<Integer, Pantalla>();
+    protected ArrayList<JComponent> components;
     protected int previa;
     protected int siguiente;
 
@@ -45,9 +48,19 @@ public abstract class Pantalla {
         return pantallas.get(classId);
     }
 
-    public abstract void Show();
+    public void Show() {
+        for (JComponent component : components)
+        {
+            component.show();
+        }
+    }
 
-    public abstract void Hide();
+    public void Hide() {
+        for (JComponent component : components)
+        {
+            component.hide();
+        }
+    }
 
     protected int GetId() {
         return id;

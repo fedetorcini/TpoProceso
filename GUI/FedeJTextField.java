@@ -29,7 +29,7 @@ public class FedeJTextField extends JTextField {
 	        	String res = getText();
 	        	if (res.equals(""))
 	        	{	        		
-	        		setText(defaultValue);
+	        		setText(DEFAULT_VALUE);
 	        	}
 	        }
 	    });
@@ -39,5 +39,9 @@ public class FedeJTextField extends JTextField {
 	{
 		setText(DEFAULT_VALUE);
 	}
-	
+
+	public void setDefault(String text){
+		DEFAULT_VALUE = text;
+		setText(DEFAULT_VALUE);
+	}
 }

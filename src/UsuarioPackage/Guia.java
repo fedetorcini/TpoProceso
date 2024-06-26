@@ -81,6 +81,16 @@ public static ArrayList<GuiaDTO> GetGuiasDTO() {
 public boolean Login(String email, String contraseña) {
 	return false;
 }
+@Override
+public void ActualizarPerfil(String nombre, String apellido, String sexo, int telefono, int dni) {
+	this.nombre = nombre;
+	this.apellido = apellido;
+	this.sexo = sexo;
+	this.telefono = telefono;
+	this.dni = dni;
+
+	guias.put(id, this);
+}
 
 public GuiaDTO ToDTO() {
 	GuiaDTO dto = new GuiaDTO(this);

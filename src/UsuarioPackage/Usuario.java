@@ -41,6 +41,8 @@ protected void InitializeUsuario(IMedioLogin medioLogin, String nombre, String a
 	this.notificador = new Notificador();
 }
 
+public abstract void ActualizarPerfil(String nombre, String apellido, String sexo, int telefono, int dni);
+
 public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
 {
 	medioLogin = nuevoMedio;
@@ -82,5 +84,15 @@ public int GetTelefono() {
 public String GetSexo() {
 	return sexo;
 }
+
+public void SetNombre(String nombre) { this.nombre = nombre; }
+
+public void SetApellido(String apellido) { this.apellido = apellido; }
+
+public void SetSexo(String sexo) {	this.sexo = sexo; }
+
+public void SetTelefono(int telefono) { this.telefono = telefono; }
+
+public void SetDni(int dni) { this.dni = dni;}
 
 }

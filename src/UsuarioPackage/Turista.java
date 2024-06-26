@@ -38,6 +38,16 @@ public void RegistrarTurista(IMedioLogin medioLogin, String nombre, String apell
 public boolean Login(String email, String contraseña) {
 	return medioLogin.Login(email, contraseña);
 }
+@Override
+public void ActualizarPerfil(String nombre, String apellido, String sexo, int telefono, int dni) {
+	this.nombre = nombre;
+	this.apellido = apellido;
+	this.sexo = sexo;
+	this.telefono = telefono;
+	this.dni = dni;
+
+	turistas.put(id, this);
+}
 
 public TuristaDTO ToDTO() {
 	return new TuristaDTO(this);
@@ -87,6 +97,5 @@ public void AgregarReseña(Reseña reseña) {
 @Override
 public String toString() {
 		return nombre + " " + apellido;
-	}
-
+}
 }

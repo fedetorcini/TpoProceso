@@ -36,8 +36,17 @@ public int GetId(){
 	return id;
 }
 
+public String GetNombre() { return nombre; }
+
+public String GetApellido() { return apellido; }
+
+public String GetSexo() { return sexo; }
+
+public int GetDni() {return dni; }
+
+public int GetTelefono() { return telefono; }
+
 public String toString(){
 	return nombre + " " + apellido;
 }
-
 }

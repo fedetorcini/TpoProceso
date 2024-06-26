@@ -13,5 +13,4 @@ public class Google implements IMedioLogin{
 		System.out.println("No es posible conectarse con los servidores de Google, intente otro metodo");
 		return false;
 	}
-
 }

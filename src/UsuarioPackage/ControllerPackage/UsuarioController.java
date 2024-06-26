@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
+import src.UsuarioPackage.Usuario;
 
 public class UsuarioController {
 
@@ -12,6 +13,9 @@ public static final String MEDIO_LOGIN_APPLE = "Apple";
 public static final String MEDIO_LOGIN_MAIL = "Mail";
 public static final String MEDIO_LOGIN_GOOGLE= "Google";
 public static final String MEDIO_LOGIN_FACEBOOK = "Facebook";
+
+private static TuristaDTO loggedTurista = null;
+private static GuiaDTO loggedGuia = null;
 
 public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
 	if (filter != null)
@@ -54,6 +58,7 @@ public TuristaDTO LoginTurista(String email, String contraseña) {
 		}
 	}
 
+	loggedTurista = output;
 	return output;
 }
 
@@ -67,6 +72,8 @@ public GuiaDTO LoginGuia(String email, String contraseña) {
 	{
 		dto = guia.ToDTO();
 	}
+
+	loggedGuia = dto;
 	return dto;
 }
 
@@ -86,5 +93,24 @@ private IMedioLogin StringToMedioLogin(String medioLogin) {
 	}
 }
 
+public static TuristaDTO GetLoggedTurista() { return loggedTurista; }
+
+public static GuiaDTO GetLoggedGuia() { return loggedGuia; }
+
+public TuristaDTO UpdateTurista(String nombre, String apellido, String sexo, int telefono, int dni) {
+
+	Turista turista = new Turista();
+	turista.GetPorDTO(loggedTurista);
+	turista.ActualizarPerfil(nombre, apellido, sexo, telefono, dni);
+	turista.SetNombre(nombre);
+	turista.SetApellido(apellido);
+	turista.SetSexo(sexo);
+	turista.SetTelefono(telefono);
+	turista.SetDni(dni);
+
+	loggedTurista = turista.ToDTO();
+
+	return loggedTurista;
+}
 
 }

@@ -1,5 +1,7 @@
 package src.UsuarioPackage.LoginPackage;
 
+import src.UsuarioPackage.ControllerPackage.UsuarioController;
+
 public class Facebook implements IMedioLogin{
 
 	@Override
@@ -13,5 +15,4 @@ public class Facebook implements IMedioLogin{
 		System.out.println("No es posible conectarse con los servidores de Facebook, intente otro metodo");
 		return false;
 	}
-
 }

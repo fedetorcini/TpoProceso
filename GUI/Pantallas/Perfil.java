@@ -2,8 +2,8 @@ package GUI.Pantallas;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.LoginPackage.IMedioLogin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,21 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RegistroUsuario extends Pantalla{
+public class Perfil extends Pantalla {
 
     private static int classId = -1;
-    private JComboBox<String> loginBox;
+
     private JComboBox<String> sexoBox;
     private JGradientButton botonConfirmar;
-    private FedeJTextField  mailTexto;
-    private FedeJTextField  contraseñaTexto;
     private FedeJTextField  nombreTexto;
     private FedeJTextField  apellidoTexto;
     private FedeJTextField  telefonoTexto;
     private FedeJTextField  dniTexto;
 
-    public RegistroUsuario(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
-        super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
+
+    public Perfil(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
+        super(pantalla.GetId(), mainColor,secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
 
@@ -39,28 +38,19 @@ public class RegistroUsuario extends Pantalla{
         botonConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UsuarioController UC = new UsuarioController();
-
                 String nombre = nombreTexto.getText();
                 String apellido = apellidoTexto.getText();
-                String contraseña = contraseñaTexto.getText();
                 String sexo = (String) sexoBox.getSelectedItem();
                 int telefono = Integer.parseInt(telefonoTexto.getText());
                 int dni = Integer.parseInt(dniTexto.getText());
-                String mail = mailTexto.getText();
-                String medioLogin = (String) loginBox.getSelectedItem();
-                UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 
+                UsuarioController UC = new UsuarioController();
+                TuristaDTO turista = UC.UpdateTurista(nombre, apellido, sexo, telefono, dni);
                 Hide();
-                LoginTurista.GetInstance().Show();
-;            }
+            }
         });
 
         // Create Form
-        mailTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingresar Mail");
-        container.add(mailTexto);
-        contraseñaTexto = new FedeJTextField( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingreasar Contraseña");
-        container.add(contraseñaTexto);
         nombreTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Nombre");
         container.add(nombreTexto);
         apellidoTexto = new FedeJTextField( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingreasar Apellido");
@@ -71,37 +61,32 @@ public class RegistroUsuario extends Pantalla{
         container.add(dniTexto);
 
         sexoBox = new JComboBox<String>();
-        sexoBox.setBounds( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 50, 200, 40);
+        sexoBox.setBounds( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) + 50, 200, 40);
         sexoBox.setOpaque(false);
         sexoBox.setBackground(mainBackgroundColor);
         sexoBox.addItem("Masculino");
         sexoBox.addItem("Femenino");
         container.add(sexoBox);
 
-        loginBox = new JComboBox<String>();
-        loginBox.setBounds( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) + 50, 200, 40);
-        loginBox.setOpaque(false);
-        loginBox.setBackground(mainBackgroundColor);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_APPLE);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_MAIL);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_GOOGLE);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_FACEBOOK);
-        container.add(loginBox);
-
         // Add components
         components = new ArrayList<JComponent>();
         components.add(botonConfirmar);
-        components.add(mailTexto);
-        components.add(contraseñaTexto);
         components.add(nombreTexto);
         components.add(apellidoTexto);
         components.add(telefonoTexto);
         components.add(dniTexto);
         components.add(sexoBox);
-        components.add(loginBox);
     }
 
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
+    }
+
+    public void SetUsuario(TuristaDTO turista) {
+        nombreTexto.setDefault(turista.GetNombre());
+        apellidoTexto.setDefault(turista.GetApellido());
+        telefonoTexto.setDefault(Integer.toString(turista.GetTelefono()));
+        dniTexto.setDefault(Integer.toString(turista.GetDni()));
+        sexoBox.setSelectedItem(turista.GetSexo());
     }
 }

@@ -57,12 +57,16 @@ public class Principal extends JFrame {
 
 		Pantalla main = new Main(mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		Pantalla loginTurista = new LoginTurista(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		loginTurista.Hide();
 		Pantalla registroUsuario =  new RegistroUsuario(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		registroUsuario.Hide();
 		Pantalla mainMenu = new MainMenu(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		mainMenu.Hide();
 		Pantalla perfil = new Perfil(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		perfil.Hide();
+		Pantalla seleccionarRol = new SeleccionarRol(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		seleccionarRol.Show();
+		loginTurista.Hide();
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();

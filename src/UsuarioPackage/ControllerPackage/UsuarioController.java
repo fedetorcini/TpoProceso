@@ -9,108 +9,113 @@ import src.UsuarioPackage.Usuario;
 
 public class UsuarioController {
 
-public static final String MEDIO_LOGIN_APPLE = "Apple";
-public static final String MEDIO_LOGIN_MAIL = "Mail";
-public static final String MEDIO_LOGIN_GOOGLE= "Google";
-public static final String MEDIO_LOGIN_FACEBOOK = "Facebook";
+	public static final String MEDIO_LOGIN_APPLE = "Apple";
+	public static final String MEDIO_LOGIN_MAIL = "Mail";
+	public static final String MEDIO_LOGIN_GOOGLE= "Google";
+	public static final String MEDIO_LOGIN_FACEBOOK = "Facebook";
 
-private static TuristaDTO loggedTurista = null;
-private static GuiaDTO loggedGuia = null;
+	private static TuristaDTO loggedTurista = null;
+	private static GuiaDTO loggedGuia = null;
 
-public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
-	if (filter != null)
-	{		
-		ArrayList<GuiaDTO> filtrado = new ArrayList<GuiaDTO>();
-		for (GuiaDTO guia : Guia.GetGuiasDTO())
+	public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
+		if (filter != null)
 		{
-			filter.Validar(guia);
-			filtrado.add(guia);
+			ArrayList<GuiaDTO> filtrado = new ArrayList<>();
+			for (GuiaDTO guia : Guia.GetGuiasDTO())
+			{
+				filter.Validar(guia);
+				filtrado.add(guia);
+			}
+			return filtrado;
 		}
-		return null;
-	}
-	else
-	{		
-		return Guia.GetGuiasDTO();
-	}
-}
-
-public TuristaDTO RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
-	Turista turista = new Turista();
-	turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.
-	return new TuristaDTO(turista);
-}
-
-public GuiaDTO RegistrarGuia(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
-	Guia guia = new Guia();
-	guia.RegistrarGuia(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad); // Turista Federico Torcini no a podido ser registrado.
-	return new GuiaDTO(guia);
-}
-
-public TuristaDTO LoginTurista(String email, String contraseña) {
-
-	TuristaDTO output = null;
-
-	Turista turista = new Turista();
-	if (turista.GetPorMail(email))
-	{
-		if (turista.Login(email, contraseña)) {
-			output = turista.ToDTO();
+		else
+		{
+			return Guia.GetGuiasDTO();
 		}
 	}
 
-	loggedTurista = output;
-	return output;
-}
-
-public GuiaDTO LoginGuia(String email, String contraseña) {
-	Guia guia = new Guia();
-	guia.GetPorMail(email);
-	boolean success = guia.Login(email, contraseña);
-	
-	GuiaDTO dto = null;	
-	if (success)
-	{
-		dto = guia.ToDTO();
+	public TuristaDTO RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
+		Turista turista = new Turista();
+		turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.
+		return new TuristaDTO(turista);
 	}
 
-	loggedGuia = dto;
-	return dto;
-}
-
-private IMedioLogin StringToMedioLogin(String medioLogin) {
-
-	switch(medioLogin)
-	{
-		case MEDIO_LOGIN_FACEBOOK:
-			return new Facebook();
-		case MEDIO_LOGIN_GOOGLE:
-			return new Google();
-		case MEDIO_LOGIN_APPLE :
-			return new Apple();
-		case MEDIO_LOGIN_MAIL:
-		default:
-			return new Mail();
+	public GuiaDTO RegistrarGuia(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
+		Guia guia = new Guia();
+		guia.RegistrarGuia(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad); // Turista Federico Torcini no a podido ser registrado.
+		return new GuiaDTO(guia);
 	}
-}
 
-public static TuristaDTO GetLoggedTurista() { return loggedTurista; }
+	public TuristaDTO LoginTurista(String email, String contraseña) {
 
-public static GuiaDTO GetLoggedGuia() { return loggedGuia; }
+		TuristaDTO output = null;
 
-public TuristaDTO UpdateTurista(String nombre, String apellido, String sexo, int telefono, int dni) {
+		Turista turista = new Turista();
+		if (turista.GetPorMail(email))
+		{
+			if (turista.Login(email, contraseña)) {
+				output = turista.ToDTO();
+			}
+		}
 
-	Turista turista = new Turista();
-	turista.GetPorDTO(loggedTurista);
-	turista.ActualizarPerfil(nombre, apellido, sexo, telefono, dni);
-	turista.SetNombre(nombre);
-	turista.SetApellido(apellido);
-	turista.SetSexo(sexo);
-	turista.SetTelefono(telefono);
-	turista.SetDni(dni);
+		loggedTurista = output;
+		return output;
+	}
 
-	loggedTurista = turista.ToDTO();
+	public GuiaDTO LoginGuia(String email, String contraseña) {
+		Guia guia = new Guia();
+		guia.GetPorMail(email);
+		boolean success = guia.Login(email, contraseña);
 
-	return loggedTurista;
-}
+		GuiaDTO dto = null;
+		if (success)
+		{
+			dto = guia.ToDTO();
+		}
+
+		loggedGuia = dto;
+		return dto;
+	}
+
+	private IMedioLogin StringToMedioLogin(String medioLogin) {
+
+		switch(medioLogin)
+		{
+			case MEDIO_LOGIN_FACEBOOK:
+				return new Facebook();
+			case MEDIO_LOGIN_GOOGLE:
+				return new Google();
+			case MEDIO_LOGIN_APPLE :
+				return new Apple();
+			case MEDIO_LOGIN_MAIL:
+			default:
+				return new Mail();
+		}
+	}
+
+	public static TuristaDTO GetLoggedTurista() { return loggedTurista; }
+
+	public static GuiaDTO GetLoggedGuia() { return loggedGuia; }
+
+	public static void LogOut() {
+		loggedTurista = null;
+		loggedGuia = null;
+	}
+
+	public TuristaDTO UpdateTurista(String nombre, String apellido, String sexo, int telefono, int dni) {
+
+		Turista turista = new Turista();
+		turista.GetPorDTO(loggedTurista);
+		turista.ActualizarPerfil(nombre, apellido, sexo, telefono, dni);
+		turista.SetNombre(nombre);
+		turista.SetApellido(apellido);
+		turista.SetSexo(sexo);
+		turista.SetTelefono(telefono);
+		turista.SetDni(dni);
+
+		loggedTurista = turista.ToDTO();
+
+		return loggedTurista;
+	}
 
 }

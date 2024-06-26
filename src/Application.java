@@ -22,6 +22,7 @@ public static void main(String[] args) {
 	ViajeController viaje = new ViajeController();
 
 	TuristaDTO turista = null;
+	TuristaDTO turistaPrueba = null;
 	GuiaDTO guia = null;
 	ViajeDTO miViaje = null;
 
@@ -35,7 +36,7 @@ public static void main(String[] args) {
 		int dniTurista = 42496679;
 		int telefonoTurista = 1167254331;
 		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
-		TuristaDTO turistaPrueba = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
+		turistaPrueba = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
 	}
 
 	// Crear Turista
@@ -84,7 +85,7 @@ public static void main(String[] args) {
 
 	// Viaje
 	{
-		miViaje = viaje.CrearViaje(turista, guia);
+		miViaje = viaje.CrearViaje(turistaPrueba, guia);
 		viaje.Reservar(miViaje); // Viaje reservado con exito.
 
 		// Reseña

@@ -56,8 +56,7 @@ public abstract class Pantalla {
     }
 
     public void Hide() {
-        for (JComponent component : components)
-        {
+        for (JComponent component : components) {
             component.hide();
         }
     }

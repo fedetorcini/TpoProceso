@@ -4,7 +4,6 @@ import GUI.Pantallas.*;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,7 +28,6 @@ public class Principal extends JFrame {
 	private FedeJTextField valorPremioTextField;
 	private JComboBox<String> frutasDisponibles;
 	private JLabel frutasElegidas;
-	private ArrayList<Integer> frutasList = new ArrayList<Integer>();
 
 	private CircleButton jugarButton;
 	private CircleButton retirarButton;
@@ -61,8 +59,10 @@ public class Principal extends JFrame {
 		registroUsuario.Hide();
 		Pantalla mainMenu = new MainMenu(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		mainMenu.Hide();
-		Pantalla perfil = new Perfil(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
-		perfil.Hide();
+		Pantalla perfilMenu = new PerfilMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		perfilMenu.Hide();
+		Pantalla viajesMenu = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		viajesMenu.Hide();
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();

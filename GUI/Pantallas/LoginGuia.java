@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class LoginGuia extends Pantalla {
 
@@ -17,6 +18,7 @@ public class LoginGuia extends Pantalla {
     private Pantalla yo = this;
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
+    private JGradientButton botonAtras;
     private FedeJTextField mailTexto;
     private FedeJTextField contraseñaTexto;
 
@@ -24,80 +26,95 @@ public class LoginGuia extends Pantalla {
         super(pantalla.GetId(), mainColor,secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
+        components = new ArrayList<>();
 
         // Boton Registrar
-        botonRegistrar = new JGradientButton(mainColor, secondary);
-        botonRegistrar.setBounds( (WINDOW_WIDTH / 2) - 130, (WINDOW_HEIGHT / 2) + 50, 125, 50);
-        botonRegistrar.setText("Registrar");
-        botonRegistrar.setFont(new Font("Serif", Font.BOLD, 15));
-        container.add(botonRegistrar);
+        {
+            botonRegistrar = new JGradientButton(mainColor, secondary);
+            botonRegistrar.setBounds((WINDOW_WIDTH / 2) - 130, (WINDOW_HEIGHT / 2) + 50, 125, 50);
+            botonRegistrar.setText("Registrar");
+            botonRegistrar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonRegistrar);
+
+            botonRegistrar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Hide();
+                    RegistroUsuario.GetInstance().Show();
+                }
+            });
+        }
 
         // Boton Login
-        botonLogin = new JGradientButton(mainColor, secondary);
-        botonLogin.setBounds( (WINDOW_WIDTH / 2) - 5, (WINDOW_HEIGHT / 2) + 50, 125, 50);
-        botonLogin.setText("Login");
-        botonLogin.setFont(new Font("Serif", Font.BOLD, 15));
-        container.add(botonLogin);
+        {
+            botonLogin = new JGradientButton(mainColor, secondary);
+            botonLogin.setBounds((WINDOW_WIDTH / 2) - 5, (WINDOW_HEIGHT / 2) + 50, 125, 50);
+            botonLogin.setText("Login");
+            botonLogin.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonLogin);
 
-        botonLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String email = mailTexto.getText();
-                    String contraseña = contraseñaTexto.getText();
-                    UsuarioController temp = new UsuarioController();
-                    GuiaDTO guia = temp.LoginGuia(email, contraseña);
+            botonLogin.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        String email = mailTexto.getText();
+                        String contraseña = contraseñaTexto.getText();
+                        UsuarioController temp = new UsuarioController();
+                        GuiaDTO guia = temp.LoginGuia(email, contraseña);
 
-                    if (guia != null)
-                    {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center> " + guia +"  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
+                        if (guia != null) {
+                            JOptionPane.showMessageDialog(null, "<html><h3><center> " + guia + "  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } catch (NumberFormatException error) {
+                        JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
                     }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch (NumberFormatException error){
-                    JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
+                    mailTexto.reset();
+                    contraseñaTexto.reset();
                 }
-                mailTexto.reset();
-                contraseñaTexto.reset();
-            }
-        });
+            });
+        }
 
-        botonRegistrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Hide();
-                RegistroUsuario.GetInstance().Show();
-            }
-        });
+        // Boton Atras
+        {
+            botonAtras = new JGradientButton(Color.RED.darker(), secondary);
+            botonAtras.setBounds((WINDOW_WIDTH / 2) - 50, (WINDOW_HEIGHT / 2) + 100, 100, 50);
+            botonAtras.setText("Atras");
+            botonAtras.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonAtras);
+
+            botonAtras.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Hide();
+                    SeleccionarRol.GetInstance().Show();
+                }
+            });
+        }
 
         // Create Form
-        mailTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Mail");
-        container.add(mailTexto);
-        contraseñaTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Contraseña");
-        container.add(contraseñaTexto);
+        {
+            mailTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Mail");
+            container.add(mailTexto);
+            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Contraseña");
+            container.add(contraseñaTexto);
+        }
+
+        // Add components
+        {
+            components = new ArrayList<JComponent>();
+            components.add(botonLogin);
+            components.add(botonRegistrar);
+            components.add(botonAtras);
+            components.add(mailTexto);
+            components.add(contraseñaTexto);
+        }
     }
 
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
-    }
-
-    @Override
-    public void Show() {
-        botonLogin.show();
-        botonRegistrar.show();
-        mailTexto.show();
-        contraseñaTexto.show();
-    }
-
-    @Override
-    public void Hide() {
-        botonLogin.hide();
-        botonRegistrar.hide();
-        mailTexto.hide();
-        contraseñaTexto.hide();
     }
 }
 

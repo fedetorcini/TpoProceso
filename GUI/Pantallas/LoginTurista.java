@@ -83,7 +83,7 @@ public class LoginTurista extends Pantalla {
         // Boton Atras
         {
             botonAtras = new JGradientButton(Color.RED.darker(), secondary);
-            botonAtras.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 100, 50);
+            botonAtras.setBounds((WINDOW_WIDTH / 2) - 50, (WINDOW_HEIGHT / 2) + 100, 100, 50);
             botonAtras.setText("Atras");
             botonAtras.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonAtras);

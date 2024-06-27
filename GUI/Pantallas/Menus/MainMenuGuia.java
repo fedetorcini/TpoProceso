@@ -165,7 +165,6 @@ public class MainMenuGuia extends Pantalla {
         // Add components
         {
             components = new ArrayList<>();
-            components.add(botonViajesHechos);
             components.add(botonPerfilGuia);
             components.add(botonViajesDisponibles);
             components.add(botonCobros);

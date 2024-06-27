@@ -1,5 +1,7 @@
 package src.ViajePackage.Controller;
 
+import src.PagoPackage.Pago;
+import src.PagoPackage.PagoDTO;
 import src.ViajePackage.Reseña;
 import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Guia;
@@ -139,5 +141,10 @@ public class ViajeController {
 		Viaje viaje = new Viaje();
 		viaje.GetPorDTO(dto);
 		return viaje.GetMensajes();
+	}
+
+	public void Pagar(PagoDTO pagoDto) {
+		Pago pago = new Pago();
+		pago.RegistrarPago(pagoDto.GetMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId());
 	}
 }

@@ -22,7 +22,6 @@ public class UsuarioController {
 	private static TuristaDTO loggedTurista = null;
 	private static GuiaDTO loggedGuia = null;
 
-
 	public static ArrayList<GuiaDTO> GetGuia (FiltroGuia filter) {
 		if (filter != null) {
 			ArrayList<GuiaDTO> filtrado = new ArrayList<>();
@@ -57,6 +56,28 @@ public class UsuarioController {
 			}
 		}
 		return reseñaDtos;
+	}
+
+	public static ArrayList<PagoDTO> GetPagosByTurista(TuristaDTO turistaDTO) {
+
+		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
+
+		for (PagoDTO pagoDTO : Pago.getPagosDTO()){
+			if (pagoDTO.getTuristaId() == turistaDTO.GetId()) {
+				pagoDTOs.add(pagoDTO);
+			}
+		}
+
+		return pagoDTOs;
+	}
+
+	public static ArrayList<PagoDTO> GetCobrosByGuia(GuiaDTO guiaDTO) {
+		ArrayList <PagoDTO> pagoDTOS = new ArrayList<>();
+		for (PagoDTO pagoDTO: Pago.getPagosDTO()) {
+			if (pagoDTO.getGuiaId() == guiaDTO.GetId()) {
+				pagoDTOS.add(pagoDTO);
+			}
+		} return pagoDTOS;
 	}
 
 	public TuristaDTO  RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
@@ -143,7 +164,7 @@ public class UsuarioController {
 		return loggedTurista;
 	}
 
-	public UsuarioDTO updateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
+	public UsuarioDTO UpdateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
 
 		Guia guia = new Guia();
 		guia.GetPorDTO(loggedGuia);
@@ -169,23 +190,5 @@ public class UsuarioController {
 		guia.GetPorDTO(guiaDto);
 
 		guia.AgregarIdioma(idioma);
-	}
-
-	public static ArrayList<PagoDTO> getPagosByTurista (TuristaDTO turistaDTO) {
-		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
-		for (PagoDTO pagoDTO : Pago.getPagosDTO()){
-			if (pagoDTO.getTuristaId() == turistaDTO.GetId()) {
-				pagoDTOs.add(pagoDTO);
-			}
-		}return pagoDTOs;
-	}
-
-	public static ArrayList <PagoDTO> getCobrosByGuia (GuiaDTO guiaDTO) {
-		ArrayList <PagoDTO> pagoDTOS = new ArrayList<>();
-		for (PagoDTO pagoDTO: Pago.getPagosDTO()) {
-			if (pagoDTO.getGuiaId() == guiaDTO.GetId()) {
-				pagoDTOS.add(pagoDTO);
-			}
-		} return pagoDTOS;
 	}
 }

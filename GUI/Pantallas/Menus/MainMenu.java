@@ -3,8 +3,6 @@ package GUI.Pantallas.Menus;
 import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
-import GUI.Pantallas.Menus.*;
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
@@ -104,14 +102,13 @@ public class MainMenu extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Reset();
-
                     botonPagos.setForeground(mainBackgroundColor.brighter());
 
                     PagosMenu pagosMenu = (PagosMenu) PagosMenu.GetInstance();
                     if (!subpantallas.contains(pagosMenu))
                         subpantallas.add(pagosMenu);
                     pagosMenu.Show();
-                    pagosMenu.Actualizar(UsuarioController.getPagosByTurista(UsuarioController.GetLoggedTurista()));
+                    pagosMenu.Actualizar(UsuarioController.GetPagosByTurista(UsuarioController.GetLoggedTurista()));
                 }
             });
         }

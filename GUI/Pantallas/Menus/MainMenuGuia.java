@@ -4,17 +4,13 @@ import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.ControllerPackage.UsuarioDTO;
 import src.ViajePackage.Controller.ViajeController;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 
 public class MainMenuGuia extends Pantalla {
 
@@ -107,7 +103,7 @@ public class MainMenuGuia extends Pantalla {
                     if (!subpantallas.contains(pagosMenu))
                         subpantallas.add(pagosMenu);
                     pagosMenu.Show();
-                    pagosMenu.Actualizar(UsuarioController.getCobrosByGuia(UsuarioController.GetLoggedGuia()));
+                    pagosMenu.Actualizar(UsuarioController.GetCobrosByGuia(UsuarioController.GetLoggedGuia()));
                 }
             });
         }

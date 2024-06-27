@@ -2,7 +2,6 @@ package src.ViajePackage.Controller;
 
 import src.ViajePackage.Reseña;
 import src.NotificadorPackage.Mensaje;
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
@@ -10,7 +9,6 @@ import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.ViajePackage.Viaje;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ViajeController {
 
@@ -60,14 +58,31 @@ public class ViajeController {
 		guia.AgregarReseña(reseña);
 	}
 
-	public void EnviarMensaje(ViajeDTO viajeDTO, String string) {
+	public void EnviarMensaje(TuristaDTO turista, ViajeDTO viajeDTO, String string) {
 			Mensaje mensaje = new Mensaje(string);
+
+			Turista emisor = new Turista();
+			emisor.GetPorDTO(turista);
+			mensaje.SetEmisor(emisor);
 
 			Viaje viaje = new Viaje();
 			viaje.GetPorDTO(viajeDTO);
 
 			viaje.PublicarAlChatDeViaje(mensaje);
-		}
+	}
+
+	public void EnviarMensaje(GuiaDTO guia, ViajeDTO viajeDTO, String string) {
+		Mensaje mensaje = new Mensaje(string);
+
+		Guia emisor = new Guia();
+		emisor.GetPorDTO(guia);
+		mensaje.SetEmisor(emisor);
+
+		Viaje viaje = new Viaje();
+		viaje.GetPorDTO(viajeDTO);
+
+		viaje.PublicarAlChatDeViaje(mensaje);
+	}
 
 	public ArrayList<ViajeDTO> GetViajesDe(TuristaDTO filter) {
 		if (filter != null)
@@ -87,4 +102,9 @@ public class ViajeController {
 		}
 	}
 
+	public ArrayList<MensajeDTO> GetChatDe(ViajeDTO dto) {
+		Viaje viaje = new Viaje();
+		viaje.GetPorDTO(dto);
+		return viaje.GetMensajes();
+	}
 }

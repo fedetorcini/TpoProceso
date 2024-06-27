@@ -9,7 +9,7 @@ import src.ViajePackage.Controller.ReseñaDTO;
 
 public class Reseña {
 
-	private static HashMap<String, Reseña> reseñas = new HashMap<>();
+	private static HashMap<Integer, Reseña> reseñas = new HashMap<Integer, Reseña>();
 	private String texto;
 	private float estrellas;
 	private int turistaId;
@@ -43,15 +43,11 @@ public class Reseña {
 	}
 
 	private Reseña RegistrarReseña(int turistaId, int guiaId, int viajeId) {
-		reseñas.put(ObtenerKeyDeGuiaTurista(turistaId, guiaId), this);
+		reseñas.put(viajeId, this);
 		this.turistaId = turistaId;
 		this.guiaId = guiaId;
 		this.viajeId = viajeId;
 		return this;
-	}
-
-	private static String ObtenerKeyDeGuiaTurista(Integer turista, Integer guia) {
-		return turista.toString() + guia.toString();
 	}
 
 	public Float GetCalificacion() {

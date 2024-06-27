@@ -5,24 +5,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import src.NotificadorPackage.Mensaje;
 import src.ObserverPackage.Observable;
-import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.ViajePackage.Controller.ReseñaDTO;
-import src.ViajePackage.Reseña;
 
-public class Pago extends Observable<String>{
+public class Pago extends Observable<Mensaje>{
 
-private static HashMap<Integer, Pago> pagos = new HashMap<Integer, Pago>();
-private static int IDs = 0;
-private int id;
-private double monto;
-private int turistaId;
-private int guiaId;
-private Date fecha;
-private IAdapterPago metodoDePago;
-private boolean fueExitoso;
+	private static HashMap<Integer, Pago> pagos = new HashMap<Integer, Pago>();
+	private static int IDs = 0;
+	private int id;
+	private double monto;
+	private int turistaId;
+	private int guiaId;
+	private Date fecha;
+	private IAdapterPago metodoDePago;
+	private boolean fueExitoso;
 
-public double GetMonto() {
+	public double GetMonto() {
 	return monto;
 }
 
@@ -48,40 +46,38 @@ public double GetMonto() {
 		return fecha;
 	}
 
-	public void RegistrarPago(double monto)
-{
-	this.monto = monto;
-	this.fecha = Calendar.getInstance().getTime();
-	this.metodoDePago = new StripAdapter();
-	this.fueExitoso = RealizarPago();
-	this.id = IDs;
-	IDs++;
-	
-	pagos.put(id, this);
-
-	String mensaje;	
-	
-	if (fueExitoso)
-	{
-		mensaje = "Pago de: " + monto + " realizado con exito.";
+	public void RegistrarPago(PagoDTO pagoDto) {
+		RegistrarPago(pagoDto.GetMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId());
 	}
-	else
-	{
-		mensaje = "Pago por el monto de: " + monto + " falló.";
+
+	public void RegistrarPago(double monto, int turistaId, int guiaId) {
+	    this.turistaId = turistaId;
+		this.guiaId = guiaId;
+		this.monto = monto;
+		this.fecha = Calendar.getInstance().getTime();
+		this.metodoDePago = new StripAdapter();
+		this.fueExitoso = RealizarPago();
+		this.id = IDs;
+		IDs++;
+
+		pagos.put(id, this);
+
+		Mensaje mensaje = new Mensaje(" ");
+
+		if (fueExitoso) {
+			mensaje.SetDescripcion("Pago de: " + monto + " realizado con exito.");
+		}
+		else {
+			mensaje.SetDescripcion("Pago por el monto de: " + monto + " falló.");
+		}
+
+		Publicar(mensaje);
 	}
-	
-	Publicar(mensaje);
-	System.out.println(mensaje);
-}
 
+	private boolean RealizarPago() { return metodoDePago.RealizarPago(monto); }
 
-private boolean RealizarPago() {
-	return metodoDePago.RealizarPago(monto);
-}
+	public boolean Completado() { return fueExitoso; }
 
-public boolean Completado() {
-	return fueExitoso;
-}
 	public static ArrayList<PagoDTO> getPagosDTO() {
 		ArrayList<PagoDTO> pagoDTOS = new ArrayList<>();
 

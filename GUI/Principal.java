@@ -7,9 +7,12 @@ import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Login.RegistroGuia;
 import GUI.Pantallas.Login.RegistroTurista;
 import GUI.Pantallas.Menus.*;
+<<<<<<< HEAD
 
 import GUI.Pantallas.Menus.NuevoViajeMenu;
 import GUI.Pantallas.Menus.ViajesMenu;
+=======
+>>>>>>> 73db12366cab3e75b260b9963426947c2136bd58
 
 import java.awt.Color;
 import java.awt.Container;
@@ -97,6 +100,7 @@ public class Principal extends JFrame {
 
 		Pantalla reseñasMenu			   = new ReseñasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		reseñasMenu.Hide();
+<<<<<<< HEAD
 
 		Pantalla pagosMenu 				   = new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		pagosMenu.Hide();
@@ -106,6 +110,12 @@ public class Principal extends JFrame {
 
 		Pantalla perfilMenuGuia                = new PerfilMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		perfilMenuGuia.Hide();
+=======
+		Pantalla pagos				   		= new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		pagos.Hide();
+		Pantalla mainMenuGuia 			   = new MainMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		mainMenuGuia.Hide();
+>>>>>>> 73db12366cab3e75b260b9963426947c2136bd58
 	}
 
 	private void initializeContainer() {

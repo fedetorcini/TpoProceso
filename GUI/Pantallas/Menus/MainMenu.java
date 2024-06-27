@@ -3,12 +3,13 @@ package GUI.Pantallas.Menus;
 import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
-import GUI.Pantallas.Menus.*;
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73db12366cab3e75b260b9963426947c2136bd58
 import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 
@@ -105,14 +106,13 @@ public class MainMenu extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Reset();
-
                     botonPagos.setForeground(mainBackgroundColor.brighter());
 
                     PagosMenu pagosMenu = (PagosMenu) PagosMenu.GetInstance();
                     if (!subpantallas.contains(pagosMenu))
                         subpantallas.add(pagosMenu);
                     pagosMenu.Show();
-                    pagosMenu.Actualizar(UsuarioController.getPagosByTurista(UsuarioController.GetLoggedTurista()));
+                    pagosMenu.Actualizar(UsuarioController.GetPagosByTurista(UsuarioController.GetLoggedTurista()));
                 }
             });
         }

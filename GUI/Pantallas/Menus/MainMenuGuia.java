@@ -4,17 +4,13 @@ import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.ControllerPackage.UsuarioDTO;
 import src.ViajePackage.Controller.ViajeController;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 
 public class MainMenuGuia extends Pantalla {
 
@@ -65,7 +61,7 @@ public class MainMenuGuia extends Pantalla {
         {
             botonViajesHechos = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
             botonViajesHechos.setBounds((WINDOW_WIDTH / 2) - 300, (WINDOW_HEIGHT / 2) - 400, 150, 50);
-            botonViajesHechos.setText("Viajes realizados.");
+            botonViajesHechos.setText("Viajes");
             botonViajesHechos.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonViajesHechos);
 
@@ -107,7 +103,7 @@ public class MainMenuGuia extends Pantalla {
                     if (!subpantallas.contains(pagosMenu))
                         subpantallas.add(pagosMenu);
                     pagosMenu.Show();
-                    pagosMenu.Actualizar(UsuarioController.getCobrosByGuia(UsuarioController.GetLoggedGuia()));
+                    pagosMenu.Actualizar(UsuarioController.GetCobrosByGuia(UsuarioController.GetLoggedGuia()));
                 }
             });
         }
@@ -158,7 +154,7 @@ public class MainMenuGuia extends Pantalla {
 
         // Add components
         {
-            components = new ArrayList<JComponent>();
+            components = new ArrayList<>();
             components.add(botonPerfilGuia);
             components.add(botonViajesDisponibles);
             components.add(botonCobros);

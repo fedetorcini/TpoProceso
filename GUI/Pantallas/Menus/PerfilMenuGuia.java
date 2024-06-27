@@ -52,7 +52,7 @@ public class PerfilMenuGuia extends Pantalla {
                     String servicios = serviciosTexto.getText();
 
                     UsuarioController uc = new UsuarioController();
-                    GuiaDTO guiaDTO = uc.updateGuia(nombre, apellido, sexo, telefono, dni);
+                    GuiaDTO guiaDTO = uc.UpdateGuia(nombre, apellido, sexo, telefono, dni);
                     Hide();
                 }
             });

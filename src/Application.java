@@ -2,6 +2,7 @@ package src;
 
 import GUI.Principal;
 import src.PagoPackage.Pago;
+import src.PagoPackage.PagoDTO;
 import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
@@ -38,16 +39,6 @@ public static void main(String[] args) {
 		int telefonoTurista = 1167254331;
 		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
 		turista = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
-	}
-
-		//crear pago
-	{
-		double monto = 1265;
-		int turistaId = turista.GetId();
-		Pago pago = new Pago();
-		pago.RegistrarPago(123456);
-		pago.setTuristaId(turistaId);
-
 	}
 
 	// Crear Guia
@@ -129,6 +120,12 @@ public static void main(String[] args) {
 
 		viaje.EnviarMensaje(turista, miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
 		viaje.EnviarMensaje(guia, miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
+
+		// Crear pago
+		{
+			double monto = 1265;
+			viaje.Pagar(new PagoDTO(monto, turista, guia));
+		}
 	}
 
 	// Viaje #2

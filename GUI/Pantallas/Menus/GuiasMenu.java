@@ -3,9 +3,12 @@ package GUI.Pantallas.Menus;
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
+import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
+import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Controller.ReseñaDTO;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 
 public class GuiasMenu extends Pantalla {
 
@@ -104,7 +108,6 @@ public class GuiasMenu extends Pantalla {
                     }
                 }
             });
-        }
 
         // Reseña Banner
         {

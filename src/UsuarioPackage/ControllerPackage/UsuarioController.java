@@ -2,6 +2,8 @@ package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
 
+import src.PagoPackage.Pago;
+import src.PagoPackage.PagoDTO;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
@@ -141,6 +143,20 @@ public class UsuarioController {
 		return loggedTurista;
 	}
 
+	public UsuarioDTO updateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
+
+		Guia guia = new Guia();
+		guia.GetPorDTO(loggedGuia);
+		guia.ActualizarPerfil(nombre, apellido, sexo, telefono, dni);
+		guia.SetNombre(nombre);
+		guia.SetApellido(apellido);
+		guia.SetSexo(sexo);
+		guia.SetTelefono(telefono);
+		guia.SetDni(dni);
+		loggedGuia = guia.ToDTO();
+		return loggedGuia;
+	}
+
 	public void AgregarServicio(ServicioDTO servicioDTO, GuiaDTO guiaDto) {
 		Guia guia = new Guia();
 		guia.GetPorDTO(guiaDto);
@@ -156,4 +172,32 @@ public class UsuarioController {
 	}
 
 
+	public static ArrayList<ReseñaDTO> GetReseñasByGuia(GuiaDTO guiaDTO) {
+		ArrayList<ReseñaDTO> reseñaDtos = new ArrayList<>();
+
+		for (ReseñaDTO reseñaDto : Reseña.GetReseñasDTO()) {
+			if (reseñaDto.GetGuia() == guiaDTO.GetId()) {
+				reseñaDtos.add(reseñaDto);
+			}
+		}
+		return reseñaDtos;
+	}
+
+	public static ArrayList<PagoDTO> getPagosByTurista (TuristaDTO turistaDTO) {
+		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
+		for (PagoDTO pagoDTO : Pago.getPagosDTO()){
+			if (pagoDTO.getTuristaId() == turistaDTO.GetId()) {
+				pagoDTOs.add(pagoDTO);
+			}
+		}return pagoDTOs;
+	}
+
+	public static ArrayList <PagoDTO> getCobrosByGuia (GuiaDTO guiaDTO) {
+		ArrayList <PagoDTO> pagoDTOS = new ArrayList<>();
+		for (PagoDTO pagoDTO: Pago.getPagosDTO()) {
+			if (pagoDTO.getGuiaId() == guiaDTO.GetId()) {
+				pagoDTOS.add(pagoDTO);
+			}
+		} return pagoDTOS;
+	}
 }

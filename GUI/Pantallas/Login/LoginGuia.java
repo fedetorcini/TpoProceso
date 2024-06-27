@@ -3,6 +3,8 @@ package GUI.Pantallas.Login;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import GUI.Pantallas.Menus.MainMenu;
+import GUI.Pantallas.Menus.MainMenuGuia;
 import GUI.Pantallas.Pantalla;
 import GUI.Pantallas.SeleccionarRol;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
@@ -77,19 +79,24 @@ public class LoginGuia extends Pantalla {
                         String contraseña = contraseñaTexto.getText();
                         UsuarioController temp = new UsuarioController();
                         GuiaDTO guia = temp.LoginGuia(email, contraseña);
+                        Hide();
+                        MainMenuGuia.GetInstance().Show();
+                        //if (guia != null) {
+                         //   JOptionPane.showMessageDialog(null, "<html><h3><center> " + guia + "  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
+                        //} else {
+                        //    JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
+                        //}
 
-                        if (guia != null) {
-                            JOptionPane.showMessageDialog(null, "<html><h3><center> " + guia + "  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
-                        }
-
-                    } catch (NumberFormatException error) {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
-                    }
+                    //} catch (NumberFormatException error) {
+                    //    JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
+                    //}
                     mailTexto.reset();
                     contraseñaTexto.reset();
-                }
+
+                } catch (RuntimeException runtimeException) {
+                        JOptionPane.showMessageDialog(null, "<html><h3><center>HA OCURRIDO UN ERROR<h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
+                    }
+                    }
             });
         }
 

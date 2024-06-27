@@ -3,6 +3,9 @@ package GUI.Pantallas.Menus;
 import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
+import GUI.Pantallas.Menus.*;
+import src.UsuarioPackage.ControllerPackage.FiltroGuia;
+
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Controller.ReseñaDTO;
@@ -25,6 +28,7 @@ public class MainMenu extends Pantalla {
     private JGradientButton botonPagos;
     private JGradientButton botonReviews;
     private JGradientButton botonGuias;
+
     private JGradientButton botonAtras;
 
     public MainMenu(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
@@ -74,11 +78,16 @@ public class MainMenu extends Pantalla {
                     botonViajes.setForeground(mainBackgroundColor.brighter());
 
                     ViajesMenu viajesMenu = (ViajesMenu) ViajesMenu.GetInstance();
+
                     if (!subpantallas.contains(viajesMenu))
                         subpantallas.add(viajesMenu);
                     viajesMenu.Show();
+
+                    subpantallas.add(viajesMenu);
+                    viajesMenu.Show();
+
                     ViajeController vc = new ViajeController();
-                    viajesMenu.Actualizar(vc.GetViajesDe(UsuarioController.GetLoggedTurista()));
+                    viajesMenu.Actualizar(vc.GetViajesDeTurista(UsuarioController.GetLoggedTurista()));
                 }
             });
         }
@@ -90,6 +99,21 @@ public class MainMenu extends Pantalla {
             botonPagos.setText("Pagos");
             botonPagos.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonPagos);
+
+            botonPagos.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Reset();
+
+                    botonPagos.setForeground(mainBackgroundColor.brighter());
+
+                    PagosMenu pagosMenu = (PagosMenu) PagosMenu.GetInstance();
+                    if (!subpantallas.contains(pagosMenu))
+                        subpantallas.add(pagosMenu);
+                    pagosMenu.Show();
+                    pagosMenu.Actualizar(UsuarioController.getPagosByTurista(UsuarioController.GetLoggedTurista()));
+                }
+            });
         }
 
         // Boton Reviews
@@ -135,6 +159,11 @@ public class MainMenu extends Pantalla {
                     subpantallas.add(guiasMenu);
                     guiasMenu.Show();
                     guiasMenu.Actualizar(UsuarioController.GetGuia(null));
+                /*TuristaDTO turista = UsuarioController.GetLoggedTurista();
+
+                Perfil perfil = (Perfil) Perfil.GetInstance();
+                perfil.SetUsuario(turista);
+                perfil.Show();*/
                 }
             });
         }

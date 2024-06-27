@@ -87,7 +87,25 @@ public class ViajeController {
 		viaje.PublicarAlChatDeViaje(mensaje);
 	}
 
-	public ArrayList<ViajeDTO> GetViajesDe(TuristaDTO filter) {
+	public ArrayList<ViajeDTO> GetViajesDeGuia(GuiaDTO filter) {
+		if (filter != null)
+		{
+			ArrayList<ViajeDTO> filtrado = new ArrayList<>();
+			for (ViajeDTO viaje : Viaje.GetViajes())
+			{
+				if (viaje.GetGuiaId() == filter.GetId()){
+					filtrado.add(viaje);
+				}
+			}
+			return filtrado;
+		}
+		else
+		{
+			return Viaje.GetViajes();
+		}
+	}
+
+	public ArrayList<ViajeDTO> GetViajesDeTurista(TuristaDTO filter) {
 		if (filter != null)
 		{
 			ArrayList<ViajeDTO> filtrado = new ArrayList<>();

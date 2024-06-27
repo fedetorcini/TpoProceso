@@ -1,13 +1,12 @@
 package GUI;
 
 import GUI.Pantallas.*;
+
 import GUI.Pantallas.Login.LoginGuia;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Login.RegistroGuia;
 import GUI.Pantallas.Login.RegistroTurista;
 import GUI.Pantallas.Menus.*;
-import GUI.Pantallas.Menus.NuevoViajeMenu;
-import GUI.Pantallas.Menus.ViajesMenu;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -60,6 +59,7 @@ public class Principal extends JFrame {
 	private void configurar() {
 		initializeContainer();
 
+
 		Pantalla main                      = new Main(mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 
 		Pantalla seleccionarRol            = new SeleccionarRol(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
@@ -80,9 +80,10 @@ public class Principal extends JFrame {
 		mainMenu.Hide();
 
 		Pantalla perfilMenu                = new PerfilMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+
 		perfilMenu.Hide();
 
-		Pantalla viajesMenu                = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		Pantalla viajesMenu                = new  ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
 
 		Pantalla nuevoViajeMenu            = new NuevoViajeMenu(viajesMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
@@ -93,6 +94,10 @@ public class Principal extends JFrame {
 
 		Pantalla reseñasMenu			   = new ReseñasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		reseñasMenu.Hide();
+		Pantalla pagos				   		= new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		pagos.Hide();
+		Pantalla mainMenuGuia 			   = new MainMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		mainMenuGuia.Hide();
 	}
 
 	private void initializeContainer() {

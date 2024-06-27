@@ -1,7 +1,6 @@
 package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
@@ -131,23 +130,21 @@ public class UsuarioController {
 	}
 
 	public void AgregarIdioma(String idioma, GuiaDTO guiaDto) {
-
 		Guia guia = new Guia();
 		guia.GetPorDTO(guiaDto);
 
 		guia.AgregarIdioma(idioma);
 	}
 
-	public static ArrayList<ReseñaDTO> getReseñas (GuiaDTO guiaDTO) {
-		Reseña reseña = new Reseña();
-		ArrayList<ReseñaDTO> reseñaDTOS = new ArrayList<>();
-		for (Reseña r : reseña.getReseñas().values()) {
-			if (r.getGuiaId() == guiaDTO.GetId()) {
-				ReseñaDTO reseñaDTO = new ReseñaDTO();
-				reseñaDTO.SetGuia(guiaDTO);
-				reseñaDTOS.add(reseñaDTO);
+
+	public static ArrayList<ReseñaDTO> GetReseñasByGuia(GuiaDTO guiaDTO) {
+		ArrayList<ReseñaDTO> reseñaDtos = new ArrayList<>();
+
+		for (ReseñaDTO reseñaDto : Reseña.GetReseñasDTO()) {
+			if (reseñaDto.GetGuia() == guiaDTO.GetId()) {
+				reseñaDtos.add(reseñaDto);
 			}
 		}
-		return reseñaDTOS;
+		return reseñaDtos;
 	}
 }

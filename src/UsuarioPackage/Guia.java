@@ -31,6 +31,7 @@ public class Guia extends Usuario<Guia>{
 		Initialize(guia.medioLogin, guia.nombre, guia.apellido, guia.mail, "", guia.sexo, guia.dni, guia.telefono, guia.pais, guia.ciudad);
 		this.calificaciones = guia.calificaciones;
 		this.servicios = guia.servicios;
+		this.idiomas = guia.idiomas;
 		this.id = guia.id;
 	}
 
@@ -38,7 +39,7 @@ public class Guia extends Usuario<Guia>{
 		InitializeUsuario(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 		this.ciudad = ciudad;
 		this.pais = pais;
-		idiomas.add(GuiaDTO.IDIOMA_ESPAÑOL);
+		this.idiomas.add(GuiaDTO.IDIOMA_ESPAÑOL);
 	}
 
 	public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {

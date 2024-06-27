@@ -1,58 +1,63 @@
 package src.ViajePackage.Controller;
 
 import src.ViajePackage.Reseña;
-import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 
 public class ReseñaDTO {
-private String texto;
-private float estrellas;
-private TuristaDTO turista;
-private GuiaDTO guia;
-private ViajeDTO viaje;
 
-public ReseñaDTO(Reseña reseña) {}
-	
-public ReseñaDTO() {}
+	private String texto;
+	private float estrellas;
+	private int turistaId;
+	private int guiaId;
+	private int viajeId;
 
-public String GetTexto() {
-	return texto;
-}
+	public ReseñaDTO(Reseña reseña) {
+		this.texto = reseña.GetTexto();
+		this.estrellas = reseña.GetCalificacion();
+		this.turistaId = reseña.GetTuristaId();
+		this.guiaId = reseña.GetGuiaId();
+		this.viajeId = reseña.GetViajeId();
+	}
 
-public void SetTexto(String texto) {
-	this.texto = texto;
-}
+	public ReseñaDTO() {}
 
-public float GetEstrellas() {
-	return estrellas;
-}
+	public String GetTexto() {
+		return texto;
+	}
 
-public void SetEstrellas(float estrellas) {
-	this.estrellas = estrellas;
-}
+	public void SetTexto(String texto) {
+		this.texto = texto;
+	}
 
-public TuristaDTO GetTurista() {
-	return turista;
-}
+	public float GetEstrellas() {
+		return estrellas;
+	}
 
-public void SetTurista(TuristaDTO turista) {
-	this.turista = turista;
-}
+	public void SetEstrellas(float estrellas) {
+		this.estrellas = estrellas;
+	}
 
-public GuiaDTO GetGuia() {
-	return guia;
-}
+	public int GetTurista() {
+		return turistaId;
+	}
 
-public void SetGuia(GuiaDTO guia) {
-	this.guia = guia;
-}
+	public void SetTurista(int turista) {
+		this.turistaId = turista;
+	}
 
-public ViajeDTO GetViaje() {
-	return viaje;
-}
+	public int GetGuia() {
+		return guiaId;
+	}
 
-public void SetViaje(ViajeDTO viaje) {
-	this.viaje = viaje;
-}
+	public void SetGuia(int guia) {
+		this.guiaId = guia;
+	}
+
+	public int GetViaje() {
+		return viajeId;
+	}
+
+	public void SetViaje(int viaje) {
+		this.viajeId = viaje;
+	}
 
 }

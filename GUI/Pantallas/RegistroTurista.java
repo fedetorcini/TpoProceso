@@ -14,10 +14,15 @@ import java.util.ArrayList;
 public class RegistroUsuario extends Pantalla{
 
     private static int classId = -1;
+
+    private JLabel titulo;
+
     private JComboBox<String> loginBox;
     private JComboBox<String> sexoBox;
+
     private JGradientButton botonConfirmar;
     private JGradientButton botonAtras;
+
     private FedeJTextField  mailTexto;
     private FedeJTextField  contraseñaTexto;
     private FedeJTextField  nombreTexto;
@@ -29,6 +34,17 @@ public class RegistroUsuario extends Pantalla{
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
+
+        // Pantalla Banner
+        {
+            titulo = new JLabel("temp name", SwingConstants.CENTER);
+            titulo.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            titulo.setOpaque(true);
+            titulo.setBackground(mainBackgroundColor.darker());
+            titulo.setText(" Registro Turista ");
+            titulo.setFont(new Font("Serif", Font.BOLD, 24));
+            container.add(titulo);
+        }
 
         // Boton Confirmar
         {
@@ -116,6 +132,7 @@ public class RegistroUsuario extends Pantalla{
         // Add components
         {
             components = new ArrayList<JComponent>();
+            components.add(titulo);
             components.add(botonConfirmar);
             components.add(botonAtras);
             components.add(mailTexto);

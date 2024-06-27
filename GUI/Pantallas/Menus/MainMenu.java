@@ -6,10 +6,7 @@ import GUI.Pantallas.Pantalla;
 
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-<<<<<<< HEAD
 
-=======
->>>>>>> 73db12366cab3e75b260b9963426947c2136bd58
 import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 

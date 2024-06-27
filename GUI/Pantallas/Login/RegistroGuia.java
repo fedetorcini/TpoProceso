@@ -30,6 +30,8 @@ public class RegistroGuia extends Pantalla {
     private FedeJTextField  apellidoTexto;
     private FedeJTextField  telefonoTexto;
     private FedeJTextField  dniTexto;
+    private FedeJTextField paisTexto;
+    private FedeJTextField ciudadTexto;
 
     public RegistroGuia(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
@@ -68,7 +70,9 @@ public class RegistroGuia extends Pantalla {
                     int dni = Integer.parseInt(dniTexto.getText());
                     String mail = mailTexto.getText();
                     String medioLogin = (String) loginBox.getSelectedItem();
-                    UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+                    String pais = paisTexto.getText();
+                    String ciudad = ciudadTexto.getText();
+                    UC.RegistrarGuia(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
 
                     Hide();
                     LoginTurista.GetInstance().Show();
@@ -96,18 +100,23 @@ public class RegistroGuia extends Pantalla {
 
         // Create Form
         {
+            paisTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 200, 200, 40, "Ingresar Pais");
+            container.add(paisTexto);
+            ciudadTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 200, 200, 40, "Ingresar Ciudad");
+            container.add(ciudadTexto);
             mailTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingresar Mail");
             container.add(mailTexto);
-            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingreasar Contraseña");
+            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingresar Contraseña");
             container.add(contraseñaTexto);
             nombreTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Nombre");
             container.add(nombreTexto);
-            apellidoTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingreasar Apellido");
+            apellidoTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Apellido");
             container.add(apellidoTexto);
             telefonoTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2), 200, 40, "Ingresar Telefono");
             container.add(telefonoTexto);
-            dniTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Dni");
+            dniTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 200, 40, "Ingresar Dni");
             container.add(dniTexto);
+
 
 
             sexoBox = new JComboBox<String>();
@@ -143,6 +152,8 @@ public class RegistroGuia extends Pantalla {
             components.add(dniTexto);
             components.add(sexoBox);
             components.add(loginBox);
+            components.add(paisTexto);
+            components.add(ciudadTexto);
         }
 
     }

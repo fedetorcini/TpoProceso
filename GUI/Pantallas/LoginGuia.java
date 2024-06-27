@@ -17,9 +17,11 @@ public class LoginGuia extends Pantalla {
     private static int classId = -1;
 
     private JLabel titulo;
+
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
     private JGradientButton botonAtras;
+
     private FedeJTextField mailTexto;
     private FedeJTextField contraseñaTexto;
 

@@ -1,6 +1,7 @@
 package GUI.Pantallas.Menus;
 
 import GUI.JGradientButton;
+import GUI.Pantallas.ListaGuias;
 import GUI.Pantallas.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;

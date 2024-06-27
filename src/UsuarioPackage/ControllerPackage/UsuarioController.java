@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import src.Reseña;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
+import src.ViajePackage.Controller.ReseñaDTO;
+import src.ViajePackage.Reseña;
 import src.ViajePackage.ServicioPackage.Servicio;
 import src.ViajePackage.ServicioPackage.ServicioDTO;
 
@@ -128,6 +129,8 @@ public class UsuarioController {
 		guia.GetPorDTO(guiaDto);
 
 		guia.AgregarServicio(new Servicio(servicioDTO));
+	}
+
 	public static ArrayList<ReseñaDTO> getReseñas (GuiaDTO guiaDTO) {
 		Reseña reseña = new Reseña();
 		ArrayList<ReseñaDTO> reseñaDTOS = new ArrayList<>();
@@ -139,7 +142,5 @@ public class UsuarioController {
 			}
 		}
 		return reseñaDTOS;
-	}
-
 	}
 }

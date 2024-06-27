@@ -6,6 +6,8 @@ import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.ViajePackage.Controller.MensajeDTO;
+import src.ViajePackage.Controller.ViajeController;
 import src.ViajePackage.Controller.ViajeDTO;
 
 import javax.swing.*;
@@ -27,6 +29,7 @@ public class ViajesMenu extends Pantalla {
 
     private JLabel chatBanner;
     private FedeJTextField chatText;
+    private JGradientButton enviarMensajeBoton;
 
     private JGradientButton botonCrear;
 
@@ -44,11 +47,10 @@ public class ViajesMenu extends Pantalla {
 
             viajes.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e)
-                {
+                public void actionPerformed(ActionEvent e) {
                     ViajeDTO viaje = (ViajeDTO) viajes.getSelectedItem();
-                    if (viaje != null)
-                    {
+
+                    if (viaje != null) {
                         // Get Guia
                         UsuarioController usuarioController = new UsuarioController();
                         FiltroGuia filtro = new FiltroGuia();
@@ -70,6 +72,18 @@ public class ViajesMenu extends Pantalla {
                                     idiomas += idioma + " | ";
                                 }
                                 idiomaBanner.setText(idiomas);
+                            }
+
+                            // Set Mensajes
+                            {
+                                ViajeController vc = new ViajeController();
+                                ArrayList<MensajeDTO> mensajesDtos = vc.GetChatDe(viaje);
+                                String chatString = "<html>";
+                                for (MensajeDTO mensaje : mensajesDtos) {
+                                    chatString += (mensaje.GetEmisor() + " : " + mensaje.GetTexto() + "<br/>");
+                                }
+                                chatString += "</html>";
+                                chatBanner.setText(chatString);
                             }
                         }
 
@@ -134,14 +148,50 @@ public class ViajesMenu extends Pantalla {
             chatBanner.setBounds((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) - 150, 200, 300, 375);
             chatBanner.setOpaque(true);
             chatBanner.setBackground(mainBackgroundColor.brighter());
-            chatBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            chatBanner.setFont(new Font("Serif", Font.ITALIC, 11));
             container.add(chatBanner);
         }
 
         // Texto Chat
         {
-            chatText = new FedeJTextField((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) - 150, 600, 200, 20, "Ingresar mensaje");
+            chatText = new FedeJTextField((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) - 150, 585, 200, 40, "Ingresar mensaje");
             container.add(chatText);
+        }
+
+        // Boton Enviar Mensaje
+        {
+            enviarMensajeBoton = new JGradientButton(mainColor, secondary);
+            enviarMensajeBoton.setBounds((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) + 50, 585, 100, 40);
+            enviarMensajeBoton.setText("Enviar");
+            enviarMensajeBoton.setFont(new Font("Serif", Font.BOLD, 18));
+            container.add(enviarMensajeBoton);
+
+            enviarMensajeBoton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    ViajeDTO viaje = (ViajeDTO) viajes.getSelectedItem();
+                    ViajeController vc = new ViajeController();
+                    vc.EnviarMensaje(UsuarioController.GetLoggedTurista(), viaje, chatText.getText());
+                    chatText.reset();
+
+                    // Update Chat
+                    {
+                        ArrayList<MensajeDTO> mensajesDtos = vc.GetChatDe(viaje);
+
+                        // Set Mensajes
+                        {
+                            String chatString = "<html>";
+                            for (MensajeDTO mensaje : mensajesDtos) {
+                                chatString += (mensaje.GetEmisor() + " : " + mensaje.GetTexto() + "<br/>");
+                            }
+                            chatString += "</html>";
+                            chatBanner.setText(chatString);
+                        }
+                    }
+
+                }
+            });
         }
 
         // Boton Crear
@@ -170,6 +220,7 @@ public class ViajesMenu extends Pantalla {
             components.add(guiaBanner);
             components.add(chatBanner);
             components.add(chatText);
+            components.add(enviarMensajeBoton);
             components.add(botonCrear);
         }
 

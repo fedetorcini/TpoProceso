@@ -25,8 +25,8 @@ public class ViajeDTO {
 		this.turistaId = viaje.GetTuristaId();
 		this.penalidad = viaje.GetPenalidad();
 		this.estadoViaje = viaje.GetEstadoViaje();
-		this.reseña = new ReseñaDTO(viaje.GetReseña());
 		this.chat = viaje.GetMensajes();
+		this.reseña = new ReseñaDTO(viaje.GetReseña());
 	}
 
 	public int GetId() {
@@ -47,6 +47,8 @@ public class ViajeDTO {
 	}
 
 	public String GetEstado() { return estadoViaje;}
+
+	public ArrayList<MensajeDTO> GetChat(){ return chat;}
 
 	public String toString(){ return "Viaje ID : " + id; }
 }

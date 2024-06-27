@@ -107,6 +107,7 @@ public class Viaje {
 				this.id = viaje.id;
 				this.estadoViaje = viaje.estadoViaje;
 				this.reserva = viaje.reserva;
+				this.chat = viaje.chat;
 				encontrado = true;
 			}
 		}
@@ -117,9 +118,7 @@ public class Viaje {
 		return reseña;
 	}
 
-	public ArrayList<MensajeDTO> GetMensajes() {
-		return chat.GetMensajes();
-	}
+	public ArrayList<MensajeDTO> GetMensajes() {return chat.GetMensajes();}
 
 	public int GetId() {
 			return id;

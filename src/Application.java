@@ -119,8 +119,8 @@ public static void main(String[] args) {
 			viaje.AgregarReseña(reseña);
 		}
 
-		viaje.EnviarMensaje(miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
-		viaje.EnviarMensaje(miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
+		viaje.EnviarMensaje(turista, miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
+		viaje.EnviarMensaje(guia, miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
 	}
 
 	// Viaje #2
@@ -139,8 +139,8 @@ public static void main(String[] args) {
 			viaje.AgregarReseña(reseña);
 		}
 
-		viaje.EnviarMensaje(otroViaje, /*new TuristaDTO(),*/ "Otro hola como estas?");
-		viaje.EnviarMensaje(otroViaje, /*new GuiaDTO(null),*/ "otro yo bien y vos?");
+		viaje.EnviarMensaje( turista, otroViaje, /*new TuristaDTO(),*/ "Otro hola como estas?");
+		viaje.EnviarMensaje( guia3, otroViaje, /*new GuiaDTO(null),*/ "otro yo bien y vos?");
 	}
 
 	Principal GUI = new Principal();

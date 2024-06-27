@@ -134,13 +134,18 @@ public class UsuarioController {
 	public static ArrayList<ReseñaDTO> getReseñas (GuiaDTO guiaDTO) {
 		Reseña reseña = new Reseña();
 		ArrayList<ReseñaDTO> reseñaDTOS = new ArrayList<>();
-		for (Map.Entry<String, Reseña> entry: reseña.getReseñas().entrySet()) {
-			if (reseña.getGuiaId() == guiaDTO.GetId()) {
+		for (Reseña r : reseña.getReseñas().values()) {
+			if (r.getGuiaId() == guiaDTO.GetId()) {
 				ReseñaDTO reseñaDTO = new ReseñaDTO();
 				reseñaDTO.SetGuia(guiaDTO);
 				reseñaDTOS.add(reseñaDTO);
 			}
 		}
 		return reseñaDTOS;
+	}
+
+	public static void registrarReseña (ReseñaDTO reseñaDTO) {
+		Reseña reseña = new Reseña();
+		reseña.RegistrarReseña(reseñaDTO);
 	}
 }

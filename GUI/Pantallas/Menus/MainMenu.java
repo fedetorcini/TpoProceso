@@ -1,9 +1,9 @@
 package GUI.Pantallas.Menus;
 
 import GUI.JGradientButton;
-import GUI.Pantallas.ListaGuias;
 import GUI.Pantallas.LoginTurista;
 import GUI.Pantallas.Pantalla;
+import GUI.Pantallas.Menus.*;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
@@ -117,11 +117,11 @@ public class MainMenu extends Pantalla {
                 public void actionPerformed(ActionEvent e) {
                     Reset();
                     botonGuias.setForeground(mainBackgroundColor.brighter());
-                    ListaGuias listaGuias = (ListaGuias) ListaGuias.GetInstance();
-                    subpantallas.add(listaGuias);
-                    listaGuias.Show();
+                    GuiasMenu guiasMenu = (GuiasMenu) GuiasMenu.GetInstance();
+                    subpantallas.add(guiasMenu);
+                    guiasMenu.Show();
                     UsuarioController uc = new UsuarioController();
-                    listaGuias.Actualizar(UsuarioController.GetGuia(null));
+                    guiasMenu.Actualizar(UsuarioController.GetGuia(null));
                 /*TuristaDTO turista = UsuarioController.GetLoggedTurista();
 
                 Perfil perfil = (Perfil) Perfil.GetInstance();

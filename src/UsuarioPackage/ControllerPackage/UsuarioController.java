@@ -1,11 +1,15 @@
 package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import src.Reseña;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.Usuario;
+import src.ViajePackage.Controller.ReseñaDTO;
 
 public class UsuarioController {
 
@@ -17,7 +21,8 @@ public class UsuarioController {
 	private static TuristaDTO loggedTurista = null;
 	private static GuiaDTO loggedGuia = null;
 
-	public ArrayList<GuiaDTO> GetGuia(FiltroGuia filter) {
+
+	public static ArrayList<GuiaDTO> GetGuia (FiltroGuia filter) {
 		if (filter != null)
 		{
 			ArrayList<GuiaDTO> filtrado = new ArrayList<>();
@@ -116,6 +121,19 @@ public class UsuarioController {
 		loggedTurista = turista.ToDTO();
 
 		return loggedTurista;
+	}
+
+	public static ArrayList<ReseñaDTO> getReseñas (GuiaDTO guiaDTO) {
+		Reseña reseña = new Reseña();
+		ArrayList<ReseñaDTO> reseñaDTOS = new ArrayList<>();
+		for (Map.Entry<String, Reseña> entry: reseña.getReseñas().entrySet()) {
+			if (reseña.getGuiaId() == guiaDTO.GetId()) {
+				ReseñaDTO reseñaDTO = new ReseñaDTO();
+				reseñaDTO.SetGuia(guiaDTO);
+				reseñaDTOS.add(reseñaDTO);
+			}
+		}
+		return reseñaDTOS;
 	}
 
 }

@@ -10,7 +10,7 @@ import src.ViajePackage.Controller.ViajeDTO;
 
 public class Reseña {
 
-private static HashMap<String, Reseña> reseñas = new HashMap<String, Reseña>();
+private HashMap<String, Reseña> reseñas = new HashMap<>();
 private String texto;
 private float estrellas;
 private int turistaId;
@@ -61,5 +61,9 @@ public Integer GetViajeId() {
 	return viajeId;
 }
 
+public HashMap<String, Reseña> getReseñas() {return reseñas;}
+	public Integer getGuiaId () {
+	return guiaId;
+	}
 
 }

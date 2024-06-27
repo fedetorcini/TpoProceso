@@ -30,6 +30,7 @@ public class ViajesMenu extends Pantalla {
             components = new ArrayList<>();
             components.add(viajes);
         }
+
     }
 
     public static Pantalla GetInstance() {

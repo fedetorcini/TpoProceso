@@ -52,7 +52,6 @@ public class Principal extends JFrame {
 
 	private void configurar() {
 		initializeContainer();
-
 		Pantalla main = new Main(mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		Pantalla seleccionarRol = new SeleccionarRol(main, mainColor, secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 
@@ -68,6 +67,8 @@ public class Principal extends JFrame {
 		perfilMenu.Hide();
 		Pantalla viajesMenu = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
+		Pantalla listaGuias = new ListaGuias(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		listaGuias.Hide();
 	}
 
 	private void initializeContainer() {

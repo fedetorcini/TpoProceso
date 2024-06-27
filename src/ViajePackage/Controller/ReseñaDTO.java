@@ -1,6 +1,6 @@
 package src.ViajePackage.Controller;
 
-import src.Reseña;
+import src.ViajePackage.Reseña;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 

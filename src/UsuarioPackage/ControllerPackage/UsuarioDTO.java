@@ -16,15 +16,15 @@ private int dni;
 private int telefono;
 private HashMap<Integer, ViajeDTO> viajes;
 
-public UsuarioDTO(Usuario turista) {
-		super();
-		this.id = turista.GetId();
-		this.nombre = turista.GetNombre();
-		this.apellido = turista.GetApellido();
-		this.mail = turista.GetMail();
-		this.sexo = turista.GetSexo();
-		this.dni = turista.GetDni();
-		this.telefono = turista.GetTelefono();
+public UsuarioDTO(Usuario usuario) {
+
+		this.id = usuario.GetId();
+		this.nombre = usuario.GetNombre();
+		this.apellido = usuario.GetApellido();
+		this.mail = usuario.GetMail();
+		this.sexo = usuario.GetSexo();
+		this.dni = usuario.GetDni();
+		this.telefono = usuario.GetTelefono();
 		// ? this.viajes = turista.GetViajes();
 }
 

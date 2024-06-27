@@ -73,6 +73,9 @@ public class GuiaDTO extends UsuarioDTO {
 
 	public GuiaDTO(Guia guia) {
 		super(guia);
+		this.ciudad = guia.GetCiudad();
+		this.pais = guia.GetPais();
 	}
 
+	public String GetLocacion() { return ciudad + ", " + pais; }
 }

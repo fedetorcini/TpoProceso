@@ -3,7 +3,6 @@ package src.ViajePackage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import src.Reseña;
 import src.NotificadorPackage.Mensaje;
 import src.ReservaPackage.Reserva;
 import src.UsuarioPackage.Guia;

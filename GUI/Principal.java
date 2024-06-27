@@ -1,6 +1,9 @@
 package GUI;
 
 import GUI.Pantallas.*;
+import GUI.Pantallas.Menus.MainMenu;
+import GUI.Pantallas.Menus.PerfilMenu;
+import GUI.Pantallas.Menus.ViajesMenu;
 
 import java.awt.Color;
 import java.awt.Container;

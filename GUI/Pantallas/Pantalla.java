@@ -61,7 +61,7 @@ public abstract class Pantalla {
         }
     }
 
-    protected int GetId() {
+    public int GetId() {
         return id;
     }
 }

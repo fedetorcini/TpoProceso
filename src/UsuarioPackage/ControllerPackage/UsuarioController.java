@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
-import src.UsuarioPackage.Usuario;
+import src.ViajePackage.ServicioPackage.Servicio;
+import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class UsuarioController {
 
@@ -34,7 +35,7 @@ public class UsuarioController {
 		}
 	}
 
-	public TuristaDTO RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
+	public TuristaDTO  RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 		Turista turista = new Turista();
 		turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.
 		return new TuristaDTO(turista);
@@ -118,4 +119,10 @@ public class UsuarioController {
 		return loggedTurista;
 	}
 
+	public void AgregarServicio(ServicioDTO servicioDTO, GuiaDTO guiaDto) {
+		Guia guia = new Guia();
+		guia.GetPorDTO(guiaDto);
+
+		guia.AgregarServicio(new Servicio(servicioDTO));
+	}
 }

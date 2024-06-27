@@ -13,6 +13,7 @@ import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 import src.ViajePackage.Controller.ViajeDTO;
+import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class Application {
 	
@@ -51,7 +52,7 @@ public static void main(String[] args) {
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
-		guia = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
+		guia = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Chile", "Santiago de Chile"); // Guia Buenos Aires | Argentina registrado exitosamente
 	}
 
 	// Crear Guia #2
@@ -65,6 +66,8 @@ public static void main(String[] args) {
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
 		guia2 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
+
+		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TOUR_INDIVIDUAL, 100), guia2);
 	}
 
 	// Crear Guia #3
@@ -77,7 +80,10 @@ public static void main(String[] args) {
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
-		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
+		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Holanda", "Amsterdam"); // Guia Buenos Aires | Argentina registrado exitosamente
+
+		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TOUR_GRUPAL, 100), guia3);
+		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TRADUCCIONES, 300), guia3);
 	}
 
 	// Crear Trofeos Reseñas
@@ -118,7 +124,7 @@ public static void main(String[] args) {
 
 	// Viaje #2
 	{
-		otroViaje = viaje.CrearViaje(turista, guia);
+		otroViaje = viaje.CrearViaje(turista, guia3);
 		viaje.Reservar(otroViaje); // Viaje reservado con exito.
 
 		// Reseña

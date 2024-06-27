@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.UsuarioPackage.Guia;
 import src.ViajePackage.Viaje;
 
 public class ViajeDTO {
@@ -12,7 +13,6 @@ public class ViajeDTO {
 	private String estadoReserva;
 	private int guiaId;
 	private int turistaId;
-	private double costoTotal;
 	private double penalidad;
 	private String estadoViaje;
 	private ReseñaDTO reseña;
@@ -23,7 +23,6 @@ public class ViajeDTO {
 		this.estadoReserva = viaje.GetEstadoReserva();
 		this.guiaId = viaje.GetGuiaId();
 		this.turistaId = viaje.GetTuristaId();
-		this.costoTotal = viaje.GetCosto();
 		this.penalidad = viaje.GetPenalidad();
 		this.estadoViaje = viaje.GetEstadoViaje();
 		this.reseña = new ReseñaDTO(viaje.GetReseña());
@@ -40,5 +39,13 @@ public class ViajeDTO {
 
 	public int GetGuiaId() { return guiaId; }
 
+	public double GetPrecio() {
+		Guia guia = new Guia();
+		guia.GetPorId(guiaId);
+		double precio = guia.GetPrecioTotal();
+		return precio;
+	}
+
 	public String toString(){ return "Viaje ID : " + id; }
+
 }

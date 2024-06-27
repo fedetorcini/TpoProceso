@@ -2,7 +2,7 @@ package src.UsuarioPackage;
 
 import java.util.HashMap;
 
-import src.Reseña;
+import src.ViajePackage.Reseña;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
 import src.ViajePackage.Viaje;

@@ -1,12 +1,11 @@
-package GUI.Pantallas;
+package GUI.Pantallas.Menus;
 
 import GUI.JGradientButton;
+import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Controller.ViajeDTO;
-import src.ViajePackage.Viaje;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +17,10 @@ public class ViajesMenu extends Pantalla {
     private static int classId = -1;
 
     private JComboBox<ViajeDTO> viajes;
+
+    private JLabel guiaBanner;
+    private JLabel ubicacionBanner;
+    private JLabel precioBanner;
 
     private JGradientButton botonCrear;
 
@@ -44,9 +47,44 @@ public class ViajesMenu extends Pantalla {
                         FiltroGuia filtro = new FiltroGuia();
                         filtro.SetId(viaje.GetGuiaId());
                         ArrayList<GuiaDTO> guias = usuarioController.GetGuia(filtro);
+                        GuiaDTO guia = guias.get(0);
+
+                        guiaBanner.setText(guia.toString());
+                        ubicacionBanner.setText(guia.GetLocacion());
+                        precioBanner.setText("$" + viaje.GetPrecio());
                     }
                 }
             });
+        }
+
+        // Guia Banner
+        {
+            guiaBanner = new JLabel(" ", SwingConstants.CENTER);
+            guiaBanner.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            guiaBanner.setOpaque(true);
+            guiaBanner.setBackground(mainBackgroundColor);
+            guiaBanner.setFont(new Font("Serif", Font.BOLD, 24));
+            container.add(guiaBanner);
+        }
+
+        // Ubicacion Banner
+        {
+            ubicacionBanner = new JLabel(" ", SwingConstants.CENTER);
+            ubicacionBanner.setBounds((WINDOW_WIDTH/2) - 100, 300, 200, 50);
+            ubicacionBanner.setOpaque(true);
+            ubicacionBanner.setBackground(mainBackgroundColor);
+            ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            container.add(ubicacionBanner);
+        }
+
+        // Precio Banner
+        {
+            precioBanner = new JLabel(" ", SwingConstants.CENTER);
+            precioBanner.setBounds((WINDOW_WIDTH/2) - 100, 400, 200, 75);
+            precioBanner.setOpaque(true);
+            precioBanner.setBackground(mainBackgroundColor);
+            precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
+            container.add(precioBanner);
         }
 
         // Boton Crear
@@ -68,6 +106,9 @@ public class ViajesMenu extends Pantalla {
         {
             components = new ArrayList<>();
             components.add(viajes);
+            components.add(ubicacionBanner);
+            components.add(precioBanner);
+            components.add(guiaBanner);
             components.add(botonCrear);
         }
     }

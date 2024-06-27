@@ -2,6 +2,7 @@ package GUI.Pantallas;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import GUI.Pantallas.Menus.MainMenu;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 

@@ -22,20 +22,39 @@ public class UsuarioController {
 
 
 	public static ArrayList<GuiaDTO> GetGuia (FiltroGuia filter) {
-		if (filter != null)
-		{
+		if (filter != null) {
 			ArrayList<GuiaDTO> filtrado = new ArrayList<>();
-			for (GuiaDTO guia : Guia.GetGuiasDTO())
-			{
+			for (GuiaDTO guia : Guia.GetGuiasDTO()) {
 				if (filter.Validar(guia))
 					filtrado.add(guia);
 			}
 			return filtrado;
 		}
-		else
-		{
+		else {
 			return Guia.GetGuiasDTO();
 		}
+	}
+
+	public static ArrayList<ReseñaDTO> GetReseñasByTurista(TuristaDTO turistaDTO) {
+		ArrayList<ReseñaDTO> reseñasDtos = Reseña.GetReseñasDTO();
+		ArrayList<ReseñaDTO> output = new ArrayList<>();
+
+		for (ReseñaDTO resñaDto : reseñasDtos){
+			output.add(resñaDto);
+		}
+
+		return output;
+	}
+
+	public static ArrayList<ReseñaDTO> GetReseñasByGuia(GuiaDTO guiaDTO) {
+		ArrayList<ReseñaDTO> reseñaDtos = new ArrayList<>();
+
+		for (ReseñaDTO reseñaDto : Reseña.GetReseñasDTO()) {
+			if (reseñaDto.GetGuia() == guiaDTO.GetId()) {
+				reseñaDtos.add(reseñaDto);
+			}
+		}
+		return reseñaDtos;
 	}
 
 	public TuristaDTO  RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
@@ -136,15 +155,5 @@ public class UsuarioController {
 		guia.AgregarIdioma(idioma);
 	}
 
-	public static ArrayList<ReseñaDTO> GetReseñasByGuia(GuiaDTO guiaDTO) {
-		ArrayList<ReseñaDTO> reseñaDtos = new ArrayList<>();
-
-		for (ReseñaDTO reseñaDto : Reseña.GetReseñasDTO()) {
-			if (reseñaDto.GetGuia() == guiaDTO.GetId()) {
-				reseñaDtos.add(reseñaDto);
-			}
-		}
-		return reseñaDtos;
-	}
 
 }

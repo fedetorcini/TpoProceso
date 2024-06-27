@@ -3,6 +3,7 @@ package src.UsuarioPackage.ControllerPackage;
 import java.util.ArrayList;
 
 import src.UsuarioPackage.Guia;
+import src.ViajePackage.ServicioPackage.Servicio;
 import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class GuiaDTO extends UsuarioDTO {
@@ -12,29 +13,11 @@ public class GuiaDTO extends UsuarioDTO {
 	public static String IDIOMA_CHINO = "Chino";
 	public static String IDIOMA_ESPAÑOL = "Español";
 
-	private String nombre;
-	private String apellido;
 	private String pais;
 	private String ciudad;
 	private float calificacion;
 	private ArrayList<ServicioDTO> servicios;
 	private ArrayList<String> idiomas;
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
 
 	public String getPais() {
 		return pais;
@@ -81,7 +64,23 @@ public class GuiaDTO extends UsuarioDTO {
 		this.ciudad = guia.GetCiudad();
 		this.pais = guia.GetPais();
 		this.idiomas = guia.GetIdiomas();
+		this.servicios = new ArrayList<>();
+		this.calificacion = guia.GetPromedio();
+
+		for (Servicio servicio : guia.GetServicios()){
+			this.servicios.add(new ServicioDTO(servicio));
+		}
 	}
 
 	public String GetLocacion() { return ciudad + ", " + pais; }
+
+    public double GetCostoTotal() {
+		double costo = 0;
+
+		for (ServicioDTO servicio : servicios){
+			costo += servicio.getCosto();
+		}
+
+		return costo;
+    }
 }

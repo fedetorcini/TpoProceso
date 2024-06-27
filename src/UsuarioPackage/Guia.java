@@ -157,7 +157,8 @@ public class Guia extends Usuario<Guia>{
 	}
 
 	public ArrayList<String> GetIdiomas() { return idiomas; }
+
+	public ArrayList<Servicio> GetServicios() { return servicios; }
 	@Override
 	public String toString() { return ciudad + ", " + pais; }
-
 }

@@ -12,7 +12,7 @@ public class ReseñaDTO {
 
 	public ReseñaDTO(Reseña reseña) {
 		this.texto = reseña.GetTexto();
-		this.estrellas = reseña.GetCalificacion();
+		this.estrellas = reseña.GetCalificacion() > 0 ? reseña.GetCalificacion() : -1;
 		this.turistaId = reseña.GetTuristaId();
 		this.guiaId = reseña.GetGuiaId();
 		this.viajeId = reseña.GetViajeId();
@@ -59,5 +59,8 @@ public class ReseñaDTO {
 	public void SetViaje(int viaje) {
 		this.viajeId = viaje;
 	}
-
+	@Override
+	public String toString(){
+		return "ViajeId : " + viajeId + " | GuiaId : " + guiaId;
+	}
 }

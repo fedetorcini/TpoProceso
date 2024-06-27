@@ -5,9 +5,8 @@ import GUI.Pantallas.Login.LoginGuia;
 import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Login.RegistroGuia;
 import GUI.Pantallas.Login.RegistroTurista;
-import GUI.Pantallas.Menus.GuiasMenu;
-import GUI.Pantallas.Menus.MainMenu;
-import GUI.Pantallas.Menus.PerfilMenu;
+import GUI.Pantallas.Menus.*;
+import GUI.Pantallas.Menus.NuevoViajeMenu;
 import GUI.Pantallas.Menus.ViajesMenu;
 
 import java.awt.Color;
@@ -86,8 +85,14 @@ public class Principal extends JFrame {
 		Pantalla viajesMenu                = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
 
+		Pantalla nuevoViajeMenu            = new NuevoViajeMenu(viajesMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		nuevoViajeMenu.Hide();
+
 		Pantalla listaGuias				   = new GuiasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		listaGuias.Hide();
+
+		Pantalla reseñasMenu			   = new ReseñasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		reseñasMenu.Hide();
 	}
 
 	private void initializeContainer() {

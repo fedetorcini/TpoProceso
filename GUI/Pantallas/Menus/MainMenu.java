@@ -5,6 +5,7 @@ import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class MainMenu extends Pantalla {
         super(pantalla.GetId(), mainColor,secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
-        subpantallas = new ArrayList<Pantalla>();
+        subpantallas = new ArrayList<>();
 
         // Boton Perfil
         {
@@ -95,9 +96,26 @@ public class MainMenu extends Pantalla {
         {
             botonReviews = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
             botonReviews.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 400, 150, 50);
-            botonReviews.setText("Reviews");
+            botonReviews.setText("Reseñas");
             botonReviews.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonReviews);
+
+            botonReviews.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Reset();
+                    ReseñasMenu reseñasMenu = (ReseñasMenu)ReseñasMenu.GetInstance();
+                    botonReviews.setForeground(mainBackgroundColor.brighter());
+
+                    if (!subpantallas.contains(reseñasMenu))
+                        subpantallas.add(reseñasMenu);
+
+                    ArrayList<ReseñaDTO> reseñaDtos = UsuarioController.GetReseñasByTurista(UsuarioController.GetLoggedTurista());
+
+                    reseñasMenu.Actualizar(reseñaDtos);
+                    reseñasMenu.Show();
+                }
+            });
         }
 
         // Boton Guias
@@ -116,7 +134,6 @@ public class MainMenu extends Pantalla {
                     GuiasMenu guiasMenu = (GuiasMenu) GuiasMenu.GetInstance();
                     subpantallas.add(guiasMenu);
                     guiasMenu.Show();
-                    UsuarioController uc = new UsuarioController();
                     guiasMenu.Actualizar(UsuarioController.GetGuia(null));
                 }
             });
@@ -169,4 +186,6 @@ public class MainMenu extends Pantalla {
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
     }
+
+    public void AddSubpantalla(Pantalla pantalla) { subpantallas.add(pantalla); }
 }

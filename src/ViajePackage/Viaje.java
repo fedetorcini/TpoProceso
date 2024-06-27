@@ -56,15 +56,6 @@ public class Viaje {
 		this.estadoViaje = estado;
 	}
 
-	public void RegistrarReseña(String descripcion, float calificacion) {
-		Reseña reseña = new Reseña();
-		reseña.RegistrarReseña(descripcion, turistaId, guiaId, 0, calificacion);
-
-		Guia guia = new Guia();
-		guia.GetPorId(guia.GetId());
-		guia.AgregarReseña(reseña);
-	}
-
 	public Viaje CrearViaje(Turista turista, Guia guia) {
 		this.turistaId = turista.GetId();
 		this.guiaId = guia.GetId();

@@ -37,6 +37,7 @@ public class ViajeDTO {
 		return turistaId;
 	}
 
+
 	public int GetGuiaId() { return guiaId; }
 
 	public double GetPrecio() {
@@ -45,6 +46,7 @@ public class ViajeDTO {
 		double precio = guia.GetPrecioTotal();
 		return precio;
 	}
+
 
 	public String GetEstado() { return estadoViaje;}
 

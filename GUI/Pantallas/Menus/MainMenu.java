@@ -77,9 +77,14 @@ public class MainMenu extends Pantalla {
                     botonViajes.setForeground(mainBackgroundColor.brighter());
 
                     ViajesMenu viajesMenu = (ViajesMenu) ViajesMenu.GetInstance();
+
                     if (!subpantallas.contains(viajesMenu))
                         subpantallas.add(viajesMenu);
                     viajesMenu.Show();
+
+                    subpantallas.add(viajesMenu);
+                    viajesMenu.Show();
+
                     ViajeController vc = new ViajeController();
                     viajesMenu.Actualizar(vc.GetViajesDe(UsuarioController.GetLoggedTurista()));
                 }

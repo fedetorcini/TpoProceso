@@ -6,6 +6,7 @@ import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class FiltroGuia {
 
+	protected int id;
 	protected String nombre;
 	protected String apellido;
 	private String pais;
@@ -14,7 +15,18 @@ public class FiltroGuia {
 	private ArrayList<ServicioDTO> servicios;
 	private ArrayList<String> idiomas;
 
-	public void Validar(GuiaDTO guia) {
+	public FiltroGuia (){
+		id = -1;
+		nombre = null;
+		apellido = null;
+		pais = null;
+		ciudad = null;
+		calificacion = -1;
+		servicios = null;
+		idiomas = null;
+	}
+
+	public boolean Validar(GuiaDTO guia) {
 
 		boolean valido = true;
 
@@ -36,6 +48,11 @@ public class FiltroGuia {
 		if (ciudad != null)
 		{
 			if(!(guia.getCiudad() == ciudad))
+				valido = false;
+		}
+		if (id != -1)
+		{
+			if(guia.GetId() != id)
 				valido = false;
 		}
 		if (calificacion != -1)
@@ -79,5 +96,10 @@ public class FiltroGuia {
 				}
 			}
 		}
+		return valido;
 	}
+
+	public void SetNombre(String nombre) { this.nombre = nombre; }
+
+	public void SetId(int id) { this.id = id; }
 }

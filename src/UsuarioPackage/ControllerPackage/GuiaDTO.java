@@ -7,72 +7,72 @@ import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class GuiaDTO extends UsuarioDTO {
 
-private String nombre;
-private String apellido;
-private String pais;
-private String ciudad;
-private float calificacion;
-private ArrayList<ServicioDTO> servicios;
-private ArrayList<String> idiomas;	
+	private String nombre;
+	private String apellido;
+	private String pais;
+	private String ciudad;
+	private float calificacion;
+	private ArrayList<ServicioDTO> servicios;
+	private ArrayList<String> idiomas;
 
-public String getNombre() {
-	return nombre;
-}
+	public String getNombre() {
+		return nombre;
+	}
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-public String getApellido() {
-	return apellido;
-}
+	public String getApellido() {
+		return apellido;
+	}
 
-public void setApellido(String apellido) {
-	this.apellido = apellido;
-}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-public String getPais() {
-	return pais;
-}
+	public String getPais() {
+		return pais;
+	}
 
-public void setPais(String pais) {
-	this.pais = pais;
-}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
 
-public String getCiudad() {
-	return ciudad;
-}
+	public String getCiudad() {
+		return ciudad;
+	}
 
-public void setCiudad(String ciudad) {
-	this.ciudad = ciudad;
-}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 
-public float getCalificacion() {
-	return calificacion;
-}
+	public float getCalificacion() {
+		return calificacion;
+	}
 
-public void setCalificacion(float calificacion) {
-	this.calificacion = calificacion;
-}
+	public void setCalificacion(float calificacion) {
+		this.calificacion = calificacion;
+	}
 
-public ArrayList<ServicioDTO> getServicios() {
-	return servicios;
-}
+	public ArrayList<ServicioDTO> getServicios() {
+		return servicios;
+	}
 
-public void setServicios(ArrayList<ServicioDTO> servicios) {
-	this.servicios = servicios;
-}
+	public void setServicios(ArrayList<ServicioDTO> servicios) {
+		this.servicios = servicios;
+	}
 
-public ArrayList<String> getIdiomas() {
-	return idiomas;
-}
+	public ArrayList<String> getIdiomas() {
+		return idiomas;
+	}
 
-public void setIdiomas(ArrayList<String> idiomas) {
-	this.idiomas = idiomas;
-}
+	public void setIdiomas(ArrayList<String> idiomas) {
+		this.idiomas = idiomas;
+	}
 
-public GuiaDTO(Guia guia) {
-	super(guia);
-}
+	public GuiaDTO(Guia guia) {
+		super(guia);
+	}
 
 }

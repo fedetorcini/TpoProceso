@@ -22,11 +22,13 @@ public static void main(String[] args) {
 	ViajeController viaje = new ViajeController();
 
 	TuristaDTO turista = null;
-	TuristaDTO turistaPrueba = null;
 	GuiaDTO guia = null;
+	GuiaDTO guia2 = null;
+	GuiaDTO guia3 = null;
 	ViajeDTO miViaje = null;
+	ViajeDTO otroViaje = null;
 
-	// Crear Turista para pruebas
+	// Crear Turista
 	{
 		String nombreTurista = "Federico";
 		String apellidoTurista = "Torcini";
@@ -36,21 +38,6 @@ public static void main(String[] args) {
 		int dniTurista = 42496679;
 		int telefonoTurista = 1167254331;
 		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
-		turistaPrueba = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
-	}
-
-	// Crear Turista
-	{
-		String nombreTurista = "Federico";
-		String apellidoTurista = "Torcini";
-		String mailTurista = "ftorcini@uade.edu.ar";
-		String contraseñaTurista = "123456";
-		String sexoTurista = Usuario.MASCULINO;
-		int dniTurista = 42496679;
-		int telefonoTurista = 1167254331;
-		String medioLoginTurista = UsuarioController.MEDIO_LOGIN_APPLE; // No es posible conectarse con los servidores de Apple, intente otro metodo
-		turista = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini no a podido ser registrado.
-		medioLoginTurista = UsuarioController.MEDIO_LOGIN_MAIL;
 		turista = usuario.RegistrarTurista(medioLoginTurista, nombreTurista, apellidoTurista, mailTurista, contraseñaTurista, sexoTurista, dniTurista, telefonoTurista); // Turista Federico Torcini registrado exitosamente
 	}
 
@@ -65,6 +52,32 @@ public static void main(String[] args) {
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
 		guia = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
+	}
+
+	// Crear Guia #2
+	{
+		String nombreGuia = "Otro";
+		String apellidoGuia = "Guia";
+		String mailGuia = "oguia@uade.edu.ar";
+		String contraseñaGuia = "654321";
+		String sexoGuia = Usuario.MASCULINO;
+		int dniGuia = 36816684;
+		int telefonoGuia = 11658469;
+		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
+		guia2 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
+	}
+
+	// Crear Guia #3
+	{
+		String nombreGuia = "OtroMas";
+		String apellidoGuia = "Guia";
+		String mailGuia = "omguia@uade.edu.ar";
+		String contraseñaGuia = "654321";
+		String sexoGuia = Usuario.MASCULINO;
+		int dniGuia = 36816684;
+		int telefonoGuia = 11658469;
+		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
+		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Argentina", "Buenos Aires"); // Guia Buenos Aires | Argentina registrado exitosamente
 	}
 
 	// Crear Trofeos Reseñas
@@ -85,7 +98,7 @@ public static void main(String[] args) {
 
 	// Viaje
 	{
-		miViaje = viaje.CrearViaje(turistaPrueba, guia);
+		miViaje = viaje.CrearViaje(turista, guia);
 		viaje.Reservar(miViaje); // Viaje reservado con exito.
 
 		// Reseña
@@ -101,6 +114,26 @@ public static void main(String[] args) {
 
 		viaje.EnviarMensaje(miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
 		viaje.EnviarMensaje(miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
+	}
+
+	// Viaje #2
+	{
+		otroViaje = viaje.CrearViaje(turista, guia);
+		viaje.Reservar(otroViaje); // Viaje reservado con exito.
+
+		// Reseña
+		{
+			ReseñaDTO reseña = new ReseñaDTO();
+			reseña.SetEstrellas(3.2f);
+			reseña.SetGuia(guia3);
+			reseña.SetTexto("Otro muy buen viaje, gracias!!!");
+			reseña.SetViaje(otroViaje);
+			reseña.SetTurista(turista);
+			viaje.AgregarReseña(reseña);
+		}
+
+		viaje.EnviarMensaje(otroViaje, /*new TuristaDTO(),*/ "Otro hola como estas?");
+		viaje.EnviarMensaje(otroViaje, /*new GuiaDTO(null),*/ "otro yo bien y vos?");
 	}
 
 	Principal GUI = new Principal();

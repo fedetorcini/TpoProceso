@@ -76,5 +76,4 @@ public class SeleccionarRol extends Pantalla{
 
     public static Pantalla GetInstance() { return Pantalla.GetById(classId); }
 
-
 }

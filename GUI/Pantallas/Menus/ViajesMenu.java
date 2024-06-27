@@ -1,5 +1,6 @@
 package GUI.Pantallas.Menus;
 
+import GUI.FedeJTextField;
 import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
@@ -22,6 +23,10 @@ public class ViajesMenu extends Pantalla {
     private JLabel ubicacionBanner;
     private JLabel precioBanner;
     private JLabel idiomaBanner;
+    private JLabel estadoBanner;
+
+    private JLabel chatBanner;
+    private FedeJTextField chatText;
 
     private JGradientButton botonCrear;
 
@@ -44,23 +49,28 @@ public class ViajesMenu extends Pantalla {
                     ViajeDTO viaje = (ViajeDTO) viajes.getSelectedItem();
                     if (viaje != null)
                     {
+                        // Get Guia
                         UsuarioController usuarioController = new UsuarioController();
                         FiltroGuia filtro = new FiltroGuia();
                         filtro.SetId(viaje.GetGuiaId());
                         ArrayList<GuiaDTO> guias = usuarioController.GetGuia(filtro);
                         GuiaDTO guia = guias.get(0);
 
-                        guiaBanner.setText(guia.toString());
-                        ubicacionBanner.setText(guia.GetLocacion());
-                        precioBanner.setText("$" + viaje.GetPrecio());
-
-                        // Set Idiomas
+                        // Set Banners
                         {
-                            String idiomas = "";
-                            for (String idioma : guia.getIdiomas()) {
-                                idiomas += "<html><h3>Idiomas : " + idioma + " | ";
+                            guiaBanner.setText(guia.toString());
+                            ubicacionBanner.setText(guia.GetLocacion());
+                            precioBanner.setText("$" + viaje.GetPrecio());
+                            estadoBanner.setText("Estado : " + viaje.GetEstado());
+
+                            // Set Idiomas
+                            {
+                                String idiomas = "<html><h3>Idiomas : ";
+                                for (String idioma : guia.getIdiomas()) {
+                                    idiomas += idioma + " | ";
+                                }
+                                idiomaBanner.setText(idiomas);
                             }
-                            idiomaBanner.setText(idiomas);
                         }
 
                     }
@@ -71,7 +81,7 @@ public class ViajesMenu extends Pantalla {
         // Guia Banner
         {
             guiaBanner = new JLabel(" ", SwingConstants.CENTER);
-            guiaBanner.setBounds((WINDOW_WIDTH/2) - 100, 300, 200, 50);
+            guiaBanner.setBounds((WINDOW_WIDTH/4) - 100, 300, 200, 50);
             guiaBanner.setOpaque(true);
             guiaBanner.setBackground(mainBackgroundColor);
             guiaBanner.setFont(new Font("Serif", Font.BOLD, 18));
@@ -81,7 +91,7 @@ public class ViajesMenu extends Pantalla {
         // Ubicacion Banner
         {
             ubicacionBanner = new JLabel(" ", SwingConstants.CENTER);
-            ubicacionBanner.setBounds((WINDOW_WIDTH/2) - 250, 200, 500, 50);
+            ubicacionBanner.setBounds((WINDOW_WIDTH/4) - 250, 200, 500, 50);
             ubicacionBanner.setOpaque(true);
             ubicacionBanner.setBackground(mainBackgroundColor);
             ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 24));
@@ -91,7 +101,7 @@ public class ViajesMenu extends Pantalla {
         // Precio Banner
         {
             precioBanner = new JLabel(" ", SwingConstants.CENTER);
-            precioBanner.setBounds((WINDOW_WIDTH/2) - 100, 400, 200, 75);
+            precioBanner.setBounds((WINDOW_WIDTH/4) - 100, 400, 200, 75);
             precioBanner.setOpaque(true);
             precioBanner.setBackground(mainBackgroundColor);
             precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
@@ -101,11 +111,37 @@ public class ViajesMenu extends Pantalla {
         // Idioma Banner
         {
             idiomaBanner = new JLabel(" ", SwingConstants.CENTER);
-            idiomaBanner.setBounds((WINDOW_WIDTH/2) - 100, 350, 200, 75);
+            idiomaBanner.setBounds((WINDOW_WIDTH/4) - 100, 350, 200, 75);
             idiomaBanner.setOpaque(false);
             idiomaBanner.setBackground(mainBackgroundColor);
             idiomaBanner.setFont(new Font("Serif", Font.BOLD, 40));
             container.add(idiomaBanner);
+        }
+
+        // Estado Banner
+        {
+            estadoBanner = new JLabel(" ", SwingConstants.CENTER);
+            estadoBanner.setBounds((WINDOW_WIDTH/4) - 100, 550, 200, 50);
+            estadoBanner.setOpaque(false);
+            estadoBanner.setBackground(mainBackgroundColor);
+            estadoBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            container.add(estadoBanner);
+        }
+
+        // Chat Banner
+        {
+            chatBanner = new JLabel(" ", SwingConstants.LEFT);
+            chatBanner.setBounds((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) - 150, 200, 300, 375);
+            chatBanner.setOpaque(true);
+            chatBanner.setBackground(mainBackgroundColor.brighter());
+            chatBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            container.add(chatBanner);
+        }
+
+        // Texto Chat
+        {
+            chatText = new FedeJTextField((WINDOW_WIDTH -  (WINDOW_WIDTH/4)) - 150, 600, 200, 20, "Ingresar mensaje");
+            container.add(chatText);
         }
 
         // Boton Crear
@@ -130,7 +166,10 @@ public class ViajesMenu extends Pantalla {
             components.add(ubicacionBanner);
             components.add(precioBanner);
             components.add(idiomaBanner);
+            components.add(estadoBanner);
             components.add(guiaBanner);
+            components.add(chatBanner);
+            components.add(chatText);
             components.add(botonCrear);
         }
 

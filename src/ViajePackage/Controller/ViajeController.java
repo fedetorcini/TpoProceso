@@ -48,7 +48,7 @@ public class ViajeController {
 		reseña.RegistrarReseña(reseñaDto);
 
 		Viaje viaje = new Viaje();
-		viaje.GetPorDTO(reseñaDto.GetViaje());
+		viaje.GetPorId(reseñaDto.GetViaje());
 
 		Turista turista = new Turista();
 		turista.GetPorId(viaje.GetTuristaId());

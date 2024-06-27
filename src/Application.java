@@ -112,10 +112,10 @@ public static void main(String[] args) {
 		{
 			ReseñaDTO reseña = new ReseñaDTO();
 			reseña.SetEstrellas(4.2f);
-			reseña.SetGuia(guia);
+			reseña.SetGuia(guia.GetId());
 			reseña.SetTexto("Muy buen viaje, gracias!!!");
-			reseña.SetViaje(miViaje);
-			reseña.SetTurista(turista);
+			reseña.SetViaje(miViaje.GetId());
+			reseña.SetTurista(turista.GetId());
 			viaje.AgregarReseña(reseña);
 		}
 
@@ -132,10 +132,10 @@ public static void main(String[] args) {
 		{
 			ReseñaDTO reseña = new ReseñaDTO();
 			reseña.SetEstrellas(3.2f);
-			reseña.SetGuia(guia3);
+			reseña.SetGuia(guia3.GetId());
 			reseña.SetTexto("Otro muy buen viaje, gracias!!!");
-			reseña.SetViaje(otroViaje);
-			reseña.SetTurista(turista);
+			reseña.SetViaje(otroViaje.GetId());
+			reseña.SetTurista(turista.GetId());
 			viaje.AgregarReseña(reseña);
 		}
 

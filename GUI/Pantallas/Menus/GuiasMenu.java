@@ -68,7 +68,7 @@ public class GuiasMenu extends Pantalla {
                 public void actionPerformed(ActionEvent e) {
                     LoginTurista.GetInstance().Show();
                     reseñas = new JLabel();
-                    reseñas.setText(UsuarioController.getReseñas((GuiaDTO) guias.getSelectedItem()).get(0).toString());
+                    reseñas.setText(UsuarioController.GetReseñasByGuia((GuiaDTO) guias.getSelectedItem()).get(0).toString());
                 }
             });
         }

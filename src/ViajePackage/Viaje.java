@@ -95,11 +95,13 @@ public class Viaje {
 		chat.EnviarMensaje(mensaje);
 	}
 
-	public boolean GetPorDTO(ViajeDTO dto) {
+	public boolean GetPorDTO(ViajeDTO dto) { return GetPorId(dto.GetId());}
+
+	public boolean GetPorId(int id) {
 
 		boolean encontrado = false;
 		for (Viaje viaje : viajes.values()) {
-			if (viaje.id == dto.GetId()) {
+			if (viaje.id == id) {
 				this.turistaId = viaje.turistaId;
 				this.guiaId = viaje.guiaId;
 				this.id = viaje.id;
@@ -144,5 +146,4 @@ public class Viaje {
 	public int GetGuiaId(){
 		return guiaId;
 	}
-
 }

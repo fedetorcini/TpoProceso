@@ -46,6 +46,7 @@ public class ViajeDTO {
 		return precio;
 	}
 
-	public String toString(){ return "Viaje ID : " + id; }
+	public String GetEstado() { return estadoViaje;}
 
+	public String toString(){ return "Viaje ID : " + id; }
 }

@@ -21,5 +21,7 @@ public class Confirmado implements IEstadoViaje {
 	public void Finalizar(Viaje viaje) {
 		System.out.println("Antes de finalizar el viaje debe iniciarse.");
 	}
+	@Override
+	public String toString(){ return "Confirmado"; }
 
 }

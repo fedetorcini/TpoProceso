@@ -21,6 +21,7 @@ public class ViajesMenu extends Pantalla {
     private JLabel guiaBanner;
     private JLabel ubicacionBanner;
     private JLabel precioBanner;
+    private JLabel idiomaBanner;
 
     private JGradientButton botonCrear;
 
@@ -52,6 +53,16 @@ public class ViajesMenu extends Pantalla {
                         guiaBanner.setText(guia.toString());
                         ubicacionBanner.setText(guia.GetLocacion());
                         precioBanner.setText("$" + viaje.GetPrecio());
+
+                        // Set Idiomas
+                        {
+                            String idiomas = "";
+                            for (String idioma : guia.getIdiomas()) {
+                                idiomas += "<html><h3>Idiomas : " + idioma + " | ";
+                            }
+                            idiomaBanner.setText(idiomas);
+                        }
+
                     }
                 }
             });
@@ -60,20 +71,20 @@ public class ViajesMenu extends Pantalla {
         // Guia Banner
         {
             guiaBanner = new JLabel(" ", SwingConstants.CENTER);
-            guiaBanner.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            guiaBanner.setBounds((WINDOW_WIDTH/2) - 100, 300, 200, 50);
             guiaBanner.setOpaque(true);
             guiaBanner.setBackground(mainBackgroundColor);
-            guiaBanner.setFont(new Font("Serif", Font.BOLD, 24));
+            guiaBanner.setFont(new Font("Serif", Font.BOLD, 18));
             container.add(guiaBanner);
         }
 
         // Ubicacion Banner
         {
             ubicacionBanner = new JLabel(" ", SwingConstants.CENTER);
-            ubicacionBanner.setBounds((WINDOW_WIDTH/2) - 100, 300, 200, 50);
+            ubicacionBanner.setBounds((WINDOW_WIDTH/2) - 250, 200, 500, 50);
             ubicacionBanner.setOpaque(true);
             ubicacionBanner.setBackground(mainBackgroundColor);
-            ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 24));
             container.add(ubicacionBanner);
         }
 
@@ -85,6 +96,16 @@ public class ViajesMenu extends Pantalla {
             precioBanner.setBackground(mainBackgroundColor);
             precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
             container.add(precioBanner);
+        }
+
+        // Idioma Banner
+        {
+            idiomaBanner = new JLabel(" ", SwingConstants.CENTER);
+            idiomaBanner.setBounds((WINDOW_WIDTH/2) - 100, 350, 200, 75);
+            idiomaBanner.setOpaque(false);
+            idiomaBanner.setBackground(mainBackgroundColor);
+            idiomaBanner.setFont(new Font("Serif", Font.BOLD, 40));
+            container.add(idiomaBanner);
         }
 
         // Boton Crear
@@ -108,6 +129,7 @@ public class ViajesMenu extends Pantalla {
             components.add(viajes);
             components.add(ubicacionBanner);
             components.add(precioBanner);
+            components.add(idiomaBanner);
             components.add(guiaBanner);
             components.add(botonCrear);
         }

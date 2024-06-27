@@ -2,7 +2,7 @@ package GUI.Pantallas.Menus;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
-import GUI.Pantallas.LoginTurista;
+import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
@@ -15,20 +15,26 @@ import src.ViajePackage.Controller.ViajeDTO;
 import src.ViajePackage.Reseña;
 import src.ViajePackage.Viaje;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class GuiasMenu extends Pantalla {private static int classId = -1;
-    private JGradientButton darReseña;
-    private JGradientButton verReseñas;
+
+public class GuiasMenu extends Pantalla {
+
+    private static int classId = -1;
+
+    private JLabel reseñas;
+
+    private JGradientButton darReseñaBoton;
+    private JGradientButton verReseñasBoton;
     private FedeJTextField textoReseña;
-    private ArrayList<JLabel> resenias;
 
     private JComboBox<GuiaDTO> guias;
+
     public GuiasMenu(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
         classId = id;
@@ -41,19 +47,57 @@ public class GuiasMenu extends Pantalla {private static int classId = -1;
             container.add(guias);
         }
 
+
+        // Dar reseña Boton
+        {
+            darReseñaBoton = new JGradientButton(Color.RED.darker(), secondary);
+            darReseñaBoton.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            darReseñaBoton.setText("Dar Reseña");
+            darReseñaBoton.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(darReseñaBoton);
+
+            darReseñaBoton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Hide();
+                    LoginTurista.GetInstance().Show();
+                }
+            });
+        }
+
+        // Ver reseñas Boton
+        {
+            verReseñasBoton = new JGradientButton(Color.RED.darker(), secondary);
+            verReseñasBoton.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            verReseñasBoton.setText("Ver Reseñas");
+            verReseñasBoton.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(verReseñasBoton);
+
+            verReseñasBoton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    LoginTurista.GetInstance().Show();
+                    reseñas = new JLabel();
+                    reseñas.setText(UsuarioController.getReseñas((GuiaDTO) guias.getSelectedItem()).get(0).toString());
+                }
+            });
+        }
+
+        // Texto Reserva
         {
             textoReseña = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 400, 150, "Escriba reseña");
             container.add(textoReseña);
         }
 
-        {
-            darReseña = new JGradientButton(Color.RED.darker(), secondary);
-            darReseña.setBounds((WINDOW_WIDTH / 2) + 200, (WINDOW_HEIGHT / 2) + 200, 100, 50);
-            darReseña.setText("Dar Reseña");
-            darReseña.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(darReseña);
 
-            darReseña.addActionListener(new ActionListener() {
+        {
+            darReseñaBoton = new JGradientButton(Color.RED.darker(), secondary);
+            darReseñaBoton.setBounds((WINDOW_WIDTH / 2) + 200, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            darReseñaBoton.setText("Dar Reseña");
+            darReseñaBoton.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(darReseñaBoton);
+
+            darReseñaBoton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Obtener datos para la reseña
@@ -81,13 +125,13 @@ public class GuiasMenu extends Pantalla {private static int classId = -1;
 
 
             {
-                verReseñas = new JGradientButton(Color.RED.darker(), secondary);
-                verReseñas.setBounds((WINDOW_WIDTH / 2) -50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
-                verReseñas.setText("Ver Reseñas");
-                verReseñas.setFont(new Font("Serif", Font.BOLD, 15));
-                container.add(verReseñas);
+                verReseñasBoton = new JGradientButton(Color.RED.darker(), secondary);
+                verReseñasBoton.setBounds((WINDOW_WIDTH / 2) -50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+                verReseñasBoton.setText("Ver Reseñas");
+                verReseñasBoton.setFont(new Font("Serif", Font.BOLD, 15));
+                container.add(verReseñasBoton);
 
-                verReseñas.addActionListener(new ActionListener() {
+                verReseñasBoton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         LoginTurista.GetInstance().Show(); // Mostrar pantalla de login (suponiendo que esta parte funciona bien)
@@ -119,10 +163,10 @@ public class GuiasMenu extends Pantalla {private static int classId = -1;
 
 
                 components = new ArrayList<>();
-                components.add(darReseña);
+                components.add(darReseñaBoton);
                 components.add(guias);
                 components.add(textoReseña);
-                components.add(verReseñas);
+                components.add(verReseñasBoton);
 
 
 
@@ -130,9 +174,9 @@ public class GuiasMenu extends Pantalla {private static int classId = -1;
             }
         }
     }
-    public static Pantalla GetInstance() {
-        return Pantalla.GetById(classId);
-    }
+
+
+    public static Pantalla GetInstance() { return Pantalla.GetById(classId);}
 
     public void Actualizar(ArrayList<GuiaDTO> guiasDTO) {
         guias.removeAllItems();

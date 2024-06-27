@@ -1,8 +1,8 @@
-package GUI.Pantallas;
-
+package GUI.Pantallas.Login;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RegistroGuia extends Pantalla{
+public class RegistroTurista extends Pantalla {
 
     private static int classId = -1;
 
@@ -30,7 +30,7 @@ public class RegistroGuia extends Pantalla{
     private FedeJTextField  telefonoTexto;
     private FedeJTextField  dniTexto;
 
-    public RegistroGuia(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
+    public RegistroTurista(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
@@ -41,7 +41,7 @@ public class RegistroGuia extends Pantalla{
             titulo.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
             titulo.setOpaque(true);
             titulo.setBackground(mainBackgroundColor.darker());
-            titulo.setText(" Registro Guia ");
+            titulo.setText(" Registro Turista ");
             titulo.setFont(new Font("Serif", Font.BOLD, 24));
             container.add(titulo);
         }
@@ -88,7 +88,8 @@ public class RegistroGuia extends Pantalla{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Hide();
-                    LoginGuia.GetInstance().Show();
+                    LoginTurista.GetInstance().Show();
+                    ;
                 }
             });
         }
@@ -149,5 +150,4 @@ public class RegistroGuia extends Pantalla{
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
     }
-
 }

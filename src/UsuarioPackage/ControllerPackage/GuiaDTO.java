@@ -7,6 +7,11 @@ import src.ViajePackage.ServicioPackage.ServicioDTO;
 
 public class GuiaDTO extends UsuarioDTO {
 
+	public static String IDIOMA_HOLANDES = "Holandes";
+	public static String IDIOMA_FRANCES = "Frances";
+	public static String IDIOMA_CHINO = "Chino";
+	public static String IDIOMA_ESPAÑOL = "Español";
+
 	private String nombre;
 	private String apellido;
 	private String pais;
@@ -75,6 +80,7 @@ public class GuiaDTO extends UsuarioDTO {
 		super(guia);
 		this.ciudad = guia.GetCiudad();
 		this.pais = guia.GetPais();
+		this.idiomas = guia.GetIdiomas();
 	}
 
 	public String GetLocacion() { return ciudad + ", " + pais; }

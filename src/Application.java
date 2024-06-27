@@ -82,6 +82,7 @@ public static void main(String[] args) {
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
 		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Holanda", "Amsterdam"); // Guia Buenos Aires | Argentina registrado exitosamente
 
+		usuario.AgregarIdioma(GuiaDTO.IDIOMA_HOLANDES, guia3);
 		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TOUR_GRUPAL, 100), guia3);
 		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TRADUCCIONES, 300), guia3);
 	}

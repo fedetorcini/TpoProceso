@@ -1,6 +1,11 @@
 package GUI;
 
 import GUI.Pantallas.*;
+
+import GUI.Pantallas.Login.LoginGuia;
+import GUI.Pantallas.Login.LoginTurista;
+import GUI.Pantallas.Login.RegistroGuia;
+import GUI.Pantallas.Login.RegistroTurista;
 import GUI.Pantallas.Menus.GuiasMenu;
 import GUI.Pantallas.Menus.MainMenu;
 import GUI.Pantallas.Menus.PerfilMenu;
@@ -81,8 +86,10 @@ public class Principal extends JFrame {
 
 		Pantalla viajesMenu                = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
-		Pantalla guiasMenu 				   = new GuiasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
-		guiasMenu.Hide();
+
+
+		Pantalla listaGuias				   = new GuiasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		listaGuias.Hide();
 	}
 
 	private void initializeContainer() {

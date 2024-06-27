@@ -1,13 +1,13 @@
 package GUI.Pantallas.Menus;
 
 import GUI.JGradientButton;
-import GUI.Pantallas.LoginTurista;
+import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Pantalla;
 import GUI.Pantallas.Menus.*;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
+
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.Guia;
 import src.ViajePackage.Controller.ViajeController;
 
 import javax.swing.*;
@@ -15,7 +15,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainMenu extends Pantalla {
 

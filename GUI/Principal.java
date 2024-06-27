@@ -97,6 +97,15 @@ public class Principal extends JFrame {
 
 		Pantalla reseñasMenu			   = new ReseñasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		reseñasMenu.Hide();
+
+		Pantalla pagosMenu 				   = new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		pagosMenu.Hide();
+
+		Pantalla mainMenuGuia 				   = new MainMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		mainMenuGuia.Hide();
+
+		Pantalla perfilMenuGuia                = new PerfilMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		perfilMenuGuia.Hide();
 	}
 
 	private void initializeContainer() {

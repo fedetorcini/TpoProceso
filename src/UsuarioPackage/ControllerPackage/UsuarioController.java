@@ -143,7 +143,7 @@ public class UsuarioController {
 		return loggedTurista;
 	}
 
-	public UsuarioDTO updateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
+	public GuiaDTO updateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
 
 		Guia guia = new Guia();
 		guia.GetPorDTO(loggedGuia);

@@ -53,10 +53,10 @@ public class MainMenuGuia extends Pantalla {
 
                     GuiaDTO guiaDTO = UsuarioController.GetLoggedGuia();
 
-                    PerfilMenu perfil = (PerfilMenu) PerfilMenu.GetInstance();
-                    subpantallas.add(perfil);
-                    perfil.SetUsuario(guiaDTO);
-                    perfil.Show();
+                    PerfilMenuGuia perfilGuia = (PerfilMenuGuia) PerfilMenuGuia.GetInstance();
+                    subpantallas.add(perfilGuia);
+                    perfilGuia.SetUsuario(guiaDTO);
+                    perfilGuia.Show();
                 }
             });
         }

@@ -10,16 +10,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class LoginTurista extends Pantalla {
 
     private static int classId = -1;
 
     private JLabel titulo;
+
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
     private JGradientButton botonAtras;
+
     private FedeJTextField mailTexto;
     private FedeJTextField contraseñaTexto;
 
@@ -51,7 +52,7 @@ public class LoginTurista extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Hide();
-                    RegistroUsuario.GetInstance().Show();
+                    RegistroTurista.GetInstance().Show();
                 }
             });
         }

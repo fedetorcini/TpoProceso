@@ -28,8 +28,8 @@ public class UsuarioController {
 			ArrayList<GuiaDTO> filtrado = new ArrayList<>();
 			for (GuiaDTO guia : Guia.GetGuiasDTO())
 			{
-				filter.Validar(guia);
-				filtrado.add(guia);
+				if (filter.Validar(guia))
+					filtrado.add(guia);
 			}
 			return filtrado;
 		}

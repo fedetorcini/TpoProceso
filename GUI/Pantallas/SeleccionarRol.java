@@ -11,12 +11,25 @@ import java.util.ArrayList;
 public class SeleccionarRol extends Pantalla{
     private static int classId = -1;
 
+    private JLabel titulo;
+
     private JGradientButton botonGuia;
     private JGradientButton botonTurista;
 
     public SeleccionarRol(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
         classId = id;
+
+        // Pantalla Banner
+        {
+            titulo = new JLabel("temp name", SwingConstants.CENTER);
+            titulo.setBounds((WINDOW_WIDTH/2) - 200, 100, 400, 50);
+            titulo.setOpaque(true);
+            titulo.setBackground(mainBackgroundColor);
+            titulo.setText(" Seleccionar Rol ");
+            titulo.setFont(new Font("Serif", Font.BOLD, 40));
+            container.add(titulo);
+        }
 
         // Boton Guia
         {
@@ -55,12 +68,12 @@ public class SeleccionarRol extends Pantalla{
         // Componentes
         {
             components = new ArrayList<>();
+            components.add(titulo);
             components.add(botonGuia);
             components.add(botonTurista);
         }
     }
 
     public static Pantalla GetInstance() { return Pantalla.GetById(classId); }
-
 
 }

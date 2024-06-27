@@ -38,8 +38,7 @@ public class ViajeDTO {
 		return turistaId;
 	}
 
-	public String toString(){
+	public int GetGuiaId() { return guiaId; }
 
-		return "Viaje ID : " + id;
-	}
+	public String toString(){ return "Viaje ID : " + id; }
 }

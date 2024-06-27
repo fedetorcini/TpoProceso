@@ -111,6 +111,7 @@ public class ViajesMenu extends Pantalla {
             components.add(guiaBanner);
             components.add(botonCrear);
         }
+
     }
 
     public static Pantalla GetInstance() {

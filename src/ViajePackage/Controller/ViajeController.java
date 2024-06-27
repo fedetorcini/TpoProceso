@@ -2,6 +2,7 @@ package src.ViajePackage.Controller;
 
 import src.ViajePackage.Reseña;
 import src.NotificadorPackage.Mensaje;
+import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
@@ -9,6 +10,7 @@ import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.ViajePackage.Viaje;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViajeController {
 

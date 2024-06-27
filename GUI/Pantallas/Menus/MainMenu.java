@@ -3,8 +3,10 @@ package GUI.Pantallas.Menus;
 import GUI.JGradientButton;
 import GUI.Pantallas.LoginTurista;
 import GUI.Pantallas.Pantalla;
+import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.UsuarioPackage.Guia;
 import src.ViajePackage.Controller.ViajeController;
 
 import javax.swing.*;
@@ -12,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenu extends Pantalla {
 
@@ -76,7 +79,6 @@ public class MainMenu extends Pantalla {
                     if (!subpantallas.contains(viajesMenu))
                         subpantallas.add(viajesMenu);
                     viajesMenu.Show();
-
                     ViajeController vc = new ViajeController();
                     viajesMenu.Actualizar(vc.GetViajesDe(UsuarioController.GetLoggedTurista()));
                 }
@@ -113,10 +115,12 @@ public class MainMenu extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Reset();
-
-
                     botonGuias.setForeground(mainBackgroundColor.brighter());
-
+                    ListaGuias listaGuias = (ListaGuias) ListaGuias.GetInstance();
+                    subpantallas.add(listaGuias);
+                    listaGuias.Show();
+                    UsuarioController uc = new UsuarioController();
+                    listaGuias.Actualizar(UsuarioController.GetGuia(null));
                 /*TuristaDTO turista = UsuarioController.GetLoggedTurista();
 
                 Perfil perfil = (Perfil) Perfil.GetInstance();

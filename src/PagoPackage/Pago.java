@@ -5,21 +5,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import src.NotificadorPackage.Mensaje;
 import src.ObserverPackage.Observable;
 
-public class Pago extends Observable<String>{
+public class Pago extends Observable<Mensaje>{
 
-private static HashMap<Integer, Pago> pagos = new HashMap<Integer, Pago>();
-private static int IDs = 0;
-private int id;
-private double monto;
-private int turistaId;
-private int guiaId;
-private Date fecha;
-private IAdapterPago metodoDePago;
-private boolean fueExitoso;
+	private static HashMap<Integer, Pago> pagos = new HashMap<Integer, Pago>();
+	private static int IDs = 0;
+	private int id;
+	private double monto;
+	private int turistaId;
+	private int guiaId;
+	private Date fecha;
+	private IAdapterPago metodoDePago;
+	private boolean fueExitoso;
 
-public double GetMonto() {
+	public double GetMonto() {
 	return monto;
 }
 
@@ -61,15 +62,13 @@ public double GetMonto() {
 
 		pagos.put(id, this);
 
-		String mensaje;
+		Mensaje mensaje = new Mensaje(" ");
 
-		if (fueExitoso)
-		{
-			mensaje = "Pago de: " + monto + " realizado con exito.";
+		if (fueExitoso) {
+			mensaje.SetDescripcion("Pago de: " + monto + " realizado con exito.");
 		}
-		else
-		{
-			mensaje = "Pago por el monto de: " + monto + " falló.";
+		else {
+			mensaje.SetDescripcion("Pago por el monto de: " + monto + " falló.");
 		}
 
 		Publicar(mensaje);

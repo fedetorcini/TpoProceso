@@ -1,7 +1,9 @@
-package GUI.Pantallas;
+package GUI.Pantallas.Menus;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import GUI.Pantallas.Login.LoginTurista;
+import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 
@@ -11,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class GuiasMenu extends Pantalla{
+public class GuiasMenu extends Pantalla {
 
     private static int classId = -1;
 

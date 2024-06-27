@@ -38,6 +38,7 @@ public class Guia extends Usuario<Guia>{
 		InitializeUsuario(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 		this.ciudad = ciudad;
 		this.pais = pais;
+		idiomas.add(GuiaDTO.IDIOMA_ESPAÑOL);
 	}
 
 	public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
@@ -73,6 +74,11 @@ public class Guia extends Usuario<Guia>{
 
 	public void AgregarServicio(Servicio servicio){
 		servicios.add(servicio);
+		guias.put(id, this);
+	}
+
+	public void AgregarIdioma(String idioma) {
+		idiomas.add(idioma);
 		guias.put(id, this);
 	}
 
@@ -148,6 +154,9 @@ public class Guia extends Usuario<Guia>{
 
 		return precio;
 	}
+
+	public ArrayList<String> GetIdiomas() { return idiomas; }
 	@Override
 	public String toString() { return ciudad + ", " + pais; }
+
 }

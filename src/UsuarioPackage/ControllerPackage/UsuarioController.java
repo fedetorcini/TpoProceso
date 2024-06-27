@@ -1,7 +1,6 @@
 package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import src.UsuarioPackage.Guia;
@@ -131,6 +130,14 @@ public class UsuarioController {
 		guia.AgregarServicio(new Servicio(servicioDTO));
 	}
 
+	public void AgregarIdioma(String idioma, GuiaDTO guiaDto) {
+
+		Guia guia = new Guia();
+		guia.GetPorDTO(guiaDto);
+
+		guia.AgregarIdioma(idioma);
+	}
+
 	public static ArrayList<ReseñaDTO> getReseñas (GuiaDTO guiaDTO) {
 		Reseña reseña = new Reseña();
 		ArrayList<ReseñaDTO> reseñaDTOS = new ArrayList<>();
@@ -143,4 +150,5 @@ public class UsuarioController {
 		}
 		return reseñaDTOS;
 	}
+
 }

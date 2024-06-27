@@ -1,6 +1,8 @@
 package GUI.Pantallas;
 
 import GUI.JGradientButton;
+import GUI.Pantallas.Login.LoginGuia;
+import GUI.Pantallas.Login.LoginTurista;
 
 import javax.swing.*;
 import java.awt.*;

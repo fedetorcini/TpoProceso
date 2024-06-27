@@ -1,8 +1,9 @@
-package GUI.Pantallas;
+package GUI.Pantallas.Login;
 
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
+import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RegistroGuia extends Pantalla{
+public class RegistroGuia extends Pantalla {
 
     private static int classId = -1;
 

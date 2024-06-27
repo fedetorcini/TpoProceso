@@ -71,8 +71,7 @@ public class RegistroGuia extends Pantalla {
                     UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 
                     Hide();
-                    LoginTurista.GetInstance().Show();
-                    ;
+                    LoginGuia.GetInstance().Show();
                 }
             });
         }
@@ -144,7 +143,6 @@ public class RegistroGuia extends Pantalla {
             components.add(sexoBox);
             components.add(loginBox);
         }
-
     }
 
     public static Pantalla GetInstance() {

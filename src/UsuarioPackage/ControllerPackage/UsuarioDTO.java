@@ -14,10 +14,8 @@ private String mail;
 private String sexo;
 private int dni;
 private int telefono;
-private HashMap<Integer, ViajeDTO> viajes;
 
 public UsuarioDTO(Usuario usuario) {
-
 		this.id = usuario.GetId();
 		this.nombre = usuario.GetNombre();
 		this.apellido = usuario.GetApellido();
@@ -25,7 +23,6 @@ public UsuarioDTO(Usuario usuario) {
 		this.sexo = usuario.GetSexo();
 		this.dni = usuario.GetDni();
 		this.telefono = usuario.GetTelefono();
-		// ? this.viajes = turista.GetViajes();
 }
 
 public String GetMail() {

@@ -6,7 +6,7 @@ import src.NotificadorPackage.Mensaje;
 
 public class Observable<T>{
 
-private ArrayList<IObservador<T>> observadores;
+protected ArrayList<IObservador<T>> observadores;
 
 public Observable() 
 {

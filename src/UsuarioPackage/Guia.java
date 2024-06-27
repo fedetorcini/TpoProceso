@@ -33,6 +33,9 @@ public class Guia extends Usuario<Guia>{
 		this.servicios = guia.servicios;
 		this.idiomas = guia.idiomas;
 		this.id = guia.id;
+		this.notificador = guia.notificador;
+		this.viajes = guia.viajes;
+		this.observadores = guia.observadores;
 	}
 
 	private void Initialize(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
@@ -44,13 +47,11 @@ public class Guia extends Usuario<Guia>{
 
 	public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
 
-		boolean success = medioLogin.RegistrarUsuario(mail, contraseña);
+		medioLogin.RegistrarUsuario(mail, contraseña);
 		Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
 		this.id = IDs;
 		IDs++;
 		guias.put(id, this);
-
-		System.out.println("Guia " + this + " fue creado exitosamente");
 	}
 
 	public float GetPromedio() {

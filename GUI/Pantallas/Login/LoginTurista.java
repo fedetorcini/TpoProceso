@@ -71,26 +71,20 @@ public class LoginTurista extends Pantalla {
             botonLogin.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    try {
-                        String email = mailTexto.getText();
-                        String contraseña = contraseñaTexto.getText();
-                        UsuarioController temp = new UsuarioController();
-                        TuristaDTO turista = temp.LoginTurista(email, contraseña);
 
-                        //if (turista != null)
-                        {
-                            //JOptionPane.showMessageDialog(null, "<html><h3><center> " + turista +"  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
-                            Hide();
-                            MainMenu.GetInstance().Show();
-                        }
-                        //else
-                        {
-                            //JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
-                        }
+                    String email = mailTexto.getText();
+                    String contraseña = contraseñaTexto.getText();
+                    UsuarioController temp = new UsuarioController();
+                    TuristaDTO turista = temp.LoginTurista(email, contraseña);
 
-                    } catch (NumberFormatException error) {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
+                    if (turista != null){
+                        Hide();
+                        MainMenu.GetInstance().Show();
                     }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No se a encontrado el usuario, intenta denuevo");
+                    }
+
                     mailTexto.reset();
                     contraseñaTexto.reset();
                 }
@@ -116,9 +110,9 @@ public class LoginTurista extends Pantalla {
 
         // Create Form
         {
-            mailTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, /*"Ingresar Mail"*/"mail");
+            mailTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Mail");
             container.add(mailTexto);
-            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, /*"Ingreasar Contraseña"*/"contra");
+            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 100, (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Contraseña");
             container.add(contraseñaTexto);
         }
 

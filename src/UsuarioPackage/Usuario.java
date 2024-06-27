@@ -24,9 +24,10 @@ protected IMedioLogin medioLogin;
 protected HashMap<Integer, Viaje> viajes;
 protected Notificador notificador;
 
-protected Usuario()
-{
+protected Usuario() {
+
 	viajes = new HashMap<Integer, Viaje>();
+	notificador = new Notificador();
 }
 
 protected void InitializeUsuario(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
@@ -37,8 +38,6 @@ protected void InitializeUsuario(IMedioLogin medioLogin, String nombre, String a
 	this.sexo = sexo;
 	this.dni = dni;
 	this.telefono = telefono;
-	this.viajes = new HashMap<Integer, Viaje>();
-	this.notificador = new Notificador();
 }
 
 public abstract void ActualizarPerfil(String nombre, String apellido, String sexo, int telefono, int dni);
@@ -51,8 +50,7 @@ public void CambiarMetodoLogin(IMedioLogin nuevoMedio)
 public void CambiarMetodoNotificacion(IMedioNotificacion nuevoMedio) {
 }
 
-public Notificador GetNotificador()
-{
+public Notificador GetNotificador() {
 	return notificador;
 }
 

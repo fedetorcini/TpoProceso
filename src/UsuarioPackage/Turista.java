@@ -13,7 +13,10 @@ private static HashMap<Integer, Turista> turistas = new HashMap<Integer, Turista
 
 private void Initialize(Turista turista) {
 	Initialize(turista.medioLogin, turista.nombre, turista.apellido, turista.mail, "", turista.sexo, turista.dni, turista.telefono);
+	this.id = turista.id;
+	this.notificador = turista.notificador;
 	this.viajes = turista.viajes;
+	this.observadores = turista.observadores;
 }
 
 public void Initialize(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {

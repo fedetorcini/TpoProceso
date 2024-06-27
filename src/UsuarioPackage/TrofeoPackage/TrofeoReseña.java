@@ -8,7 +8,7 @@ import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 
 public class TrofeoReseña extends Trofeo<Turista>{
 
-private HashMap<Integer, TrofeoReseña> trofeos = new HashMap<Integer, TrofeoReseña>();
+private static HashMap<Integer, TrofeoReseña> trofeos = new HashMap<>();
 private HashMap<Turista, Integer> reseñasPorUsuario;
 private int reseñasNecesarias;
 
@@ -24,8 +24,7 @@ public void RegistrarTrofeo(int reseñasNecesarias) {
 	trofeos.put(this.trofeoId, this);
 }
 
-public void Notificar(Turista object) 
-{
+public void Notificar(Turista object) {
 	int nuevaCuenta = 1;
 	if (reseñasPorUsuario.containsKey(object))
 	{

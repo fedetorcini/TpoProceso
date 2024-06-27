@@ -74,29 +74,23 @@ public class LoginGuia extends Pantalla {
             botonLogin.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    try {
-                        String email = mailTexto.getText();
-                        String contraseña = contraseñaTexto.getText();
-                        UsuarioController temp = new UsuarioController();
-                        GuiaDTO guia = temp.LoginGuia(email, contraseña);
+
+                    String email = mailTexto.getText();
+                    String contraseña = contraseñaTexto.getText();
+                    UsuarioController temp = new UsuarioController();
+                    GuiaDTO guia = temp.LoginGuia(email, contraseña);
+
+                    if (guia != null){
                         Hide();
                         MainMenuGuia.GetInstance().Show();
-                        //if (guia != null) {
-                         //   JOptionPane.showMessageDialog(null, "<html><h3><center> " + guia + "  <h3>", "Tragamonedas Factory", JOptionPane.INFORMATION_MESSAGE);
-                        //} else {
-                        //    JOptionPane.showMessageDialog(null, "<html><h3><center>A OCURRIDO UN ERROR AL CREAR LA MAQUINA <h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
-                        //}
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No se a encontrado el usuario, intenta denuevo");
+                    }
 
-                    //} catch (NumberFormatException error) {
-                    //    JOptionPane.showMessageDialog(null, "<html><h3><center>Ingrese unicamente numeros <h3>", "Tragamonedas Factory", JOptionPane.WARNING_MESSAGE);
-                    //}
                     mailTexto.reset();
                     contraseñaTexto.reset();
-
-                } catch (RuntimeException runtimeException) {
-                        JOptionPane.showMessageDialog(null, "<html><h3><center>HA OCURRIDO UN ERROR<h3>", "Tragamonedas Factory", JOptionPane.ERROR_MESSAGE);
-                    }
-                    }
+                }
             });
         }
 

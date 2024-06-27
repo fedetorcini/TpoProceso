@@ -52,6 +52,8 @@ public static void main(String[] args) {
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
 		guia = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Chile", "Santiago de Chile"); // Guia Buenos Aires | Argentina registrado exitosamente
+
+		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TRADUCCIONES, 100), guia);
 	}
 
 	// Crear Guia #2
@@ -79,7 +81,7 @@ public static void main(String[] args) {
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
 		String medioLoginGuia = UsuarioController.MEDIO_LOGIN_MAIL;
-		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Holanda", "Amsterdam"); // Guia Buenos Aires | Argentina registrado exitosamente
+		guia3 = usuario.RegistrarGuia(medioLoginGuia, nombreGuia, apellidoGuia, mailGuia, contraseñaGuia, sexoGuia, dniGuia, telefonoGuia, "Holanda", "Amsterdam");
 
 		usuario.AgregarIdioma(GuiaDTO.IDIOMA_HOLANDES, guia3);
 		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TOUR_GRUPAL, 100), guia3);
@@ -89,17 +91,17 @@ public static void main(String[] args) {
 	// Crear Trofeos Reseñas
 	{
 		TrofeoDTO trofeoTresReseñas = trofeo.RegistrarTrofeoReseña(3);
-		trofeo.Suscribir(trofeoTresReseñas, turista); // Suscripcion realizada con exito
+		trofeo.Suscribir(trofeoTresReseñas, turista);
 
 		TrofeoDTO trofeoPrimerReseñas = trofeo.RegistrarTrofeoReseña(1);
-		trofeo.Suscribir(trofeoPrimerReseñas, turista); // Suscripcion realizada con exito
+		trofeo.Suscribir(trofeoPrimerReseñas, turista);
 	}
 
 	// Crear Trofeos Calificaciones
 	{
-		TrofeoDTO trofeoCalificacion = trofeo.RegistrarTrofeoCalificacion(4.5f);
-		trofeo.Suscribir(trofeoCalificacion, guia); // Suscripcion realizada con exito
-		trofeo.Suscribir(trofeoCalificacion, guia); // Suscripcion ya existente
+		TrofeoDTO trofeoCalificacion = trofeo.RegistrarTrofeoCalificacion(1f);
+		trofeo.Suscribir(trofeoCalificacion, guia);
+		trofeo.Suscribir(trofeoCalificacion, guia2);
 	}
 
 	// Viaje
@@ -118,13 +120,13 @@ public static void main(String[] args) {
 			viaje.DejarReseña(reseña);
 		}
 
-		viaje.EnviarMensaje(turista, miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
-		viaje.EnviarMensaje(guia, miViaje, /*new GuiaDTO(null),*/ "Yo bien y vos?");
+		viaje.EnviarMensaje(turista, miViaje, "Hola como estas?");
+		viaje.EnviarMensaje(guia, miViaje, "Yo bien y vos?");
 
-		// Crear pago
+		// Crear pagos
 		{
-			double monto = 1265;
-			viaje.Pagar(new PagoDTO(monto, turista, guia));
+			viaje.Pagar(new PagoDTO(70, turista, guia));
+			viaje.Pagar(new PagoDTO(30, turista, guia));
 		}
 	}
 
@@ -133,8 +135,8 @@ public static void main(String[] args) {
 		otroViaje = viaje.CrearViaje(turista, guia3);
 		viaje.Reservar(otroViaje); // Viaje reservado con exito.
 
-		viaje.EnviarMensaje( turista, otroViaje, /*new TuristaDTO(),*/ "Otro hola como estas?");
-		viaje.EnviarMensaje( guia3, otroViaje, /*new GuiaDTO(null),*/ "otro yo bien y vos?");
+		viaje.EnviarMensaje( turista, otroViaje, "Otro hola como estas?");
+		viaje.EnviarMensaje( guia3, otroViaje, "Otro yo bien y vos?");
 	}
 
 	Principal GUI = new Principal();

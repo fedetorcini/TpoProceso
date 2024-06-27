@@ -71,7 +71,6 @@ public class RegistroTurista extends Pantalla {
 
                     Hide();
                     LoginTurista.GetInstance().Show();
-                    ;
                 }
             });
         }

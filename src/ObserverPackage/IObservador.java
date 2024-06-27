@@ -1,6 +1,6 @@
 package src.ObserverPackage;
 
-public interface IObservador<T> {	
-	
-public void Notificar(T object);
+public interface IObservador<T> {
+
+    void Notificar(T object);
 }

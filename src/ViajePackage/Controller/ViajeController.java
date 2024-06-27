@@ -2,8 +2,6 @@ package src.ViajePackage.Controller;
 
 import src.PagoPackage.Pago;
 import src.PagoPackage.PagoDTO;
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
-import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Reseña;
 import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Guia;
@@ -113,8 +111,7 @@ public class ViajeController {
 		if (filter != null)
 		{
 			ArrayList<ViajeDTO> filtrado = new ArrayList<>();
-			for (ViajeDTO viaje : Viaje.GetViajes())
-			{
+			for (ViajeDTO viaje : Viaje.GetViajes()) {
 				if (viaje.GetTuristaId() == filter.GetId()){
 					filtrado.add(viaje);
 				}
@@ -147,14 +144,10 @@ public class ViajeController {
 
 	public void Pagar(PagoDTO pagoDto) {
 		Pago pago = new Pago();
-		pago.RegistrarPago(pagoDto.GetMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId());
+		pago.RegistrarPago(pagoDto.getMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId(), pagoDto.getViajeId());
 
-		Turista turista = new Turista();
-		turista.GetPorId(pagoDto.getTuristaId());
-
-		Guia guia = new Guia();
-		guia.GetPorId(pagoDto.getGuiaId());
-
-		pago.Suscribir(turista.GetNotificador());
+		Viaje viaje = new Viaje();
+		viaje.GetPorId(pagoDto.getViajeId());
+		viaje.Pagar(pagoDto);
 	}
 }

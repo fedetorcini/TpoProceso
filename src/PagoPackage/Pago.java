@@ -16,9 +16,31 @@ public class Pago extends Observable<Mensaje>{
 	private double monto;
 	private int turistaId;
 	private int guiaId;
+	private int viajeId;
 	private Date fecha;
 	private IAdapterPago metodoDePago;
 	private boolean fueExitoso;
+
+	public static ArrayList<PagoDTO> GetPagosDeViaje(int filtro) {
+		ArrayList<PagoDTO> output = new ArrayList<>();
+
+		for (Pago pago : pagos.values()){
+			if (pago.viajeId == filtro){
+				output.add(new PagoDTO(pago));
+			}
+		}
+
+		return output;
+	}
+
+	public static ArrayList<PagoDTO> GetPagosDTO() {
+		ArrayList<PagoDTO> pagoDTOS = new ArrayList<>();
+
+		for (Pago pago : pagos.values()){
+			pagoDTOS.add(new PagoDTO(pago));
+		}
+		return pagoDTOS;
+	}
 
 	public double GetMonto() {
 	return monto;
@@ -47,12 +69,13 @@ public class Pago extends Observable<Mensaje>{
 	}
 
 	public void RegistrarPago(PagoDTO pagoDto) {
-		RegistrarPago(pagoDto.GetMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId());
+		RegistrarPago(pagoDto.getMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId(), pagoDto.getViajeId());
 	}
 
-	public void RegistrarPago(double monto, int turistaId, int guiaId) {
+	public void RegistrarPago(double monto, int turistaId, int guiaId, int viajeId) {
 	    this.turistaId = turistaId;
 		this.guiaId = guiaId;
+		this.viajeId = viajeId;
 		this.monto = monto;
 		this.fecha = Calendar.getInstance().getTime();
 		this.metodoDePago = new StripAdapter();
@@ -78,13 +101,5 @@ public class Pago extends Observable<Mensaje>{
 
 	public boolean Completado() { return fueExitoso; }
 
-	public static ArrayList<PagoDTO> getPagosDTO() {
-		ArrayList<PagoDTO> pagoDTOS = new ArrayList<>();
-
-		for (Pago pago : pagos.values()){
-			pagoDTOS.add(new PagoDTO(pago));
-		}
-		return pagoDTOS;
-	}
-
+	public int getViajeId() { return viajeId;}
 }

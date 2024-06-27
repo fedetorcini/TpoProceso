@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import src.NotificadorPackage.Mensaje;
+import src.ObserverPackage.Observable;
+import src.PagoPackage.Pago;
+import src.PagoPackage.PagoDTO;
 import src.ReservaPackage.Reserva;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
 import src.ViajePackage.Controller.MensajeDTO;
 import src.ViajePackage.Controller.ViajeDTO;
 
-public class Viaje {
+public class Viaje extends Observable<Mensaje> {
 
 	private static HashMap<Integer, Viaje> viajes = new HashMap<Integer, Viaje>();
 	private static int IDs = 0;
@@ -73,13 +76,35 @@ public class Viaje {
 	}
 
 	public void Reservar() {
-		System.out.println("Viaje reservado con exito.");
 		CambiarEstado(new Reservado());
+
+		Turista turista = new Turista();
+		turista.GetPorId(turistaId);
+
+		Guia guia = new Guia();
+		guia.GetPorId(guiaId);
+
+		this.Suscribir(turista.GetNotificador());
+		this.Suscribir(guia.GetNotificador());
+
+		this.costoTotal = guia.GetPrecioTotal();
+
 		viajes.put(GetId(), this);
 	}
 
-	public void Pagar() {
-		estadoViaje.Confirmar(this);
+	public void Pagar(PagoDTO pagoDto) {
+		ArrayList<PagoDTO> pagosDtos = Pago.GetPagosDeViaje(id);
+		double montoPagado = 0;
+
+		for (PagoDTO pago : pagosDtos){
+			montoPagado += pago.getMonto();
+		}
+
+		if (montoPagado >= costoTotal){
+			estadoViaje.Confirmar(this);
+		}
+
+		viajes.put(id, this);
 	}
 
 	public void PublicarAlChatDeViaje(Mensaje mensaje) {
@@ -99,6 +124,7 @@ public class Viaje {
 				this.estadoViaje = viaje.estadoViaje;
 				this.reserva = viaje.reserva;
 				this.chat = viaje.chat;
+				this.costoTotal = viaje.costoTotal;
 				encontrado = true;
 			}
 		}

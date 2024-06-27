@@ -12,6 +12,7 @@ public class PagoDTO {
     private double monto;
     private Date fecha;
     private int guiaId;
+    private int viajeId;
 
     public PagoDTO(Pago pago) {
         this.id = pago.getId();
@@ -19,6 +20,7 @@ public class PagoDTO {
         this.monto = pago.GetMonto();
         this.fecha = pago.getFecha();
         this.guiaId = pago.getGuiaId();
+        this.viajeId = pago.getViajeId();
     }
 
     public PagoDTO(double monto, TuristaDTO turista, GuiaDTO guia) {
@@ -55,7 +57,7 @@ public class PagoDTO {
         this.turistaId = turistaId;
     }
 
-    public double GetMonto() {
+    public double getMonto() {
         return monto;
     }
 
@@ -64,4 +66,6 @@ public class PagoDTO {
     }
     @Override
     public String toString() { return  " Pago de : -$" + monto + " a GuiaId : " + guiaId; }
+
+    public int getViajeId() { return viajeId;}
 }

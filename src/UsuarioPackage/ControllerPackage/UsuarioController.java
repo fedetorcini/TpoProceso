@@ -36,12 +36,15 @@ public class UsuarioController {
 		}
 	}
 
-	public static ArrayList<ReseñaDTO> GetReseñasByTurista(TuristaDTO turistaDTO) {
+	public static ArrayList<ReseñaDTO> GetReseñasByTurista(TuristaDTO filtro) {
 		ArrayList<ReseñaDTO> reseñasDtos = Reseña.GetReseñasDTO();
 		ArrayList<ReseñaDTO> output = new ArrayList<>();
 
 		for (ReseñaDTO resñaDto : reseñasDtos){
-			output.add(resñaDto);
+
+			if (filtro.GetId() == resñaDto.GetTurista()){
+				output.add(resñaDto);
+			}
 		}
 
 		return output;
@@ -62,7 +65,7 @@ public class UsuarioController {
 
 		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
 
-		for (PagoDTO pagoDTO : Pago.getPagosDTO()){
+		for (PagoDTO pagoDTO : Pago.GetPagosDTO()){
 			if (pagoDTO.getTuristaId() == turistaDTO.GetId()) {
 				pagoDTOs.add(pagoDTO);
 			}
@@ -73,7 +76,7 @@ public class UsuarioController {
 
 	public static ArrayList<PagoDTO> GetCobrosByGuia(GuiaDTO guiaDTO) {
 		ArrayList <PagoDTO> pagoDTOS = new ArrayList<>();
-		for (PagoDTO pagoDTO: Pago.getPagosDTO()) {
+		for (PagoDTO pagoDTO: Pago.GetPagosDTO()) {
 			if (pagoDTO.getGuiaId() == guiaDTO.GetId()) {
 				pagoDTOS.add(pagoDTO);
 			}
@@ -82,7 +85,7 @@ public class UsuarioController {
 
 	public TuristaDTO  RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 		Turista turista = new Turista();
-		turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono); // Turista Federico Torcini no a podido ser registrado.
+		turista.RegistrarTurista(StringToMedioLogin(medioLogin), nombre, apellido, mail, contraseña, sexo, dni, telefono);
 		return new TuristaDTO(turista);
 	}
 

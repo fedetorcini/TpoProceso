@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class LoginTurista extends Pantalla {
 
@@ -51,7 +50,7 @@ public class LoginTurista extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Hide();
-                    RegistroUsuario.GetInstance().Show();
+                    RegistroTurista.GetInstance().Show();
                 }
             });
         }

@@ -3,7 +3,6 @@ package GUI.Pantallas;
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.LoginPackage.IMedioLogin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RegistroUsuario extends Pantalla{
+public class RegistroTurista extends Pantalla{
 
     private static int classId = -1;
 
@@ -30,7 +29,7 @@ public class RegistroUsuario extends Pantalla{
     private FedeJTextField  telefonoTexto;
     private FedeJTextField  dniTexto;
 
-    public RegistroUsuario(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
+    public RegistroTurista(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;

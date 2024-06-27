@@ -52,7 +52,7 @@ public class LoginGuia extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Hide();
-                    RegistroUsuario.GetInstance().Show();
+                    RegistroGuia.GetInstance().Show();
                 }
             });
         }

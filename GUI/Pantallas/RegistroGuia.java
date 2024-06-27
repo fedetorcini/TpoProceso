@@ -9,13 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class RegistroGuia extends Pantalla{
 
     private static int classId = -1;
+
+    private JLabel titulo;
+
     private JComboBox<String> loginBox;
     private JComboBox<String> sexoBox;
+
     private JGradientButton botonConfirmar;
+    private JGradientButton botonAtras;
+
     private FedeJTextField  mailTexto;
     private FedeJTextField  contraseñaTexto;
     private FedeJTextField  nombreTexto;
@@ -28,10 +35,21 @@ public class RegistroGuia extends Pantalla{
 
         classId = id;
 
+        // Pantalla Banner
+        {
+            titulo = new JLabel("temp name", SwingConstants.CENTER);
+            titulo.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            titulo.setOpaque(true);
+            titulo.setBackground(mainBackgroundColor.darker());
+            titulo.setText(" Registro Guia ");
+            titulo.setFont(new Font("Serif", Font.BOLD, 24));
+            container.add(titulo);
+        }
+
         // Boton Confirmar
         {
             botonConfirmar = new JGradientButton(mainColor, secondary);
-            botonConfirmar.setBounds((WINDOW_WIDTH / 2) - 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            botonConfirmar.setBounds((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) + 200, 100, 50);
             botonConfirmar.setText("Enviar");
             botonConfirmar.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonConfirmar);
@@ -52,8 +70,25 @@ public class RegistroGuia extends Pantalla{
                     UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 
                     Hide();
-                    LoginGuia.GetInstance().Show();
+                    LoginTurista.GetInstance().Show();
                     ;
+                }
+            });
+        }
+
+        // Boton Atras
+        {
+            botonAtras = new JGradientButton(Color.RED.darker(), secondary);
+            botonAtras.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            botonAtras.setText("Atras");
+            botonAtras.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonAtras);
+
+            botonAtras.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Hide();
+                    LoginGuia.GetInstance().Show();
                 }
             });
         }
@@ -73,6 +108,7 @@ public class RegistroGuia extends Pantalla{
             dniTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Dni");
             container.add(dniTexto);
 
+
             sexoBox = new JComboBox<String>();
             sexoBox.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 50, 200, 40);
             sexoBox.setOpaque(false);
@@ -80,10 +116,7 @@ public class RegistroGuia extends Pantalla{
             sexoBox.addItem("Masculino");
             sexoBox.addItem("Femenino");
             container.add(sexoBox);
-        }
 
-        // Componentes
-        {
             loginBox = new JComboBox<String>();
             loginBox.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) + 50, 200, 40);
             loginBox.setOpaque(false);
@@ -94,33 +127,27 @@ public class RegistroGuia extends Pantalla{
             loginBox.addItem(UsuarioController.MEDIO_LOGIN_FACEBOOK);
             container.add(loginBox);
         }
+
+        // Add components
+        {
+            components = new ArrayList<JComponent>();
+            components.add(titulo);
+            components.add(botonConfirmar);
+            components.add(botonAtras);
+            components.add(mailTexto);
+            components.add(contraseñaTexto);
+            components.add(nombreTexto);
+            components.add(apellidoTexto);
+            components.add(telefonoTexto);
+            components.add(dniTexto);
+            components.add(sexoBox);
+            components.add(loginBox);
+        }
+
     }
 
     public static Pantalla GetInstance() {
         return Pantalla.GetById(classId);
     }
 
-    public void Show() {
-        botonConfirmar.show();
-        mailTexto.show();
-        contraseñaTexto.show();
-        nombreTexto.show();
-        apellidoTexto.show();
-        telefonoTexto.show();
-        dniTexto.show();
-        sexoBox.show();
-        loginBox.show();
-    }
-    @Override
-    public void Hide() {
-        botonConfirmar.hide();
-        mailTexto.hide();
-        contraseñaTexto.hide();
-        nombreTexto.hide();
-        apellidoTexto.hide();
-        telefonoTexto.hide();
-        dniTexto.hide();
-        sexoBox.hide();
-        loginBox.hide();
-    }
 }

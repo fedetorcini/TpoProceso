@@ -29,63 +29,71 @@ public class RegistroGuia extends Pantalla{
         classId = id;
 
         // Boton Confirmar
-        botonConfirmar = new JGradientButton(mainColor, secondary);
-        botonConfirmar.setBounds( (WINDOW_WIDTH / 2) - 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
-        botonConfirmar.setText("Enviar");
-        botonConfirmar.setFont(new Font("Serif", Font.BOLD, 15));
-        container.add(botonConfirmar);
+        {
+            botonConfirmar = new JGradientButton(mainColor, secondary);
+            botonConfirmar.setBounds((WINDOW_WIDTH / 2) - 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
+            botonConfirmar.setText("Enviar");
+            botonConfirmar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonConfirmar);
 
-        botonConfirmar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UsuarioController UC = new UsuarioController();
+            botonConfirmar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    UsuarioController UC = new UsuarioController();
 
-                String nombre = nombreTexto.getText();
-                String apellido = apellidoTexto.getText();
-                String contraseña = contraseñaTexto.getText();
-                String sexo = (String) sexoBox.getSelectedItem();
-                int telefono = Integer.parseInt(telefonoTexto.getText());
-                int dni = Integer.parseInt(dniTexto.getText());
-                String mail = mailTexto.getText();
-                String medioLogin = (String) loginBox.getSelectedItem();
-                UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+                    String nombre = nombreTexto.getText();
+                    String apellido = apellidoTexto.getText();
+                    String contraseña = contraseñaTexto.getText();
+                    String sexo = (String) sexoBox.getSelectedItem();
+                    int telefono = Integer.parseInt(telefonoTexto.getText());
+                    int dni = Integer.parseInt(dniTexto.getText());
+                    String mail = mailTexto.getText();
+                    String medioLogin = (String) loginBox.getSelectedItem();
+                    UC.RegistrarTurista(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 
-                Hide();
-                LoginGuia.GetInstance().Show();
-                ;            }
-        });
+                    Hide();
+                    LoginGuia.GetInstance().Show();
+                    ;
+                }
+            });
+        }
 
         // Create Form
-        mailTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingresar Mail");
-        container.add(mailTexto);
-        contraseñaTexto = new FedeJTextField( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingreasar Contraseña");
-        container.add(contraseñaTexto);
-        nombreTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Nombre");
-        container.add(nombreTexto);
-        apellidoTexto = new FedeJTextField( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingreasar Apellido");
-        container.add(apellidoTexto);
-        telefonoTexto = new FedeJTextField( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2), 200, 40, "Ingresar Telefono");
-        container.add(telefonoTexto);
-        dniTexto = new FedeJTextField( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Dni");
-        container.add(dniTexto);
+        {
+            mailTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingresar Mail");
+            container.add(mailTexto);
+            contraseñaTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 100, 200, 40, "Ingreasar Contraseña");
+            container.add(contraseñaTexto);
+            nombreTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingresar Nombre");
+            container.add(nombreTexto);
+            apellidoTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 50, 200, 40, "Ingreasar Apellido");
+            container.add(apellidoTexto);
+            telefonoTexto = new FedeJTextField((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2), 200, 40, "Ingresar Telefono");
+            container.add(telefonoTexto);
+            dniTexto = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 200, 40, "Ingreasar Dni");
+            container.add(dniTexto);
 
-        sexoBox = new JComboBox<String>();
-        sexoBox.setBounds( (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 50, 200, 40);
-        sexoBox.setOpaque(false);
-        sexoBox.setBackground(mainBackgroundColor);
-        sexoBox.addItem("Masculino");
-        sexoBox.addItem("Femenino");
-        container.add(sexoBox);
+            sexoBox = new JComboBox<String>();
+            sexoBox.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 50, 200, 40);
+            sexoBox.setOpaque(false);
+            sexoBox.setBackground(mainBackgroundColor);
+            sexoBox.addItem("Masculino");
+            sexoBox.addItem("Femenino");
+            container.add(sexoBox);
+        }
 
-        loginBox = new JComboBox<String>();
-        loginBox.setBounds( (WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) + 50, 200, 40);
-        loginBox.setOpaque(false);
-        loginBox.setBackground(mainBackgroundColor);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_APPLE);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_MAIL);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_GOOGLE);
-        loginBox.addItem(UsuarioController.MEDIO_LOGIN_FACEBOOK);
-        container.add(loginBox);
+        // Componentes
+        {
+            loginBox = new JComboBox<String>();
+            loginBox.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) + 50, 200, 40);
+            loginBox.setOpaque(false);
+            loginBox.setBackground(mainBackgroundColor);
+            loginBox.addItem(UsuarioController.MEDIO_LOGIN_APPLE);
+            loginBox.addItem(UsuarioController.MEDIO_LOGIN_MAIL);
+            loginBox.addItem(UsuarioController.MEDIO_LOGIN_GOOGLE);
+            loginBox.addItem(UsuarioController.MEDIO_LOGIN_FACEBOOK);
+            container.add(loginBox);
+        }
     }
 
     public static Pantalla GetInstance() {

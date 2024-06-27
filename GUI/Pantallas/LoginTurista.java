@@ -15,6 +15,8 @@ import java.util.Stack;
 public class LoginTurista extends Pantalla {
 
     private static int classId = -1;
+
+    private JLabel titulo;
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
     private JGradientButton botonAtras;
@@ -25,6 +27,17 @@ public class LoginTurista extends Pantalla {
         super(pantalla.GetId(), mainColor,secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
+
+        // Pantalla Banner
+        {
+            titulo = new JLabel("temp name", SwingConstants.CENTER);
+            titulo.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            titulo.setOpaque(true);
+            titulo.setBackground(mainBackgroundColor.darker());
+            titulo.setText(" Login Turista ");
+            titulo.setFont(new Font("Serif", Font.BOLD, 24));
+            container.add(titulo);
+        }
 
         // Boton Registrar
         {
@@ -108,6 +121,7 @@ public class LoginTurista extends Pantalla {
         // Add components
         {
             components = new ArrayList<JComponent>();
+            components.add(titulo);
             components.add(botonLogin);
             components.add(botonRegistrar);
             components.add(botonAtras);

@@ -21,7 +21,7 @@ public class SeleccionarRol extends Pantalla{
         // Boton Guia
         {
             botonGuia = new JGradientButton(mainBackgroundColor, mainBackgroundColor);
-            botonGuia.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 200, 200, 100);
+            botonGuia.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 200, 250, 100);
             botonGuia.setText("Guía");
             botonGuia.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonGuia);
@@ -38,7 +38,7 @@ public class SeleccionarRol extends Pantalla{
         // Boton Turista
         {
             botonTurista = new JGradientButton(mainBackgroundColor, mainBackgroundColor);
-            botonTurista.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 200, 200, 100);
+            botonTurista.setBounds((WINDOW_WIDTH / 2) - 250, (WINDOW_HEIGHT / 2) - 200, 250, 100);
             botonTurista.setText("Turista");
             botonTurista.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonTurista);

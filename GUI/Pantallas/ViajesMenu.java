@@ -16,14 +16,20 @@ public class ViajesMenu extends Pantalla {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
         classId = id;
 
-        viajes = new JComboBox<>();
-        viajes.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 300, 400, 40);
-        viajes.setOpaque(false);
-        viajes.setBackground(mainBackgroundColor);
-        container.add(viajes);
+        // Viajes Combo Box
+        {
+            viajes = new JComboBox<>();
+            viajes.setBounds((WINDOW_WIDTH / 2) - 200, (WINDOW_HEIGHT / 2) - 300, 400, 40);
+            viajes.setOpaque(false);
+            viajes.setBackground(mainBackgroundColor);
+            container.add(viajes);
+        }
 
-        components = new ArrayList<>();
-        components.add(viajes);
+        // Componentes
+        {
+            components = new ArrayList<>();
+            components.add(viajes);
+        }
     }
 
     public static Pantalla GetInstance() {

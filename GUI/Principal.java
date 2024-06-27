@@ -68,17 +68,6 @@ public class Principal extends JFrame {
 		perfilMenu.Hide();
 		Pantalla viajesMenu = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
-
-
-		/*setComprarTicketForm();
-		setCargarTicketForm();
-		setMachineList();
-		setTragamonedasDisplay();
-		setCreditBanner();
-		setCreateMachineForm();
-		setCrearPremioForm();
-		setJugarButton();
-		setRetirarButton();*/
 	}
 
 	private void initializeContainer() {

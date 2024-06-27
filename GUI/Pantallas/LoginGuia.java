@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class LoginGuia extends Pantalla {
 
     private static int classId = -1;
-    private Pantalla yo = this;
+
+    private JLabel titulo;
     private JGradientButton botonLogin;
     private JGradientButton botonRegistrar;
     private JGradientButton botonAtras;
@@ -27,6 +28,17 @@ public class LoginGuia extends Pantalla {
 
         classId = id;
         components = new ArrayList<>();
+
+        // Pantalla Banner
+        {
+            titulo = new JLabel("temp name", SwingConstants.CENTER);
+            titulo.setBounds((WINDOW_WIDTH/2) - 100, 200, 200, 50);
+            titulo.setOpaque(true);
+            titulo.setBackground(mainBackgroundColor.darker());
+            titulo.setText(" Login Guia ");
+            titulo.setFont(new Font("Serif", Font.BOLD, 24));
+            container.add(titulo);
+        }
 
         // Boton Registrar
         {
@@ -105,6 +117,7 @@ public class LoginGuia extends Pantalla {
         // Add components
         {
             components = new ArrayList<JComponent>();
+            components.add(titulo);
             components.add(botonLogin);
             components.add(botonRegistrar);
             components.add(botonAtras);

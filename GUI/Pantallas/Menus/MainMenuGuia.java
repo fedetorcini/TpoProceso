@@ -170,7 +170,7 @@ public class MainMenuGuia extends Pantalla {
             components.add(botonViajesDisponibles);
             components.add(botonCobros);
             components.add(botonReviews);
-            components.add(botonViajesDisponibles);
+            components.add(botonViajesHechos);
             components.add(botonAtras);
         }
     }

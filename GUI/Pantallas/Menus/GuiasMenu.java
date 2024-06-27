@@ -49,7 +49,7 @@ public class GuiasMenu extends Pantalla {
 
 
         // Dar reseña Boton
-        {
+        /*{
             darReseñaBoton = new JGradientButton(Color.RED.darker(), secondary);
             darReseñaBoton.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
             darReseñaBoton.setText("Dar Reseña");
@@ -63,25 +63,8 @@ public class GuiasMenu extends Pantalla {
                     LoginTurista.GetInstance().Show();
                 }
             });
-        }
+        }*/
 
-        // Ver reseñas Boton
-        {
-            verReseñasBoton = new JGradientButton(Color.RED.darker(), secondary);
-            verReseñasBoton.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
-            verReseñasBoton.setText("Ver Reseñas");
-            verReseñasBoton.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(verReseñasBoton);
-
-            verReseñasBoton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    LoginTurista.GetInstance().Show();
-                    reseñas = new JLabel();
-                    reseñas.setText(UsuarioController.GetReseñasByGuia((GuiaDTO) guias.getSelectedItem()).get(0).toString());
-                }
-            });
-        }
 
         // Texto Reserva
         {
@@ -107,11 +90,11 @@ public class GuiasMenu extends Pantalla {
 
                     // Crear un objeto ReseñaDTO y guardar la reseña
                     ReseñaDTO reseñaDTO = new ReseñaDTO();
-                    reseñaDTO.SetGuia(guiaSeleccionado);
+                    reseñaDTO.SetGuia(guiaSeleccionado.GetId());
                     reseñaDTO.SetTexto(reseñaText);
-                    reseñaDTO.SetTurista(turistaDTO);
+                    reseñaDTO.SetTurista(turistaDTO.GetId());
                     reseñaDTO.SetEstrellas(5);
-                    reseñaDTO.SetViaje(new ViajeDTO(new Viaje()));
+                    reseñaDTO.SetViaje(1);
                     Reseña reseña = new Reseña();
                     reseña.RegistrarReseña(reseñaDTO);
                     JOptionPane.showMessageDialog(null, "Reseña guardada con éxito.");
@@ -138,7 +121,7 @@ public class GuiasMenu extends Pantalla {
 
                         GuiaDTO guiaSeleccionado = (GuiaDTO) guias.getSelectedItem(); // Obtener el guía seleccionado del JComboBox
 
-                        ArrayList<ReseñaDTO> reseñas = UsuarioController.getReseñas(guiaSeleccionado); // Obtener las reseñas del guía
+                        ArrayList<ReseñaDTO> reseñas = UsuarioController.GetReseñasByGuia(guiaSeleccionado); // Obtener las reseñas del guía
 
                         // Limpiar el contenedor antes de agregar las nuevas reseñas
                         container.removeAll();

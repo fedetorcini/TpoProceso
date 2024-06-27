@@ -17,6 +17,7 @@ private static int IDs = 0;
 private int id;
 private double monto;
 private int turistaId;
+private int guiaId;
 private Date fecha;
 private IAdapterPago metodoDePago;
 private boolean fueExitoso;
@@ -33,6 +34,14 @@ public double GetMonto() {
 
 	public void setTuristaId(int turistaId) {
 		this.turistaId = turistaId;
+	}
+
+	public int getGuiaId() {
+		return guiaId;
+	}
+
+	public void setGuiaId(int guiaId) {
+		this.guiaId = guiaId;
 	}
 
 	public Date getFecha() {

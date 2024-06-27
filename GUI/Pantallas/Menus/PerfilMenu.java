@@ -5,6 +5,8 @@ import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.UsuarioPackage.ControllerPackage.UsuarioDTO;
+import src.UsuarioPackage.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,11 +91,11 @@ public class PerfilMenu extends Pantalla {
         return Pantalla.GetById(classId);
     }
 
-    public void SetUsuario(TuristaDTO turista) {
-        nombreTexto.setDefault(turista.GetNombre());
-        apellidoTexto.setDefault(turista.GetApellido());
-        telefonoTexto.setDefault(Integer.toString(turista.GetTelefono()));
-        dniTexto.setDefault(Integer.toString(turista.GetDni()));
-        sexoBox.setSelectedItem(turista.GetSexo());
+    public void SetUsuario(UsuarioDTO usuarioDTO) {
+        nombreTexto.setDefault(usuarioDTO.GetNombre());
+        apellidoTexto.setDefault(usuarioDTO.GetApellido());
+        telefonoTexto.setDefault(Integer.toString(usuarioDTO.GetTelefono()));
+        dniTexto.setDefault(Integer.toString(usuarioDTO.GetDni()));
+        sexoBox.setSelectedItem(usuarioDTO.GetSexo());
     }
 }

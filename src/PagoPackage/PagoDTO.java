@@ -7,11 +7,13 @@ public class PagoDTO {
     private int turistaId;
     private double monto;
     private Date fecha;
+    private int guiaId;
     public PagoDTO (Pago pago) {
         this.id = pago.getId();
         this.turistaId = pago.getTuristaId();
         this.monto = pago.GetMonto();
         this.fecha = pago.getFecha();
+        this.guiaId = pago.getGuiaId();
     }
 
     public int getId() {
@@ -20,6 +22,19 @@ public class PagoDTO {
 
     public void setId(int id) {
         id = id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+
+    public int getGuiaId() {
+        return guiaId;
+    }
+
+    public void setGuiaId(int guiaId) {
+        this.guiaId = guiaId;
     }
 
     public int getTuristaId() {

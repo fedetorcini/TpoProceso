@@ -99,6 +99,11 @@ public class Principal extends JFrame {
 
 		Pantalla pagos				   		= new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		pagos.Hide();
+
+
+		Pantalla mainMenuGuia 			   = new MainMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		mainMenuGuia.Hide();
+
 	}
 
 	private void initializeContainer() {

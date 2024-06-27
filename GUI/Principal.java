@@ -80,7 +80,8 @@ public class Principal extends JFrame {
 
 		Pantalla viajesMenu                = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
-		Pantalla listaGuias = new ListaGuias(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+
+		Pantalla listaGuias				   = new GuiasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		listaGuias.Hide();
 	}
 

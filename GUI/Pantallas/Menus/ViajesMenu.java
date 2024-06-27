@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ViajesMenu extends Pantalla {
+
     private static int classId = -1;
 
     private JComboBox<ViajeDTO> viajes;
@@ -205,6 +206,15 @@ public class ViajesMenu extends Pantalla {
             botonCrear.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    Hide();
+                    MainMenu mainMenu = (MainMenu) MainMenu.GetInstance();
+                    NuevoViajeMenu nvm = (NuevoViajeMenu) NuevoViajeMenu.GetInstance();
+                    mainMenu.AddSubpantalla(nvm);
+                    nvm.Show();
+
+                    ArrayList<GuiaDTO> guiasDtos = UsuarioController.GetGuia(new FiltroGuia());
+
+                    nvm.Actualizar(guiasDtos);
                 }
             });
         }

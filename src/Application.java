@@ -6,9 +6,6 @@ import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.LoginPackage.Apple;
-import src.UsuarioPackage.LoginPackage.IMedioLogin;
-import src.UsuarioPackage.LoginPackage.Mail;
 import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoController;
 import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 import src.ViajePackage.Controller.ReseñaDTO;
@@ -127,7 +124,7 @@ public static void main(String[] args) {
 			reseña.SetTexto("Muy buen viaje, gracias!!!");
 			reseña.SetViaje(miViaje.GetId());
 			reseña.SetTurista(turista.GetId());
-			viaje.AgregarReseña(reseña);
+			viaje.DejarReseña(reseña);
 		}
 
 		viaje.EnviarMensaje(turista, miViaje, /*new TuristaDTO(),*/ "Hola como estas?");
@@ -138,17 +135,6 @@ public static void main(String[] args) {
 	{
 		otroViaje = viaje.CrearViaje(turista, guia3);
 		viaje.Reservar(otroViaje); // Viaje reservado con exito.
-
-		// Reseña
-		{
-			ReseñaDTO reseña = new ReseñaDTO();
-			reseña.SetEstrellas(3.2f);
-			reseña.SetGuia(guia3.GetId());
-			reseña.SetTexto("Otro muy buen viaje, gracias!!!");
-			reseña.SetViaje(otroViaje.GetId());
-			reseña.SetTurista(turista.GetId());
-			viaje.AgregarReseña(reseña);
-		}
 
 		viaje.EnviarMensaje( turista, otroViaje, /*new TuristaDTO(),*/ "Otro hola como estas?");
 		viaje.EnviarMensaje( guia3, otroViaje, /*new GuiaDTO(null),*/ "otro yo bien y vos?");

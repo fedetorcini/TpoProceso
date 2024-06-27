@@ -133,12 +133,6 @@ public class MainMenuGuia extends Pantalla {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Reset();
-                    botonViajesDisponibles.setForeground(mainBackgroundColor.brighter());
-                    GuiasMenu guiasMenu = (GuiasMenu) GuiasMenu.GetInstance();
-                    subpantallas.add(guiasMenu);
-                    guiasMenu.Show();
-                    UsuarioController uc = new UsuarioController();
-                    guiasMenu.Actualizar(UsuarioController.GetGuia(null));
                 }
             });
         }

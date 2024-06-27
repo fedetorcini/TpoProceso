@@ -7,7 +7,9 @@ import GUI.Pantallas.Login.LoginTurista;
 import GUI.Pantallas.Login.RegistroGuia;
 import GUI.Pantallas.Login.RegistroTurista;
 import GUI.Pantallas.Menus.*;
-import src.PagoPackage.Pago;
+
+import GUI.Pantallas.Menus.NuevoViajeMenu;
+import GUI.Pantallas.Menus.ViajesMenu;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -87,23 +89,14 @@ public class Principal extends JFrame {
 		Pantalla viajesMenu                = new  ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
 
-
-		Pantalla perfil = new PerfilMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
-		perfil.Hide();
-		seleccionarRol.Show();
-		loginTurista.Hide();
-
+		Pantalla nuevoViajeMenu            = new NuevoViajeMenu(viajesMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		nuevoViajeMenu.Hide();
 
 		Pantalla listaGuias				   = new GuiasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		listaGuias.Hide();
 
-		Pantalla pagos				   		= new PagosMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
-		pagos.Hide();
-
-
-		Pantalla mainMenuGuia 			   = new MainMenuGuia(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
-		mainMenuGuia.Hide();
-
+		Pantalla reseñasMenu			   = new ReseñasMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		reseñasMenu.Hide();
 	}
 
 	private void initializeContainer() {

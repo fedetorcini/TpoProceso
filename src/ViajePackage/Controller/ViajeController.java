@@ -38,9 +38,12 @@ public class ViajeController {
 
 		turista.AgregarViaje(viaje);
 		guia.AgregarViaje(viaje);
+
+		Reseña reseña = new Reseña();
+		reseña.RegistrarReseña(turista, guia, viaje);
 	}
 
-	public void AgregarReseña(ReseñaDTO reseñaDto) {
+	public void DejarReseña(ReseñaDTO reseñaDto) {
 
 		Reseña reseña = new Reseña();
 		reseña.RegistrarReseña(reseñaDto);
@@ -118,6 +121,18 @@ public class ViajeController {
 		{
 			return Viaje.GetViajes();
 		}
+	}
+
+	public ViajeDTO GetViajeById(int filter) {
+
+		ArrayList<ViajeDTO> filtrado = new ArrayList<>();
+		for (ViajeDTO viaje : Viaje.GetViajes())
+		{
+			if (viaje.GetId() == filter){
+				return viaje;
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<MensajeDTO> GetChatDe(ViajeDTO dto) {

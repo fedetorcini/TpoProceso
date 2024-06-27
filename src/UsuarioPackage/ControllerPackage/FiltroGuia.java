@@ -32,12 +32,12 @@ public class FiltroGuia {
 
 		if (nombre != null)
 		{
-			if(!(guia.getNombre() == nombre))
+			if(!(guia.GetNombre() == nombre))
 				valido = false;
 		}
 		if (apellido != null)
 		{
-			if (!(guia.getApellido() == apellido))
+			if (!(guia.GetApellido() == apellido))
 				valido = false;
 		}
 		if (pais != null)

@@ -3,6 +3,8 @@ package src.ViajePackage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import src.UsuarioPackage.Guia;
+import src.UsuarioPackage.Turista;
 import src.ViajePackage.Controller.ReseñaDTO;
 
 public class Reseña {
@@ -30,15 +32,21 @@ public class Reseña {
 		this.estrellas = calificacion;
 	}
 
-	public Reseña RegistrarReseña(String mensaje, int turistaId, int guiaId, int viajeId, float calificacion) {
+	public Reseña RegistrarReseña(Turista turista, Guia guia, Viaje viaje) {
+		return RegistrarReseña(turista.GetId(), guia.GetId(), viaje.GetId());
+	}
+
+	public Reseña RegistrarReseña(ReseñaDTO reseñaDto) {
+		this.texto = reseñaDto.GetTexto();
+		this.estrellas = reseñaDto.GetEstrellas();
+		return RegistrarReseña(reseñaDto.GetTurista(), reseñaDto.GetGuia(), reseñaDto.GetViaje());
+	}
+
+	private Reseña RegistrarReseña(int turistaId, int guiaId, int viajeId) {
 		reseñas.put(ObtenerKeyDeGuiaTurista(turistaId, guiaId), this);
-		this.estrellas = calificacion;
 		this.turistaId = turistaId;
 		this.guiaId = guiaId;
 		this.viajeId = viajeId;
-		this.texto = mensaje;
-
-		System.out.println("Reseña : " + mensaje + ". Creada con exito!");
 		return this;
 	}
 
@@ -48,10 +56,6 @@ public class Reseña {
 
 	public Float GetCalificacion() {
 		return estrellas;
-	}
-
-	public void RegistrarReseña(ReseñaDTO reseñaDto) {
-		RegistrarReseña(reseñaDto.GetTexto(), reseñaDto.GetTurista(), reseñaDto.GetGuia(), reseñaDto.GetViaje(), reseñaDto.GetEstrellas());
 	}
 
 	public int GetViajeId() {
@@ -71,6 +75,10 @@ public class Reseña {
 			reseñasDtos.add(new ReseñaDTO(reseña));
 		}
 		return reseñasDtos;
+	}
+	@Override
+	public String toString(){
+		return "ViajeId : " + viajeId + " | GuiaId : " + guiaId;
 	}
 
 }

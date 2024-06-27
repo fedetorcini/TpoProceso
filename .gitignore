@@ -28,4 +28,4 @@ bin/
 .settings/
 .classpath
 .idea
-TPO_Procesos.iml
+*.iml

@@ -2,6 +2,8 @@ package src.UsuarioPackage.ControllerPackage;
 
 import java.util.ArrayList;
 
+import src.PagoPackage.Pago;
+import src.PagoPackage.PagoDTO;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.LoginPackage.*;
 import src.UsuarioPackage.Turista;
@@ -146,5 +148,14 @@ public class UsuarioController {
 			}
 		}
 		return reseñaDtos;
+	}
+
+	public static ArrayList<PagoDTO> getPagosByTurista (TuristaDTO turistaDTO) {
+		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
+		for (PagoDTO pagoDTO : Pago.getPagosDTO()){
+			if (pagoDTO.getId() == turistaDTO.GetId()) {
+				pagoDTOs.add(pagoDTO);
+			}
+		}return pagoDTOs;
 	}
 }

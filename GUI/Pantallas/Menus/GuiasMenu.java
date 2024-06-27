@@ -48,25 +48,7 @@ public class GuiasMenu extends Pantalla {
         }
 
 
-        // Dar reseña Boton
-        /*{
-            darReseñaBoton = new JGradientButton(Color.RED.darker(), secondary);
-            darReseñaBoton.setBounds((WINDOW_WIDTH / 2) + 50, (WINDOW_HEIGHT / 2) + 200, 100, 50);
-            darReseñaBoton.setText("Dar Reseña");
-            darReseñaBoton.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(darReseñaBoton);
-
-            darReseñaBoton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Hide();
-                    LoginTurista.GetInstance().Show();
-                }
-            });
-        }*/
-
-
-        // Texto Reserva
+        // Texto Resenia
         {
             textoReseña = new FedeJTextField((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2), 400, 150, "Escriba reseña");
             container.add(textoReseña);
@@ -141,8 +123,6 @@ public class GuiasMenu extends Pantalla {
                         container.repaint();
                     }
                 });
-
-
 
 
                 components = new ArrayList<>();

@@ -8,6 +8,7 @@ import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.UsuarioPackage.Turista;
 import src.ViajePackage.Controller.ViajeController;
 
 import javax.swing.*;
@@ -92,6 +93,21 @@ public class MainMenu extends Pantalla {
             botonPagos.setText("Pagos");
             botonPagos.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonPagos);
+
+            botonPagos.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Reset();
+
+                    botonPagos.setForeground(mainBackgroundColor.brighter());
+
+                    PagosMenu pagosMenu = (PagosMenu) PagosMenu.GetInstance();
+                    if (!subpantallas.contains(pagosMenu))
+                        subpantallas.add(pagosMenu);
+                    pagosMenu.Show();
+                    pagosMenu.Actualizar(UsuarioController.getPagosByTurista(UsuarioController.GetLoggedTurista()));
+                }
+            });
         }
 
         // Boton Reviews

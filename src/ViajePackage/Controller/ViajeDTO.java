@@ -37,9 +37,12 @@ public class ViajeDTO {
 	public int GetTuristaId() {
 		return turistaId;
 	}
+<<<<<<< Updated upstream
 
 	public String toString(){
 
 		return "Viaje ID : " + id;
 	}
+=======
+>>>>>>> Stashed changes
 }

@@ -65,11 +65,19 @@ public class Principal extends JFrame {
 		registroUsuario.Hide();
 		Pantalla mainMenu = new MainMenu(loginTurista, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		mainMenu.Hide();
+<<<<<<< Updated upstream
 		Pantalla perfilMenu = new PerfilMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		perfilMenu.Hide();
 		Pantalla viajesMenu = new ViajesMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
 		viajesMenu.Hide();
 
+=======
+		Pantalla perfil = new PerfilMenu(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		perfil.Hide();
+		Pantalla seleccionarRol = new SeleccionarRol(mainMenu, mainColor,secondary, mainBackgroundColor, deltaTime, WINDOW_WIDTH, WINDOW_HEIGHT, container);
+		seleccionarRol.Show();
+		loginTurista.Hide();
+>>>>>>> Stashed changes
 
 		/*setComprarTicketForm();
 		setCargarTicketForm();

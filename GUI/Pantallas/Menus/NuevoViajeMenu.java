@@ -50,7 +50,7 @@ public class NuevoViajeMenu extends Pantalla {
                     ViajeDTO viaje = vc.CrearViaje(UsuarioController.GetLoggedTurista(), guia);
                     vc.Reservar(viaje);
                     ViajesMenu viajeMenu = (ViajesMenu) ViajesMenu.GetInstance();
-                    viajeMenu.Actualizar(vc.GetViajesDe(UsuarioController.GetLoggedTurista()));
+                    viajeMenu.Actualizar(vc.GetViajesDeTurista(UsuarioController.GetLoggedTurista()));
                     viajeMenu.Show();
                 }
             });

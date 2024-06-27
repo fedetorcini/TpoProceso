@@ -72,7 +72,7 @@ public class GuiasMenu extends Pantalla {
 
                             resañaBox.removeAllItems();
                             ArrayList<ReseñaDTO> reseñasDtos = UsuarioController.GetReseñasByGuia(guiaDto);
-                            for(ReseñaDTO reseñaDto : reseñasDtos){
+                            for (ReseñaDTO reseñaDto : reseñasDtos) {
                                 resañaBox.addItem(reseñaDto);
                             }
                         }
@@ -100,8 +100,7 @@ public class GuiasMenu extends Pantalla {
                             DecimalFormat df = new DecimalFormat("0.00");
                             calificacionReseñaBanner.setText("Calificacion : " + df.format(calificacion));
                             reseñaBanner.setText(reseñaDTO.GetTexto());
-                        }
-                        else {
+                        } else {
                             calificacionReseñaBanner.setText("Aun no se ha dejado una Reseña");
                             reseñaBanner.setText(" ");
                         }
@@ -109,93 +108,92 @@ public class GuiasMenu extends Pantalla {
                 }
             });
 
-        // Reseña Banner
-        {
-            reseñaBanner = new JLabel(" ", SwingConstants.CENTER);
-            reseñaBanner.setBounds(WINDOW_WIDTH - (WINDOW_WIDTH / 4) - 200, (WINDOW_HEIGHT / 2) + 50, 400, 100);
-            reseñaBanner.setOpaque(false);
-            reseñaBanner.setFont(new Font("Serif", Font.ITALIC, 13));
-            container.add(reseñaBanner);
-        }
+            // Reseña Banner
+            {
+                reseñaBanner = new JLabel(" ", SwingConstants.CENTER);
+                reseñaBanner.setBounds(WINDOW_WIDTH - (WINDOW_WIDTH / 4) - 200, (WINDOW_HEIGHT / 2) + 50, 400, 100);
+                reseñaBanner.setOpaque(false);
+                reseñaBanner.setFont(new Font("Serif", Font.ITALIC, 13));
+                container.add(reseñaBanner);
+            }
 
-        // Calificacion Reseña Banner
-        {
-            calificacionReseñaBanner = new JLabel(" ", SwingConstants.CENTER);
-            calificacionReseñaBanner.setBounds(WINDOW_WIDTH - (WINDOW_WIDTH / 4) - 200, (WINDOW_HEIGHT / 2) - 50, 400, 100);
-            calificacionReseñaBanner.setOpaque(false);
-            calificacionReseñaBanner.setFont(new Font("Serif", Font.ITALIC, 30));
-            container.add(calificacionReseñaBanner);
-        }
+            // Calificacion Reseña Banner
+            {
+                calificacionReseñaBanner = new JLabel(" ", SwingConstants.CENTER);
+                calificacionReseñaBanner.setBounds(WINDOW_WIDTH - (WINDOW_WIDTH / 4) - 200, (WINDOW_HEIGHT / 2) - 50, 400, 100);
+                calificacionReseñaBanner.setOpaque(false);
+                calificacionReseñaBanner.setFont(new Font("Serif", Font.ITALIC, 30));
+                container.add(calificacionReseñaBanner);
+            }
 
-        // Guia Banner
-        {
-            guiaBanner = new JLabel(" ", SwingConstants.CENTER);
-            guiaBanner.setBounds((WINDOW_WIDTH/4) - 100, 300, 200, 50);
-            guiaBanner.setOpaque(true);
-            guiaBanner.setBackground(mainBackgroundColor);
-            guiaBanner.setFont(new Font("Serif", Font.BOLD, 18));
-            container.add(guiaBanner);
-        }
+            // Guia Banner
+            {
+                guiaBanner = new JLabel(" ", SwingConstants.CENTER);
+                guiaBanner.setBounds((WINDOW_WIDTH / 4) - 100, 300, 200, 50);
+                guiaBanner.setOpaque(true);
+                guiaBanner.setBackground(mainBackgroundColor);
+                guiaBanner.setFont(new Font("Serif", Font.BOLD, 18));
+                container.add(guiaBanner);
+            }
 
-        // Ubicacion Banner
-        {
-            ubicacionBanner = new JLabel(" ", SwingConstants.CENTER);
-            ubicacionBanner.setBounds((WINDOW_WIDTH/4) - 250, 200, 500, 50);
-            ubicacionBanner.setOpaque(true);
-            ubicacionBanner.setBackground(mainBackgroundColor);
-            ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 24));
-            container.add(ubicacionBanner);
-        }
+            // Ubicacion Banner
+            {
+                ubicacionBanner = new JLabel(" ", SwingConstants.CENTER);
+                ubicacionBanner.setBounds((WINDOW_WIDTH / 4) - 250, 200, 500, 50);
+                ubicacionBanner.setOpaque(true);
+                ubicacionBanner.setBackground(mainBackgroundColor);
+                ubicacionBanner.setFont(new Font("Serif", Font.BOLD, 24));
+                container.add(ubicacionBanner);
+            }
 
-        // Precio Banner
-        {
-            precioBanner = new JLabel(" ", SwingConstants.CENTER);
-            precioBanner.setBounds((WINDOW_WIDTH/4) - 100, 400, 200, 75);
-            precioBanner.setOpaque(true);
-            precioBanner.setBackground(mainBackgroundColor);
-            precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
-            container.add(precioBanner);
-        }
+            // Precio Banner
+            {
+                precioBanner = new JLabel(" ", SwingConstants.CENTER);
+                precioBanner.setBounds((WINDOW_WIDTH / 4) - 100, 400, 200, 75);
+                precioBanner.setOpaque(true);
+                precioBanner.setBackground(mainBackgroundColor);
+                precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
+                container.add(precioBanner);
+            }
 
-        // Calificacion Banner
-        {
-            calificacionBanner = new JLabel(" ", SwingConstants.CENTER);
-            calificacionBanner.setBounds((WINDOW_WIDTH/4) - 100, 500, 200, 75);
-            calificacionBanner.setOpaque(true);
-            calificacionBanner.setBackground(mainBackgroundColor);
-            calificacionBanner.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(calificacionBanner);
-        }
+            // Calificacion Banner
+            {
+                calificacionBanner = new JLabel(" ", SwingConstants.CENTER);
+                calificacionBanner.setBounds((WINDOW_WIDTH / 4) - 100, 500, 200, 75);
+                calificacionBanner.setOpaque(true);
+                calificacionBanner.setBackground(mainBackgroundColor);
+                calificacionBanner.setFont(new Font("Serif", Font.BOLD, 15));
+                container.add(calificacionBanner);
+            }
 
-        // Idioma Banner
-        {
-            idiomaBanner = new JLabel(" ", SwingConstants.CENTER);
-            idiomaBanner.setBounds((WINDOW_WIDTH/4) - 100, 350, 200, 75);
-            idiomaBanner.setOpaque(false);
-            idiomaBanner.setBackground(mainBackgroundColor);
-            idiomaBanner.setFont(new Font("Serif", Font.BOLD, 40));
-            container.add(idiomaBanner);
-        }
+            // Idioma Banner
+            {
+                idiomaBanner = new JLabel(" ", SwingConstants.CENTER);
+                idiomaBanner.setBounds((WINDOW_WIDTH / 4) - 100, 350, 200, 75);
+                idiomaBanner.setOpaque(false);
+                idiomaBanner.setBackground(mainBackgroundColor);
+                idiomaBanner.setFont(new Font("Serif", Font.BOLD, 40));
+                container.add(idiomaBanner);
+            }
 
-        // Componentes
-        {
-            components = new ArrayList<>();
-            components.add(guias);
-            components.add(ubicacionBanner);
-            components.add(precioBanner);
-            components.add(calificacionBanner);
-            components.add(idiomaBanner);
-            components.add(guiaBanner);
-            components.add(resañaBox);
-            components.add(reseñaBanner);
-            components.add(calificacionReseñaBanner);
-        }
+            // Componentes
+            {
+                components = new ArrayList<>();
+                components.add(guias);
+                components.add(ubicacionBanner);
+                components.add(precioBanner);
+                components.add(calificacionBanner);
+                components.add(idiomaBanner);
+                components.add(guiaBanner);
+                components.add(resañaBox);
+                components.add(reseñaBanner);
+                components.add(calificacionReseñaBanner);
+            }
 
+        }
     }
 
-    public static Pantalla GetInstance() {
-        return Pantalla.GetById(classId);
-    }
+    public static Pantalla GetInstance() {return Pantalla.GetById(classId);}
 
     public void Actualizar(ArrayList<GuiaDTO> guiasDtos) {
         guias.removeAllItems();

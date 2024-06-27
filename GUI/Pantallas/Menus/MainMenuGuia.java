@@ -65,7 +65,7 @@ public class MainMenuGuia extends Pantalla {
         {
             botonViajesHechos = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
             botonViajesHechos.setBounds((WINDOW_WIDTH / 2) - 300, (WINDOW_HEIGHT / 2) - 400, 150, 50);
-            botonViajesHechos.setText("Viajes realizados.");
+            botonViajesHechos.setText("Viajes");
             botonViajesHechos.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonViajesHechos);
 
@@ -164,7 +164,8 @@ public class MainMenuGuia extends Pantalla {
 
         // Add components
         {
-            components = new ArrayList<JComponent>();
+            components = new ArrayList<>();
+            components.add(botonViajesHechos);
             components.add(botonPerfilGuia);
             components.add(botonViajesDisponibles);
             components.add(botonCobros);

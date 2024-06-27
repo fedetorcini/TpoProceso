@@ -171,18 +171,6 @@ public class UsuarioController {
 		guia.AgregarIdioma(idioma);
 	}
 
-
-	public static ArrayList<ReseñaDTO> GetReseñasByGuia(GuiaDTO guiaDTO) {
-		ArrayList<ReseñaDTO> reseñaDtos = new ArrayList<>();
-
-		for (ReseñaDTO reseñaDto : Reseña.GetReseñasDTO()) {
-			if (reseñaDto.GetGuia() == guiaDTO.GetId()) {
-				reseñaDtos.add(reseñaDto);
-			}
-		}
-		return reseñaDtos;
-	}
-
 	public static ArrayList<PagoDTO> getPagosByTurista (TuristaDTO turistaDTO) {
 		ArrayList<PagoDTO> pagoDTOs = new ArrayList<>();
 		for (PagoDTO pagoDTO : Pago.getPagosDTO()){

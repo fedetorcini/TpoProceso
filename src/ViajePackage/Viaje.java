@@ -135,6 +135,8 @@ public class Viaje extends Observable<Mensaje> {
 		return guia.GetPrecioTotal();
 	}
 
+	public double GetPenalidad() { return penalidad * GetCostoTotal();}
+
 /*
 	public void Reservar() {
 		CambiarEstado(new Reservado());

@@ -10,7 +10,11 @@ import src.ObserverPackage.Observable;
 
 public class Pago extends Observable<Mensaje>{
 
-	private static HashMap<Integer, Pago> pagos = new HashMap<Integer, Pago>();
+	private static String PAGO_RECHAZADO = "Pago Rechazado";
+	private static String PAGO_ACEPTADO  = "Pago Aceptado";
+	private static String PAGO_DEVUELTO  = "Pago Devuelto";
+
+	private static HashMap<Integer, Pago> pagos = new HashMap<>();
 	private static int IDs = 0;
 	private int id;
 	private double monto;
@@ -20,18 +24,7 @@ public class Pago extends Observable<Mensaje>{
 	private Date fecha;
 	private IAdapterPago metodoDePago;
 	private boolean fueExitoso;
-
-	public static ArrayList<PagoDTO> GetPagosDeViaje(int filtro) {
-		ArrayList<PagoDTO> output = new ArrayList<>();
-
-		for (Pago pago : pagos.values()){
-			if (pago.viajeId == filtro){
-				output.add(new PagoDTO(pago));
-			}
-		}
-
-		return output;
-	}
+	private String estado;
 
 	public static ArrayList<PagoDTO> GetPagosDTO() {
 		ArrayList<PagoDTO> pagoDTOS = new ArrayList<>();
@@ -46,25 +39,25 @@ public class Pago extends Observable<Mensaje>{
 	return monto;
 }
 
-	public int getId() {return id;}
+	public int GetId() {return id;}
 
-	public int getTuristaId() {
+	public int GetTuristaId() {
 		return turistaId;
 	}
 
-	public void setTuristaId(int turistaId) {
+	public void SetTuristaId(int turistaId) {
 		this.turistaId = turistaId;
 	}
 
-	public int getGuiaId() {
+	public int GetGuiaId() {
 		return guiaId;
 	}
 
-	public void setGuiaId(int guiaId) {
+	public void SetGuiaId(int guiaId) {
 		this.guiaId = guiaId;
 	}
 
-	public Date getFecha() {
+	public Date GetFecha() {
 		return fecha;
 	}
 
@@ -80,6 +73,7 @@ public class Pago extends Observable<Mensaje>{
 		this.fecha = Calendar.getInstance().getTime();
 		this.metodoDePago = new StripAdapter();
 		this.fueExitoso = RealizarPago();
+		this.estado = fueExitoso? PAGO_ACEPTADO : PAGO_RECHAZADO;
 		this.id = IDs;
 		IDs++;
 
@@ -102,5 +96,12 @@ public class Pago extends Observable<Mensaje>{
 
 	public boolean Completado() { return fueExitoso; }
 
-	public int getViajeId() { return viajeId;}
+	public int GetViajeId() { return viajeId;}
+
+	public void Cancelar() {
+		Publicar(new Mensaje("El pago por el monto de : " + monto + " ,se a devuelto correctamente."));
+		estado = PAGO_DEVUELTO;
+	}
+
+	public String GetEstado() { return estado; }
 }

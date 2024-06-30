@@ -10,12 +10,9 @@ import src.ViajePackage.Viaje;
 public class ViajeDTO {
 
 	private int id;
-	private String estadoReserva;
 	private int guiaId;
 	private int turistaId;
-	private double penalidad;
 	private String estadoViaje;
-	private ReseñaDTO reseña;
 	public ArrayList<MensajeDTO> chat;
 
 	public ViajeDTO(Viaje viaje) {
@@ -24,7 +21,6 @@ public class ViajeDTO {
 		this.turistaId = viaje.GetTuristaId();
 		this.estadoViaje = viaje.GetEstadoViaje();
 		this.chat = viaje.GetMensajes();
-		this.reseña = new ReseñaDTO(viaje.GetReseña());
 	}
 
 	public int GetId() {
@@ -45,8 +41,6 @@ public class ViajeDTO {
 	}
 
 	public String GetEstado() { return estadoViaje;}
-
-	public ArrayList<MensajeDTO> GetChat(){ return chat;}
 
 	public String toString(){ return "Viaje ID : " + id; }
 }

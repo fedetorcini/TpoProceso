@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class PagoDTO {
 
+    private String estado;
     private int id;
     private int turistaId;
     private double monto;
@@ -15,12 +16,13 @@ public class PagoDTO {
     private int viajeId;
 
     public PagoDTO(Pago pago) {
-        this.id = pago.getId();
-        this.turistaId = pago.getTuristaId();
+        this.id = pago.GetId();
+        this.turistaId = pago.GetTuristaId();
         this.monto = pago.GetMonto();
-        this.fecha = pago.getFecha();
-        this.guiaId = pago.getGuiaId();
-        this.viajeId = pago.getViajeId();
+        this.fecha = pago.GetFecha();
+        this.guiaId = pago.GetGuiaId();
+        this.viajeId = pago.GetViajeId();
+        this.estado = pago.GetEstado();
     }
 
     public PagoDTO(double monto, TuristaDTO turista, GuiaDTO guia) {

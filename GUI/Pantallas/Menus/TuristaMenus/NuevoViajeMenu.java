@@ -1,4 +1,4 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.TuristaMenus;
 
 import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;

@@ -20,10 +20,8 @@ public class ViajeDTO {
 
 	public ViajeDTO(Viaje viaje) {
 		this.id = viaje.GetId();
-		this.estadoReserva = viaje.GetEstadoReserva();
 		this.guiaId = viaje.GetGuiaId();
 		this.turistaId = viaje.GetTuristaId();
-		this.penalidad = viaje.GetPenalidad();
 		this.estadoViaje = viaje.GetEstadoViaje();
 		this.chat = viaje.GetMensajes();
 		this.reseña = new ReseñaDTO(viaje.GetReseña());

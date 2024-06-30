@@ -7,25 +7,26 @@ import src.NotificadorPackage.Mensaje;
 import src.ObserverPackage.Observable;
 import src.PagoPackage.Pago;
 import src.PagoPackage.PagoDTO;
-import src.ReservaPackage.Reserva;
 import src.UsuarioPackage.Guia;
 import src.UsuarioPackage.Turista;
+import src.ViajePackage.Chat.Chat;
 import src.ViajePackage.Controller.MensajeDTO;
 import src.ViajePackage.Controller.ViajeDTO;
+import src.ViajePackage.Estado.IEstadoViaje;
+import src.ViajePackage.Estado.Reservado;
 
 public class Viaje extends Observable<Mensaje> {
 
 	private static HashMap<Integer, Viaje> viajes = new HashMap<Integer, Viaje>();
 	private static int IDs = 0;
 	private int id;
-	private Reserva reserva;
 	private int guiaId;
 	private int turistaId;
-	private double costoTotal;
 	private double penalidad;
 	private IEstadoViaje estadoViaje;
 	private Reseña reseña;
 	private Chat chat;
+	private ArrayList<Pago> pagos;
 
 	public static ArrayList<ViajeDTO> GetViajes() {
 		ArrayList<ViajeDTO> viajesDtos = new ArrayList<>();
@@ -41,18 +42,11 @@ public class Viaje extends Observable<Mensaje> {
 		id = -1;
 		guiaId = -1;
 		turistaId = -1;
-		costoTotal = -1;
 		penalidad = 0;
-		reserva = new Reserva();
 		estadoViaje = new Reservado();
 		chat = new Chat(turistaId, guiaId);
 		reseña = new Reseña();
-	}
-
-	public void ResgistrarReserva(Reserva reserva) {}
-
-	public double CalcularPenalidad() {
-		return penalidad;
+		pagos = new ArrayList<>();
 	}
 
 	public void CambiarEstado(IEstadoViaje estado) {
@@ -75,6 +69,73 @@ public class Viaje extends Observable<Mensaje> {
 		return this;
 	}
 
+	public void PublicarAlChatDeViaje(Mensaje mensaje) {
+		chat.EnviarMensaje(mensaje);
+	}
+
+	public boolean GetPorDTO(ViajeDTO dto) { return GetPorId(dto.GetId());}
+
+	public boolean GetPorId(int id) {
+
+		boolean encontrado = false;
+		for (Viaje viaje : viajes.values()) {
+			if (viaje.id == id) {
+				this.turistaId = viaje.turistaId;
+				this.guiaId = viaje.guiaId;
+				this.id = viaje.id;
+				this.estadoViaje = viaje.estadoViaje;
+				this.chat = viaje.chat;
+				this.pagos = viaje.pagos;
+				encontrado = true;
+			}
+		}
+		return encontrado;
+	}
+
+	public Reseña GetReseña() { return reseña; }
+
+	public ArrayList<MensajeDTO> GetMensajes() { return chat.GetMensajes(); }
+
+	public int GetId() {
+			return id;
+	}
+
+	public String GetEstadoViaje() {
+		return estadoViaje.toString();
+	}
+
+	public int GetTuristaId(){
+		return turistaId;
+	}
+
+	public int GetGuiaId(){
+		return guiaId;
+	}
+
+	public boolean Reservar() { return estadoViaje.Reservar(this); }
+
+	public boolean Pagar(PagoDTO pagoDto) {
+		boolean success = estadoViaje.Pagar(this, pagoDto);
+		if (success)
+			viajes.put(id, this);
+		return success;
+	}
+
+	public ArrayList<Pago> GetPagos() { return pagos; }
+
+	public double GetMinimo() {
+		Guia guia = new Guia();
+		guia.GetPorId(guiaId);
+		return guia.GetPagoMinimo();
+	}
+
+	public double GetCostoTotal() {
+		Guia guia = new Guia();
+		guia.GetPorId(guiaId);
+		return guia.GetPrecioTotal();
+	}
+
+/*
 	public void Reservar() {
 		CambiarEstado(new Reservado());
 
@@ -106,60 +167,6 @@ public class Viaje extends Observable<Mensaje> {
 
 		viajes.put(id, this);
 	}
+*/
 
-	public void PublicarAlChatDeViaje(Mensaje mensaje) {
-		chat.EnviarMensaje(mensaje);
-	}
-
-	public boolean GetPorDTO(ViajeDTO dto) { return GetPorId(dto.GetId());}
-
-	public boolean GetPorId(int id) {
-
-		boolean encontrado = false;
-		for (Viaje viaje : viajes.values()) {
-			if (viaje.id == id) {
-				this.turistaId = viaje.turistaId;
-				this.guiaId = viaje.guiaId;
-				this.id = viaje.id;
-				this.estadoViaje = viaje.estadoViaje;
-				this.reserva = viaje.reserva;
-				this.chat = viaje.chat;
-				this.costoTotal = viaje.costoTotal;
-				encontrado = true;
-			}
-		}
-		return encontrado;
-	}
-
-	public Reseña GetReseña() {
-		return reseña;
-	}
-
-	public ArrayList<MensajeDTO> GetMensajes() {return chat.GetMensajes();}
-
-	public int GetId() {
-			return id;
-	}
-
-	public double GetCosto() {
-		return costoTotal;
-	}
-
-	public double GetPenalidad(){ return penalidad;}
-
-	public String GetEstadoReserva() {
-		return reserva.toString();
-	}
-
-	public String GetEstadoViaje() {
-		return estadoViaje.toString();
-	}
-
-	public int GetTuristaId(){
-		return turistaId;
-	}
-
-	public int GetGuiaId(){
-		return guiaId;
-	}
 }

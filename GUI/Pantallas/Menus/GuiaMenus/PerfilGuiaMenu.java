@@ -1,12 +1,10 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.GuiaMenus;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.UsuarioPackage.ControllerPackage.UsuarioDTO;
-import src.UsuarioPackage.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class PerfilMenu extends Pantalla {
+public class PerfilGuiaMenu extends Pantalla {
 
     private static int classId = -1;
 
@@ -26,7 +24,7 @@ public class PerfilMenu extends Pantalla {
     private FedeJTextField  dniTexto;
 
 
-    public PerfilMenu(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
+    public PerfilGuiaMenu(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor,secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
 
         classId = id;
@@ -47,9 +45,8 @@ public class PerfilMenu extends Pantalla {
                     String sexo = (String) sexoBox.getSelectedItem();
                     int telefono = Integer.parseInt(telefonoTexto.getText());
                     int dni = Integer.parseInt(dniTexto.getText());
-
                     UsuarioController uc = new UsuarioController();
-                    TuristaDTO turista = uc.UpdateTurista(nombre, apellido, sexo, telefono, dni);
+                    uc.UpdateGuia(nombre, apellido, sexo, telefono, dni);
                     Hide();
                 }
             });

@@ -17,6 +17,7 @@ public class Guia extends Usuario<Guia>{
 	private ArrayList<Float> calificaciones;
 	private ArrayList<Servicio> servicios;
 	private ArrayList<String> idiomas;
+	private double anticipo;
 	private Object foto;
 
 	public Guia() {
@@ -25,6 +26,7 @@ public class Guia extends Usuario<Guia>{
 		calificaciones = new ArrayList<Float>();
 		servicios = new ArrayList<Servicio>();
 		idiomas = new ArrayList<String>();
+		anticipo = 0.1;
 	}
 
 	private void Initialize(Guia guia) {
@@ -36,6 +38,7 @@ public class Guia extends Usuario<Guia>{
 		this.notificador = guia.notificador;
 		this.viajes = guia.viajes;
 		this.observadores = guia.observadores;
+		this.anticipo = guia.anticipo;
 	}
 
 	private void Initialize(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
@@ -46,7 +49,6 @@ public class Guia extends Usuario<Guia>{
 	}
 
 	public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
-
 		medioLogin.RegistrarUsuario(mail, contraseña);
 		Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
 		this.id = IDs;
@@ -95,7 +97,7 @@ public class Guia extends Usuario<Guia>{
 	}
 
 	public boolean Login(String email, String contraseña) {
-		return false;
+		return medioLogin.Login(email, contraseña);
 	}
 	@Override
 	public void ActualizarPerfil(String nombre, String apellido, String sexo, int telefono, int dni) {
@@ -131,7 +133,7 @@ public class Guia extends Usuario<Guia>{
 		boolean success = false;
 
 		for(Guia guia : guias.values()) {
-			if (guia.mail == email) {
+			if (guia.mail.compareTo(email) == 0) {
 				Initialize(guia);
 				success = true;
 			}
@@ -162,4 +164,6 @@ public class Guia extends Usuario<Guia>{
 	public ArrayList<Servicio> GetServicios() { return servicios; }
 	@Override
 	public String toString() { return ciudad + ", " + pais; }
+
+	public double GetPagoMinimo() { return anticipo * GetPrecioTotal();}
 }

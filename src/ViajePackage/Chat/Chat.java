@@ -1,4 +1,4 @@
-package src.ViajePackage;
+package src.ViajePackage.Chat;
 
 import java.util.ArrayList;
 

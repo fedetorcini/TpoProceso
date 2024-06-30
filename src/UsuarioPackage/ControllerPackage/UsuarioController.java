@@ -36,6 +36,12 @@ public class UsuarioController {
 		}
 	}
 
+	public static TuristaDTO GetTuristaById (int filtro) {
+		Turista turista = new Turista();
+		turista.GetPorId(filtro);
+		return turista.ToDTO();
+	}
+
 	public static ArrayList<ReseñaDTO> GetReseñasByTurista(TuristaDTO filtro) {
 		ArrayList<ReseñaDTO> reseñasDtos = Reseña.GetReseñasDTO();
 		ArrayList<ReseñaDTO> output = new ArrayList<>();
@@ -72,15 +78,6 @@ public class UsuarioController {
 		}
 
 		return pagoDTOs;
-	}
-
-	public static ArrayList<PagoDTO> GetCobrosByGuia(GuiaDTO guiaDTO) {
-		ArrayList <PagoDTO> pagoDTOS = new ArrayList<>();
-		for (PagoDTO pagoDTO: Pago.GetPagosDTO()) {
-			if (pagoDTO.getGuiaId() == guiaDTO.GetId()) {
-				pagoDTOS.add(pagoDTO);
-			}
-		} return pagoDTOS;
 	}
 
 	public TuristaDTO  RegistrarTurista(String medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
@@ -167,7 +164,7 @@ public class UsuarioController {
 		return loggedTurista;
 	}
 
-	public UsuarioDTO UpdateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
+	public GuiaDTO UpdateGuia(String nombre, String apellido, String sexo, int telefono, int dni) {
 
 		Guia guia = new Guia();
 		guia.GetPorDTO(loggedGuia);

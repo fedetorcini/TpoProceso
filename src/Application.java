@@ -45,8 +45,8 @@ public static void main(String[] args) {
 	{
 		String nombreGuia = "Un";
 		String apellidoGuia = "Guia";
-		String mailGuia = "uguia@uade.edu.ar";
-		String contraseñaGuia = "654321";
+		String mailGuia = "mail";
+		String contraseñaGuia = "contra";
 		String sexoGuia = Usuario.MASCULINO;
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
@@ -107,7 +107,14 @@ public static void main(String[] args) {
 	// Viaje
 	{
 		miViaje = viaje.CrearViaje(turista, guia);
-		viaje.Reservar(miViaje); // Viaje reservado con exito.
+
+		// Crear pagos
+		{
+			viaje.Pagar(new PagoDTO(30, turista, guia));
+			viaje.Pagar(new PagoDTO(70, turista, guia));
+		}
+
+		viaje.Reservar(miViaje);
 
 		// Reseña
 		{
@@ -123,11 +130,6 @@ public static void main(String[] args) {
 		viaje.EnviarMensaje(turista, miViaje, "Hola como estas?");
 		viaje.EnviarMensaje(guia, miViaje, "Yo bien y vos?");
 
-		// Crear pagos
-		{
-			viaje.Pagar(new PagoDTO(70, turista, guia));
-			viaje.Pagar(new PagoDTO(30, turista, guia));
-		}
 	}
 
 	// Viaje #2

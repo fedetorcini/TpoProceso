@@ -1,11 +1,7 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.GuiaMenus;
 
-import GUI.FedeJTextField;
-import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Controller.ReseñaDTO;
 

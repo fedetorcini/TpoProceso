@@ -1,7 +1,8 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.TuristaMenus;
 
 import GUI.JGradientButton;
 import GUI.Pantallas.Login.LoginTurista;
+import GUI.Pantallas.Menus.GuiaMenus.GuiasMenu;
 import GUI.Pantallas.Pantalla;
 
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;

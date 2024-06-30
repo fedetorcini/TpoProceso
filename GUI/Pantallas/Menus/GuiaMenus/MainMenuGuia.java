@@ -1,10 +1,13 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.GuiaMenus;
 
 import GUI.JGradientButton;
-import GUI.Pantallas.Login.LoginTurista;
+import GUI.Pantallas.Login.LoginGuia;
+import GUI.Pantallas.Menus.TuristaMenus.ReseñasMenu;
+import GUI.Pantallas.Menus.TuristaMenus.ViajesMenu;
 import GUI.Pantallas.Pantalla;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
+import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 
 import java.awt.*;
@@ -20,9 +23,7 @@ public class MainMenuGuia extends Pantalla {
 
     private JGradientButton botonPerfilGuia;
     private JGradientButton botonViajesHechos;
-    private JGradientButton botonCobros;
     private JGradientButton botonReviews;
-    private JGradientButton botonViajesDisponibles;
 
     private JGradientButton botonAtras;
 
@@ -35,7 +36,7 @@ public class MainMenuGuia extends Pantalla {
         // Boton Perfil
         {
             botonPerfilGuia = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-            botonPerfilGuia.setBounds((WINDOW_WIDTH / 2) - 450, (WINDOW_HEIGHT / 2) - 400, 150, 50);
+            botonPerfilGuia.setBounds(0, (WINDOW_HEIGHT / 2) - 400, 225, 50);
             botonPerfilGuia.setText("Perfil");
             botonPerfilGuia.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonPerfilGuia);
@@ -49,7 +50,7 @@ public class MainMenuGuia extends Pantalla {
 
                     GuiaDTO guiaDTO = UsuarioController.GetLoggedGuia();
 
-                    PerfilMenu perfil = (PerfilMenu) PerfilMenu.GetInstance();
+                    PerfilGuiaMenu perfil = (PerfilGuiaMenu) PerfilGuiaMenu.GetInstance();
                     subpantallas.add(perfil);
                     perfil.SetUsuario(guiaDTO);
                     perfil.Show();
@@ -60,7 +61,7 @@ public class MainMenuGuia extends Pantalla {
         // Boton Viajes
         {
             botonViajesHechos = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-            botonViajesHechos.setBounds((WINDOW_WIDTH / 2) - 300, (WINDOW_HEIGHT / 2) - 400, 150, 50);
+            botonViajesHechos.setBounds(225, (WINDOW_HEIGHT / 2) - 400, 225, 50);
             botonViajesHechos.setText("Viajes");
             botonViajesHechos.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonViajesHechos);
@@ -72,7 +73,7 @@ public class MainMenuGuia extends Pantalla {
 
                     botonViajesHechos.setForeground(mainBackgroundColor.brighter());
 
-                    ViajesMenu viajesMenu = (ViajesMenu) ViajesMenu.GetInstance();
+                    ViajesGuiaMenu viajesMenu = (ViajesGuiaMenu) ViajesGuiaMenu.GetInstance();
 
                     if (!subpantallas.contains(viajesMenu))
                         subpantallas.add(viajesMenu);
@@ -84,57 +85,28 @@ public class MainMenuGuia extends Pantalla {
             });
         }
 
-        // Boton Pagos
-        {
-            botonCobros = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-            botonCobros.setBounds((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 400, 150, 50);
-            botonCobros.setText("Cobros");
-            botonCobros.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(botonCobros);
-
-            botonCobros.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Reset();
-
-                    botonCobros.setForeground(mainBackgroundColor.brighter());
-
-                    PagosMenu pagosMenu = (PagosMenu) PagosMenu.GetInstance();
-                    if (!subpantallas.contains(pagosMenu))
-                        subpantallas.add(pagosMenu);
-                    pagosMenu.Show();
-                    pagosMenu.Actualizar(UsuarioController.GetCobrosByGuia(UsuarioController.GetLoggedGuia()));
-                }
-            });
-        }
-
         // Boton Reviews
         {
             botonReviews = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-            botonReviews.setBounds((WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 400, 150, 50);
+            botonReviews.setBounds(450, (WINDOW_HEIGHT / 2) - 400, 225, 50);
             botonReviews.setText("Reviews");
             botonReviews.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonReviews);
-        }
 
-        // Boton Guias
-        {
-            botonViajesDisponibles = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-
-            botonViajesDisponibles.setBounds((WINDOW_WIDTH / 2) + 150, (WINDOW_HEIGHT / 2) - 400, 150, 50);
-            botonViajesDisponibles.setText("Viajes disponibles");
-            botonViajesDisponibles.setFont(new Font("Serif", Font.BOLD, 15));
-            container.add(botonViajesDisponibles);
-            botonViajesDisponibles.addActionListener(new ActionListener() {
+            botonReviews.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Reset();
-                    botonViajesDisponibles.setForeground(mainBackgroundColor.brighter());
-                    GuiasMenu guiasMenu = (GuiasMenu) GuiasMenu.GetInstance();
-                    subpantallas.add(guiasMenu);
-                    guiasMenu.Show();
-                    UsuarioController uc = new UsuarioController();
-                    guiasMenu.Actualizar(UsuarioController.GetGuia(null));
+                    ReseñasGuiaMenu reseñasMenu = (ReseñasGuiaMenu)ReseñasGuiaMenu.GetInstance();
+                    botonReviews.setForeground(mainBackgroundColor.brighter());
+
+                    if (!subpantallas.contains(reseñasMenu))
+                        subpantallas.add(reseñasMenu);
+
+                    ArrayList<ReseñaDTO> reseñaDtos = UsuarioController.GetReseñasByGuia(UsuarioController.GetLoggedGuia());
+
+                    reseñasMenu.Actualizar(reseñaDtos);
+                    reseñasMenu.Show();
                 }
             });
         }
@@ -142,7 +114,7 @@ public class MainMenuGuia extends Pantalla {
         // Boton Atras
         {
             botonAtras = new JGradientButton(mainBackgroundColor.darker(), mainBackgroundColor.darker());
-            botonAtras.setBounds((WINDOW_WIDTH / 2) + 300, (WINDOW_HEIGHT / 2) - 400, 150, 50);
+            botonAtras.setBounds(900-225, (WINDOW_HEIGHT / 2) - 400, 225, 50);
             botonAtras.setText("Salir");
             botonAtras.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonAtras);
@@ -152,7 +124,7 @@ public class MainMenuGuia extends Pantalla {
                 public void actionPerformed(ActionEvent e) {
                     Reset();
                     Hide();
-                    LoginTurista.GetInstance().Show();
+                    LoginGuia.GetInstance().Show();
                     UsuarioController.LogOut();
                 }
             });
@@ -162,8 +134,6 @@ public class MainMenuGuia extends Pantalla {
         {
             components = new ArrayList<>();
             components.add(botonPerfilGuia);
-            components.add(botonViajesDisponibles);
-            components.add(botonCobros);
             components.add(botonReviews);
             components.add(botonViajesHechos);
             components.add(botonAtras);
@@ -173,9 +143,7 @@ public class MainMenuGuia extends Pantalla {
     private void Reset() {
 
         botonViajesHechos.setForeground(Color.DARK_GRAY.darker());
-        botonCobros.setForeground(Color.DARK_GRAY.darker());
         botonReviews.setForeground(Color.DARK_GRAY.darker());
-        botonViajesDisponibles.setForeground(Color.DARK_GRAY.darker());
         botonPerfilGuia.setForeground(Color.DARK_GRAY.darker());
 
         for (Pantalla pantalla : subpantallas){

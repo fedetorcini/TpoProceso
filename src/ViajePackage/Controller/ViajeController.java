@@ -30,19 +30,21 @@ public class ViajeController {
 	public void Reservar(ViajeDTO viajeDTO) {
 		Viaje viaje = new Viaje();
 		viaje.GetPorDTO(viajeDTO);
-		viaje.Reservar();
 
-		Turista turista = new Turista();
-		turista.GetPorId(viaje.GetTuristaId());
+		if (viaje.Reservar()){
+			Turista turista = new Turista();
+			turista.GetPorId(viaje.GetTuristaId());
 
-		Guia guia = new Guia();
-		guia.GetPorId(viaje.GetGuiaId());
+			Guia guia = new Guia();
+			guia.GetPorId(viaje.GetGuiaId());
 
-		turista.AgregarViaje(viaje);
-		guia.AgregarViaje(viaje);
+			turista.AgregarViaje(viaje);
+			guia.AgregarViaje(viaje);
 
-		Reseña reseña = new Reseña();
-		reseña.RegistrarReseña(turista, guia, viaje);
+			Reseña reseña = new Reseña();
+			reseña.RegistrarReseña(turista, guia, viaje);
+		}
+
 	}
 
 	public void DejarReseña(ReseñaDTO reseñaDto) {
@@ -142,12 +144,9 @@ public class ViajeController {
 		return viaje.GetMensajes();
 	}
 
-	public void Pagar(PagoDTO pagoDto) {
-		Pago pago = new Pago();
-		pago.RegistrarPago(pagoDto.getMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId(), pagoDto.getViajeId());
-
+	public boolean Pagar(PagoDTO pagoDto) {
 		Viaje viaje = new Viaje();
 		viaje.GetPorId(pagoDto.getViajeId());
-		viaje.Pagar(pagoDto);
+		return viaje.Pagar(pagoDto);
 	}
 }

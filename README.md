@@ -1,4 +1,3 @@
-# Run
-Run main from application.
+# Correcciones
 
-# JAVA FX 19 + NEEDED!!!!!
+- Faltan las correcciones pedidas en la entrega final

@@ -1,10 +1,7 @@
-package GUI.Pantallas.Menus;
+package GUI.Pantallas.Menus.TuristaMenus;
 
 import GUI.Pantallas.Pantalla;
-import src.PagoPackage.Pago;
 import src.PagoPackage.PagoDTO;
-import src.UsuarioPackage.ControllerPackage.GuiaDTO;
-import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 
 
 import javax.swing.*;

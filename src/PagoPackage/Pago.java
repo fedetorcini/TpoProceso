@@ -72,7 +72,7 @@ public class Pago extends Observable<Mensaje>{
 		RegistrarPago(pagoDto.getMonto(), pagoDto.getTuristaId(), pagoDto.getGuiaId(), pagoDto.getViajeId());
 	}
 
-	public void RegistrarPago(double monto, int turistaId, int guiaId, int viajeId) {
+	public boolean RegistrarPago(double monto, int turistaId, int guiaId, int viajeId) {
 	    this.turistaId = turistaId;
 		this.guiaId = guiaId;
 		this.viajeId = viajeId;
@@ -95,6 +95,7 @@ public class Pago extends Observable<Mensaje>{
 		}
 
 		Publicar(mensaje);
+		return true;
 	}
 
 	private boolean RealizarPago() { return metodoDePago.RealizarPago(monto); }

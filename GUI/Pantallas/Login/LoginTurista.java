@@ -2,7 +2,7 @@ package GUI.Pantallas.Login;
 
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
-import GUI.Pantallas.Menus.MainMenu;
+import GUI.Pantallas.Menus.TuristaMenus.MainMenu;
 import GUI.Pantallas.Pantalla;
 import GUI.Pantallas.SeleccionarRol;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;

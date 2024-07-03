@@ -50,4 +50,8 @@ public class Pendiente implements IEstadoViaje{
         System.out.println("El viaje no se puede finalizar.");
         return false;
     }
+    @Override
+    public String toString(){
+        return "Pendiente";
+    }
 }

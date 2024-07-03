@@ -76,6 +76,10 @@ public class Reservado implements IEstadoViaje{
 		success = true;
 		return success;
 	}
+	@Override
+	public String toString(){
+		return "Reservado";
+	}
 }
 
 

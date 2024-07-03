@@ -1,7 +1,6 @@
 package src;
 
 import GUI.Principal;
-import src.PagoPackage.Pago;
 import src.PagoPackage.PagoDTO;
 import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
@@ -110,10 +109,11 @@ public static void main(String[] args) {
 
 		// Crear pagos
 		{
-			viaje.Pagar(new PagoDTO(30, turista, guia));
-			viaje.Pagar(new PagoDTO(70, turista, guia));
+			viaje.Pagar(new PagoDTO(30, miViaje));
+			viaje.Pagar(new PagoDTO(70, miViaje));
 		}
 
+		viaje.Aceptar(miViaje);
 		viaje.Reservar(miViaje);
 
 		// Reseña

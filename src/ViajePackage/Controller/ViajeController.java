@@ -1,6 +1,5 @@
 package src.ViajePackage.Controller;
 
-import src.PagoPackage.Pago;
 import src.PagoPackage.PagoDTO;
 import src.ViajePackage.Reseña;
 import src.NotificadorPackage.Mensaje;
@@ -148,5 +147,23 @@ public class ViajeController {
 		Viaje viaje = new Viaje();
 		viaje.GetPorId(pagoDto.getViajeId());
 		return viaje.Pagar(pagoDto);
+	}
+
+	public boolean Aceptar(ViajeDTO viajeDto) {
+		Viaje viaje = new Viaje();
+		viaje.GetPorDTO(viajeDto);
+		return viaje.Aceptar();
+	}
+
+	public boolean Finalizar(ViajeDTO viajeDto) {
+		Viaje viaje = new Viaje();
+		viaje.GetPorDTO(viajeDto);
+		return viaje.Finalizar();
+	}
+
+	public boolean Rechazar(ViajeDTO viajeDto) {
+		Viaje viaje = new Viaje();
+		viaje.GetPorDTO(viajeDto);
+		return viaje.Rechazar();
 	}
 }

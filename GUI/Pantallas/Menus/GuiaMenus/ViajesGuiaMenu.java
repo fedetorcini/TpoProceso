@@ -34,6 +34,9 @@ public class ViajesGuiaMenu extends Pantalla {
     private FedeJTextField chatText;
     private JGradientButton enviarMensajeBoton;
 
+    private JGradientButton botonAceptar;
+    private JGradientButton botonRechazar;
+
     public ViajesGuiaMenu(Pantalla pantalla, Color mainColor, Color secondary, Color mainBackgroundColor, long deltaTime, int windowWidth, int windowHeight, Container container) {
         super(pantalla.GetId(), mainColor, secondary, mainBackgroundColor, deltaTime, windowWidth, windowHeight, container);
         classId = id;
@@ -78,6 +81,20 @@ public class ViajesGuiaMenu extends Pantalla {
                                 }
                                 chatString += "</html>";
                                 chatBanner.setText(chatString);
+                            }
+                        }
+
+                        // Botonera
+                        {
+                            if (viaje.GetEstado().compareTo("Pendiente") == 0)
+                            {
+                                botonAceptar.show();
+                                botonRechazar.show();
+                            }
+                            else
+                            {
+                                botonAceptar.hide();
+                                botonRechazar.hide();
                             }
                         }
 
@@ -178,6 +195,48 @@ public class ViajesGuiaMenu extends Pantalla {
             });
         }
 
+        // Boton Aceptar
+        {
+            botonAceptar = new JGradientButton(mainColor, secondary);
+            botonAceptar.setBounds((WINDOW_WIDTH / 2) - 375, (WINDOW_HEIGHT / 2) + 250, 150, 50);
+            botonAceptar.setText(" Aceptar ");
+            botonAceptar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonAceptar);
+
+            botonAceptar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ViajeDTO viaje = (ViajeDTO) viajes.getSelectedItem();
+
+                    ViajeController vc = new ViajeController();
+                    vc.Aceptar(viaje);
+
+                    Actualizar(vc.GetViajesDeGuia(UsuarioController.GetLoggedGuia()));
+                }
+            });
+        }
+
+        // Boton Rechazar
+        {
+            botonRechazar = new JGradientButton(mainColor, secondary);
+            botonRechazar.setBounds((WINDOW_WIDTH / 2) - 225, (WINDOW_HEIGHT / 2) + 250, 150, 50);
+            botonRechazar.setText(" Rechazar ");
+            botonRechazar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonRechazar);
+
+            botonRechazar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ViajeDTO viaje = (ViajeDTO) viajes.getSelectedItem();
+
+                    ViajeController vc = new ViajeController();
+                    vc.Rechazar(viaje);
+
+                    Actualizar(vc.GetViajesDeGuia(UsuarioController.GetLoggedGuia()));
+                }
+            });
+        }
+
         // Componentes
         {
             components = new ArrayList<>();
@@ -188,6 +247,8 @@ public class ViajesGuiaMenu extends Pantalla {
             components.add(turistaBanner);
             components.add(chatBanner);
             components.add(chatText);
+            components.add(botonAceptar);
+            components.add(botonRechazar);
             components.add(enviarMensajeBoton);
         }
 
@@ -198,6 +259,9 @@ public class ViajesGuiaMenu extends Pantalla {
     }
 
     public void Actualizar(ArrayList<ViajeDTO> viajesDtos) {
+        botonRechazar.hide();
+        botonAceptar.hide();
+
         viajes.removeAllItems();
 
         for(ViajeDTO viajeDto : viajesDtos){

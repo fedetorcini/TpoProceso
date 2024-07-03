@@ -79,4 +79,8 @@ public class Aceptado implements IEstadoViaje {
         System.out.println("No puede finalizarse el viaje");
         return false;
     }
+    @Override
+    public String toString(){
+        return "Aceptado";
+    }
 }

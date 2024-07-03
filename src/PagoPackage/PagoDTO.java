@@ -2,6 +2,7 @@ package src.PagoPackage;
 
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
+import src.ViajePackage.Controller.ViajeDTO;
 
 import java.util.Date;
 
@@ -25,10 +26,11 @@ public class PagoDTO {
         this.estado = pago.GetEstado();
     }
 
-    public PagoDTO(double monto, TuristaDTO turista, GuiaDTO guia) {
+    public PagoDTO(double monto, ViajeDTO viajeDto) {
         this.monto = monto;
-        this.turistaId = turista.GetId();
-        this.guiaId = guia.GetId();
+        this.turistaId = viajeDto.GetTuristaId();
+        this.guiaId = viajeDto.GetGuiaId();
+        this.viajeId = viajeDto.GetId();
     }
 
     public int getId() {

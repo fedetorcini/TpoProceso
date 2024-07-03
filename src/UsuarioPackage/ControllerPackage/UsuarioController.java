@@ -36,6 +36,12 @@ public class UsuarioController {
 		}
 	}
 
+	public static GuiaDTO GetGuiaById (int filtro) {
+		Guia guia = new Guia();
+		guia.GetPorId(filtro);
+		return guia.ToDTO();
+	}
+
 	public static TuristaDTO GetTuristaById (int filtro) {
 		Turista turista = new Turista();
 		turista.GetPorId(filtro);

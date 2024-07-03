@@ -34,4 +34,8 @@ public class Finalizado implements IEstadoViaje{
 		System.out.println("El viaje ya está Finalizado.");
 		return false;
 	}
+	@Override
+	public String toString(){
+		return "Finalizado";
+	}
 }

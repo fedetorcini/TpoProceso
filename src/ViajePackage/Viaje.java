@@ -13,6 +13,7 @@ import src.ViajePackage.Chat.Chat;
 import src.ViajePackage.Controller.MensajeDTO;
 import src.ViajePackage.Controller.ViajeDTO;
 import src.ViajePackage.Estado.IEstadoViaje;
+import src.ViajePackage.Estado.Pendiente;
 import src.ViajePackage.Estado.Reservado;
 
 public class Viaje extends Observable<Mensaje> {
@@ -24,33 +25,18 @@ public class Viaje extends Observable<Mensaje> {
 	private int turistaId;
 	private double penalidad;
 	private IEstadoViaje estadoViaje;
-	private Reseña reseña;
 	private Chat chat;
 	private ArrayList<Pago> pagos;
 
-	public static ArrayList<ViajeDTO> GetViajes() {
-		ArrayList<ViajeDTO> viajesDtos = new ArrayList<>();
-
-		for(Viaje viaje : viajes.values()){
-			viajesDtos.add(new ViajeDTO(viaje));
-		}
-
-		return viajesDtos;
-	}
-
+	// Create Save Load -----------------------------------------------------------
 	public Viaje() {
 		id = -1;
 		guiaId = -1;
 		turistaId = -1;
 		penalidad = 0;
-		estadoViaje = new Reservado();
+		estadoViaje = new Pendiente();
 		chat = new Chat(turistaId, guiaId);
-		reseña = new Reseña();
 		pagos = new ArrayList<>();
-	}
-
-	public void CambiarEstado(IEstadoViaje estado) {
-		this.estadoViaje = estado;
 	}
 
 	public Viaje CrearViaje(Turista turista, Guia guia) {
@@ -63,15 +49,13 @@ public class Viaje extends Observable<Mensaje> {
 		chat.Suscribir(turista.GetNotificador());
 		chat.Suscribir(guia.GetNotificador());
 
-		viajes.put(id, this);
+		GuardarEnDB();
 
 		System.out.println("Viaje creado con exito");
 		return this;
 	}
 
-	public void PublicarAlChatDeViaje(Mensaje mensaje) {
-		chat.EnviarMensaje(mensaje);
-	}
+	private void GuardarEnDB() { viajes.put(id, this);}
 
 	public boolean GetPorDTO(ViajeDTO dto) { return GetPorId(dto.GetId());}
 
@@ -92,33 +76,65 @@ public class Viaje extends Observable<Mensaje> {
 		return encontrado;
 	}
 
-	public Reseña GetReseña() { return reseña; }
+	// Chat -----------------------------------------------------------
+	public void PublicarAlChatDeViaje(Mensaje mensaje) {chat.EnviarMensaje(mensaje);}
 
-	public ArrayList<MensajeDTO> GetMensajes() { return chat.GetMensajes(); }
-
-	public int GetId() {
-			return id;
+	// Estados -----------------------------------------------------------
+	public void CambiarEstado(IEstadoViaje estado) {
+		this.estadoViaje = estado;
 	}
 
 	public String GetEstadoViaje() {
 		return estadoViaje.toString();
 	}
 
+	public boolean Aceptar() {
+		boolean success = estadoViaje.Aceptar(this);
+		if(success){
+			GuardarEnDB();
+		}
+		return success;
+	}
+
+	public boolean Reservar() {
+		boolean success = estadoViaje.Reservar(this);
+		if(success){
+			GuardarEnDB();
+		}
+		return success;
+	}
+
+	public boolean Finalizar() {
+		boolean success = estadoViaje.Finalizar(this);
+		if(success){
+			GuardarEnDB();
+		}
+		return success;
+	}
+
+	public boolean Rechazar() {
+		boolean success = estadoViaje.Rechazar(this);
+		if(success){
+			GuardarEnDB();
+		}
+		return success;
+	}
+
+	public boolean Pagar(PagoDTO pagoDto) {
+		boolean success = estadoViaje.Pagar(this, pagoDto);
+		if (success){
+			GuardarEnDB();
+		}
+		return success;
+	}
+
+	// Getters -----------------------------------------------------------
 	public int GetTuristaId(){
 		return turistaId;
 	}
 
 	public int GetGuiaId(){
 		return guiaId;
-	}
-
-	public boolean Reservar() { return estadoViaje.Reservar(this); }
-
-	public boolean Pagar(PagoDTO pagoDto) {
-		boolean success = estadoViaje.Pagar(this, pagoDto);
-		if (success)
-			viajes.put(id, this);
-		return success;
 	}
 
 	public ArrayList<Pago> GetPagos() { return pagos; }
@@ -136,6 +152,28 @@ public class Viaje extends Observable<Mensaje> {
 	}
 
 	public double GetPenalidad() { return penalidad * GetCostoTotal();}
+
+	public static ArrayList<ViajeDTO> GetViajes() {
+		ArrayList<ViajeDTO> viajesDtos = new ArrayList<>();
+
+		for(Viaje viaje : viajes.values()){
+			viajesDtos.add(new ViajeDTO(viaje));
+		}
+
+		return viajesDtos;
+	}
+
+	public ArrayList<MensajeDTO> GetMensajes() { return chat.GetMensajes(); }
+
+	public int GetId() {return id;}
+
+	public double GetMontoAbonado() {
+		double abonado = 0;
+		for (Pago pago : pagos){
+			abonado += pago.GetMonto();
+		}
+		return abonado;
+	}
 
 /*
 	public void Reservar() {

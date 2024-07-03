@@ -34,5 +34,9 @@ public class Cancelado implements IEstadoViaje{
 		System.out.println("El viaje ya está cancelado.");
 		return false;
 	}
+	@Override
+	public String toString(){
+		return "Cancelado";
+	}
 
 }

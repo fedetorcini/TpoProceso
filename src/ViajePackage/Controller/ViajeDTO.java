@@ -2,8 +2,6 @@ package src.ViajePackage.Controller;
 
 import java.util.ArrayList;
 
-import src.UsuarioPackage.ControllerPackage.FiltroGuia;
-import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.UsuarioPackage.Guia;
 import src.ViajePackage.Viaje;
 
@@ -12,6 +10,7 @@ public class ViajeDTO {
 	private int id;
 	private int guiaId;
 	private int turistaId;
+	private double abonado;
 	private String estadoViaje;
 	public ArrayList<MensajeDTO> chat;
 
@@ -21,6 +20,7 @@ public class ViajeDTO {
 		this.turistaId = viaje.GetTuristaId();
 		this.estadoViaje = viaje.GetEstadoViaje();
 		this.chat = viaje.GetMensajes();
+		this.abonado = viaje.GetMontoAbonado();
 	}
 
 	public int GetId() {
@@ -43,4 +43,6 @@ public class ViajeDTO {
 	public String GetEstado() { return estadoViaje;}
 
 	public String toString(){ return "Viaje ID : " + id; }
+
+	public double GetAbonado() { return abonado;}
 }

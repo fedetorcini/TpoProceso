@@ -1,3 +1,5 @@
 # Correcciones
 
-- Faltan las correcciones pedidas en la entrega final
+- State implementado 
+- MVP Guia andando
+- Sin UI

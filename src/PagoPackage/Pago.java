@@ -10,9 +10,9 @@ import src.ObserverPackage.Observable;
 
 public class Pago extends Observable<Mensaje>{
 
-	private static String PAGO_RECHAZADO = "Pago Rechazado";
-	private static String PAGO_ACEPTADO  = "Pago Aceptado";
-	private static String PAGO_DEVUELTO  = "Pago Devuelto";
+	public static String PAGO_RECHAZADO = "Pago Rechazado";
+	public static String PAGO_ACEPTADO  = "Pago Aceptado";
+	public static String PAGO_DEVUELTO  = "Pago Devuelto";
 
 	private static HashMap<Integer, Pago> pagos = new HashMap<>();
 	private static int IDs = 0;

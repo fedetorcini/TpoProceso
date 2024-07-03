@@ -3,12 +3,15 @@ package GUI.Pantallas.Menus.TuristaMenus;
 import GUI.FedeJTextField;
 import GUI.JGradientButton;
 import GUI.Pantallas.Pantalla;
+import src.PagoPackage.PagoDTO;
 import src.UsuarioPackage.ControllerPackage.FiltroGuia;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
+import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
 import src.ViajePackage.Controller.MensajeDTO;
 import src.ViajePackage.Controller.ViajeController;
 import src.ViajePackage.Controller.ViajeDTO;
+import src.ViajePackage.Viaje;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +30,12 @@ public class ViajesMenu extends Pantalla {
     private JLabel precioBanner;
     private JLabel idiomaBanner;
     private JLabel estadoBanner;
+    private JLabel abonadoBanner;
+
+    private JGradientButton botonPagar;
+    private JGradientButton botonReservar;
+    private JGradientButton botonCompletar;
+    private FedeJTextField pagoText;
 
     private JLabel chatBanner;
     private FedeJTextField chatText;
@@ -65,6 +74,7 @@ public class ViajesMenu extends Pantalla {
                             ubicacionBanner.setText(guia.GetLocacion());
                             precioBanner.setText("$" + viaje.GetPrecio());
                             estadoBanner.setText("Estado : " + viaje.GetEstado());
+                            abonadoBanner.setText("Abonado : $" + viaje.GetAbonado());
 
                             // Set Idiomas
                             {
@@ -88,6 +98,49 @@ public class ViajesMenu extends Pantalla {
                             }
                         }
 
+                        // Botonera
+                        {
+                            switch (viaje.GetEstado())
+                            {
+                                case "Pendiente":
+                                    botonReservar.hide();
+                                    botonCompletar.hide();
+                                    botonPagar.show();
+                                    pagoText.show();
+                                    break;
+                                case "Cancelado":
+                                    botonReservar.hide();
+                                    botonCompletar.hide();
+                                    botonPagar.hide();
+                                    pagoText.hide();
+                                    break;
+                                case "Finalizado":
+                                    botonReservar.hide();
+                                    botonCompletar.hide();
+                                    botonPagar.hide();
+                                    pagoText.hide();
+                                    break;
+                                case "Aceptado":
+                                    botonReservar.show();
+                                    botonCompletar.hide();
+                                    botonPagar.show();
+                                    pagoText.show();
+                                    break;
+                                case "Reservado":
+                                    botonReservar.hide();
+                                    botonCompletar.show();
+                                    botonPagar.show();
+                                    pagoText.show();
+                                    break;
+                                default:
+                                    botonReservar.hide();
+                                    botonCompletar.hide();
+                                    botonPagar.hide();
+                                    pagoText.hide();
+                                    break;
+                            }
+                        }
+
                     }
                 }
             });
@@ -96,7 +149,7 @@ public class ViajesMenu extends Pantalla {
         // Guia Banner
         {
             guiaBanner = new JLabel(" ", SwingConstants.CENTER);
-            guiaBanner.setBounds((WINDOW_WIDTH/4) - 100, 300, 200, 50);
+            guiaBanner.setBounds((WINDOW_WIDTH/4) - 100, 250, 200, 50);
             guiaBanner.setOpaque(true);
             guiaBanner.setBackground(mainBackgroundColor);
             guiaBanner.setFont(new Font("Serif", Font.BOLD, 18));
@@ -116,7 +169,7 @@ public class ViajesMenu extends Pantalla {
         // Precio Banner
         {
             precioBanner = new JLabel(" ", SwingConstants.CENTER);
-            precioBanner.setBounds((WINDOW_WIDTH/4) - 100, 400, 200, 75);
+            precioBanner.setBounds((WINDOW_WIDTH/4) - 100, 350, 200, 75);
             precioBanner.setOpaque(true);
             precioBanner.setBackground(mainBackgroundColor);
             precioBanner.setFont(new Font("Serif", Font.BOLD, 40));
@@ -126,7 +179,7 @@ public class ViajesMenu extends Pantalla {
         // Idioma Banner
         {
             idiomaBanner = new JLabel(" ", SwingConstants.CENTER);
-            idiomaBanner.setBounds((WINDOW_WIDTH/4) - 100, 350, 200, 75);
+            idiomaBanner.setBounds((WINDOW_WIDTH/4) - 100, 300, 200, 75);
             idiomaBanner.setOpaque(false);
             idiomaBanner.setBackground(mainBackgroundColor);
             idiomaBanner.setFont(new Font("Serif", Font.BOLD, 40));
@@ -136,11 +189,94 @@ public class ViajesMenu extends Pantalla {
         // Estado Banner
         {
             estadoBanner = new JLabel(" ", SwingConstants.CENTER);
-            estadoBanner.setBounds((WINDOW_WIDTH/4) - 100, 550, 200, 50);
+            estadoBanner.setBounds((WINDOW_WIDTH/4) - 100, 450, 200, 50);
             estadoBanner.setOpaque(false);
             estadoBanner.setBackground(mainBackgroundColor);
             estadoBanner.setFont(new Font("Serif", Font.BOLD, 18));
             container.add(estadoBanner);
+        }
+
+        // Abonado Banner
+        {
+            abonadoBanner = new JLabel(" ", SwingConstants.CENTER);
+            abonadoBanner.setBounds((WINDOW_WIDTH/4) - 100, 500, 200, 50);
+            abonadoBanner.setOpaque(false);
+            abonadoBanner.setBackground(mainBackgroundColor);
+            abonadoBanner.setFont(new Font("Serif", Font.BOLD, 18));
+            container.add(abonadoBanner);
+        }
+
+        // Boton Pagar
+        {
+            botonPagar = new JGradientButton(mainColor, secondary);
+            botonPagar.setBounds((WINDOW_WIDTH / 2) - 375, (WINDOW_HEIGHT / 2) + 200, 150, 50);
+            botonPagar.setText(" Pagar ");
+            botonPagar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonPagar);
+
+            botonPagar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ViajeController vc = new ViajeController();
+
+                    double monto = Double.parseDouble(pagoText.getText());
+                    ViajeDTO viajeDto = (ViajeDTO) viajes.getSelectedItem();
+
+                    vc.Pagar(new PagoDTO(monto, viajeDto));
+                    ArrayList<ViajeDTO> viajes = vc.GetViajesDeTurista(UsuarioController.GetLoggedTurista());
+                    Actualizar(viajes);
+                }
+            });
+        }
+
+        // Texto Pago
+        {
+            pagoText = new FedeJTextField((WINDOW_WIDTH / 2) - 225, (WINDOW_HEIGHT / 2) + 200, 150, 50, "Ingresar monto");
+            container.add(pagoText);
+        }
+
+        // Boton Reservar
+        {
+            botonReservar = new JGradientButton(mainColor, secondary);
+            botonReservar.setBounds((WINDOW_WIDTH / 2) - 375, (WINDOW_HEIGHT / 2) + 250, 150, 50);
+            botonReservar.setText(" Reservar ");
+            botonReservar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonReservar);
+
+            botonReservar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ViajeDTO viajeDto = (ViajeDTO) viajes.getSelectedItem();
+
+                    ViajeController vc = new ViajeController();
+                    vc.Reservar(viajeDto);
+
+                    ArrayList<ViajeDTO> viajesDto = vc.GetViajesDeTurista(UsuarioController.GetLoggedTurista());
+                    Actualizar(viajesDto);
+                }
+            });
+        }
+
+        // Boton Completar
+        {
+            botonCompletar = new JGradientButton(mainColor, secondary);
+            botonCompletar.setBounds((WINDOW_WIDTH / 2) - 375, (WINDOW_HEIGHT / 2) + 250, 150, 50);
+            botonCompletar.setText(" Completar ");
+            botonCompletar.setFont(new Font("Serif", Font.BOLD, 15));
+            container.add(botonCompletar);
+
+            botonCompletar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ViajeDTO viajeDto = (ViajeDTO) viajes.getSelectedItem();
+
+                    ViajeController vc = new ViajeController();
+                    vc.Finalizar(viajeDto);
+
+                    ArrayList<ViajeDTO> viajesDto = vc.GetViajesDeTurista(UsuarioController.GetLoggedTurista());
+                    Actualizar(viajesDto);
+                }
+            });
         }
 
         // Chat Banner
@@ -197,8 +333,8 @@ public class ViajesMenu extends Pantalla {
 
         // Boton Crear
         {
-            botonCrear = new JGradientButton(mainColor, secondary);
-            botonCrear.setBounds((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) + 250, 300, 50);
+            botonCrear = new JGradientButton(Color.BLUE.brighter(), Color.GRAY.brighter());
+            botonCrear.setBounds((WINDOW_WIDTH / 2) + 75, (WINDOW_HEIGHT / 2) + 250, 300, 50);
             botonCrear.setText(" Nuevo Viaje ");
             botonCrear.setFont(new Font("Serif", Font.BOLD, 15));
             container.add(botonCrear);
@@ -224,9 +360,14 @@ public class ViajesMenu extends Pantalla {
             components = new ArrayList<>();
             components.add(viajes);
             components.add(ubicacionBanner);
+            components.add(botonCompletar);
             components.add(precioBanner);
             components.add(idiomaBanner);
+            components.add(pagoText);
             components.add(estadoBanner);
+            components.add(abonadoBanner);
+            components.add(botonReservar);
+            components.add(botonPagar);
             components.add(guiaBanner);
             components.add(chatBanner);
             components.add(chatText);
@@ -241,6 +382,11 @@ public class ViajesMenu extends Pantalla {
     }
 
     public void Actualizar(ArrayList<ViajeDTO> viajesDtos) {
+        botonReservar.hide();
+        botonCompletar.hide();
+        botonPagar.hide();
+        pagoText.hide();
+
         viajes.removeAllItems();
 
         for(ViajeDTO viajeDto : viajesDtos){

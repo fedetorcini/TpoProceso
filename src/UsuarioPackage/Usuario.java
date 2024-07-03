@@ -25,9 +25,7 @@ protected HashMap<Integer, Viaje> viajes;
 protected Notificador notificador;
 
 protected Usuario() {
-
 	viajes = new HashMap<Integer, Viaje>();
-	notificador = new Notificador();
 }
 
 protected void InitializeUsuario(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {

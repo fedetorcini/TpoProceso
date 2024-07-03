@@ -3,6 +3,9 @@ package src.UsuarioPackage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import src.NotificadorPackage.Notificador;
+import src.UsuarioPackage.TrofeoPackage.TrofeoCalificacion;
+import src.UsuarioPackage.TrofeoPackage.TrofeoReseña;
 import src.ViajePackage.Reseña;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
@@ -50,7 +53,12 @@ public class Guia extends Usuario<Guia>{
 
 	public void RegistrarGuia(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono, String pais, String ciudad) {
 		medioLogin.RegistrarUsuario(mail, contraseña);
-		Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
+
+		this.notificador = new Notificador();
+		TrofeoCalificacion.GetInstancia().Suscribir(this.notificador);
+		this.Suscribir(TrofeoCalificacion.GetInstancia());
+
+		this.Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono, pais, ciudad);
 		this.id = IDs;
 		IDs++;
 		guias.put(id, this);

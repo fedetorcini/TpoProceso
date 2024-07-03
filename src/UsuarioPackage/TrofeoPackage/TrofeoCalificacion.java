@@ -1,45 +1,21 @@
 package src.UsuarioPackage.TrofeoPackage;
 
-import java.util.HashMap;
-
 import src.NotificadorPackage.Mensaje;
 import src.UsuarioPackage.Guia;
-import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 
 public class TrofeoCalificacion extends Trofeo<Guia>{
 
-private HashMap<Integer, TrofeoCalificacion> trofeos = new HashMap<Integer, TrofeoCalificacion>();
-private float calificacionNecesaria;
+	private static TrofeoCalificacion instacia = new TrofeoCalificacion();
+	private static float calificacionNecesaria = 1;
 
-public void RegistrarTrofeo(float calificacionNecesaria)
-{
-	this.calificacionNecesaria = calificacionNecesaria;
-	this.trofeoId = IDs;
-	IDs++;
-	
-	trofeos.put(this.trofeoId, this);
-}
+	private TrofeoCalificacion(){}
 
-public void Notificar(Guia object) 
-{
-	if (object.GetPromedio() >= calificacionNecesaria)
-	{
-		Publicar(new Mensaje("Has Recibido un nuevo trofeo!!! Felicidades tu calificacion promedio es de " + object.GetPromedio() + ". Continua el gran trabajo."));
-	}
-}
+	public static TrofeoCalificacion GetInstancia() { return instacia;}
 
-public boolean GetPorDTO(TrofeoDTO trofeoDTO) {
-
-	boolean encontrado = false;
-	for (TrofeoCalificacion trofeo : trofeos.values())
-	{
-		if (trofeo.trofeoId == trofeoDTO.GetID())
+	public void Notificar(Guia object) {
+		if (object.GetPromedio() >= calificacionNecesaria)
 		{
-			this.calificacionNecesaria = trofeo.calificacionNecesaria;
-			this.trofeoId = trofeo.trofeoId;
-			encontrado = true;
+			Publicar(new Mensaje("Guia " + object.GetNombre() + " " + object.GetApellido() + " a resibido un trofeo por su calificacion promedio de : " + object.GetPromedio() + "."));
 		}
 	}
-	return encontrado;
-}
 }

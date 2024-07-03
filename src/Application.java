@@ -6,8 +6,6 @@ import src.UsuarioPackage.Usuario;
 import src.UsuarioPackage.ControllerPackage.GuiaDTO;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.ControllerPackage.UsuarioController;
-import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoController;
-import src.UsuarioPackage.TrofeoPackage.ControllerPackage.TrofeoDTO;
 import src.ViajePackage.Controller.ReseñaDTO;
 import src.ViajePackage.Controller.ViajeController;
 import src.ViajePackage.Controller.ViajeDTO;
@@ -17,7 +15,6 @@ public class Application {
 	
 public static void main(String[] args) {
 	UsuarioController usuario = new UsuarioController();
-	TrofeoController trofeo = new TrofeoController();
 	ViajeController viaje = new ViajeController();
 
 	TuristaDTO turista = null;
@@ -44,8 +41,8 @@ public static void main(String[] args) {
 	{
 		String nombreGuia = "Un";
 		String apellidoGuia = "Guia";
-		String mailGuia = "mail";
-		String contraseñaGuia = "contra";
+		String mailGuia = "unMail";
+		String contraseñaGuia = "unaContra";
 		String sexoGuia = Usuario.MASCULINO;
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
@@ -59,8 +56,8 @@ public static void main(String[] args) {
 	{
 		String nombreGuia = "Otro";
 		String apellidoGuia = "Guia";
-		String mailGuia = "oguia@uade.edu.ar";
-		String contraseñaGuia = "654321";
+		String mailGuia = "mail";
+		String contraseñaGuia = "guia";
 		String sexoGuia = Usuario.MASCULINO;
 		int dniGuia = 36816684;
 		int telefonoGuia = 11658469;
@@ -85,22 +82,6 @@ public static void main(String[] args) {
 		usuario.AgregarIdioma(GuiaDTO.IDIOMA_HOLANDES, guia3);
 		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TOUR_GRUPAL, 100), guia3);
 		usuario.AgregarServicio(new ServicioDTO(ServicioDTO.TRADUCCIONES, 300), guia3);
-	}
-
-	// Crear Trofeos Reseñas
-	{
-		TrofeoDTO trofeoTresReseñas = trofeo.RegistrarTrofeoReseña(3);
-		trofeo.Suscribir(trofeoTresReseñas, turista);
-
-		TrofeoDTO trofeoPrimerReseñas = trofeo.RegistrarTrofeoReseña(1);
-		trofeo.Suscribir(trofeoPrimerReseñas, turista);
-	}
-
-	// Crear Trofeos Calificaciones
-	{
-		TrofeoDTO trofeoCalificacion = trofeo.RegistrarTrofeoCalificacion(1f);
-		trofeo.Suscribir(trofeoCalificacion, guia);
-		trofeo.Suscribir(trofeoCalificacion, guia2);
 	}
 
 	// Viaje
@@ -135,7 +116,6 @@ public static void main(String[] args) {
 	// Viaje #2
 	{
 		otroViaje = viaje.CrearViaje(turista, guia3);
-		viaje.Reservar(otroViaje); // Viaje reservado con exito.
 
 		viaje.EnviarMensaje( turista, otroViaje, "Otro hola como estas?");
 		viaje.EnviarMensaje( guia3, otroViaje, "Otro yo bien y vos?");

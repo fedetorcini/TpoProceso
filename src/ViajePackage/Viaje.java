@@ -49,9 +49,10 @@ public class Viaje extends Observable<Mensaje> {
 		chat.Suscribir(turista.GetNotificador());
 		chat.Suscribir(guia.GetNotificador());
 
-		GuardarEnDB();
+		this.Suscribir(turista.GetNotificador());
+		this.Suscribir(guia.GetNotificador());
+		this.GuardarEnDB();
 
-		System.out.println("Viaje creado con exito");
 		return this;
 	}
 
@@ -89,41 +90,51 @@ public class Viaje extends Observable<Mensaje> {
 	}
 
 	public boolean Aceptar() {
-		boolean success = estadoViaje.Aceptar(this);
+		Mensaje mensaje = new Mensaje("");
+		boolean success = estadoViaje.Aceptar(this, mensaje);
 		if(success){
 			GuardarEnDB();
+			Publicar(mensaje);
 		}
 		return success;
 	}
 
 	public boolean Reservar() {
-		boolean success = estadoViaje.Reservar(this);
+		Mensaje mensaje = new Mensaje("");
+		boolean success = estadoViaje.Reservar(this, mensaje);
 		if(success){
 			GuardarEnDB();
+			Publicar(mensaje);
 		}
 		return success;
 	}
 
 	public boolean Finalizar() {
-		boolean success = estadoViaje.Finalizar(this);
+		Mensaje mensaje = new Mensaje("");
+		boolean success = estadoViaje.Finalizar(this, mensaje);
 		if(success){
 			GuardarEnDB();
+			Publicar(mensaje);
 		}
 		return success;
 	}
 
 	public boolean Rechazar() {
-		boolean success = estadoViaje.Rechazar(this);
+		Mensaje mensaje = new Mensaje("");
+		boolean success = estadoViaje.Rechazar(this, mensaje);
 		if(success){
 			GuardarEnDB();
+			Publicar(mensaje);
 		}
 		return success;
 	}
 
 	public boolean Pagar(PagoDTO pagoDto) {
-		boolean success = estadoViaje.Pagar(this, pagoDto);
+		Mensaje mensaje = new Mensaje("");
+		boolean success = estadoViaje.Pagar(this, pagoDto, mensaje);
 		if (success){
 			GuardarEnDB();
+			Publicar(mensaje);
 		}
 		return success;
 	}

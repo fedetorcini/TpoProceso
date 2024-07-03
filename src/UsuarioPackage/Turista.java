@@ -2,6 +2,8 @@ package src.UsuarioPackage;
 
 import java.util.HashMap;
 
+import src.NotificadorPackage.Notificador;
+import src.UsuarioPackage.TrofeoPackage.TrofeoReseña;
 import src.ViajePackage.Reseña;
 import src.UsuarioPackage.ControllerPackage.TuristaDTO;
 import src.UsuarioPackage.LoginPackage.IMedioLogin;
@@ -26,7 +28,11 @@ public void Initialize(IMedioLogin medioLogin, String nombre, String apellido, S
 public void RegistrarTurista(IMedioLogin medioLogin, String nombre, String apellido, String mail, String contraseña, String sexo, int dni, int telefono) {
 	if (medioLogin.RegistrarUsuario(mail, contraseña))
 	{
-		Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
+		this.notificador = new Notificador();
+		TrofeoReseña.GetInstancia().Suscribir(this.notificador);
+		this.Suscribir(TrofeoReseña.GetInstancia());
+
+		this.Initialize(medioLogin, nombre, apellido, mail, contraseña, sexo, dni, telefono);
 		this.id = IDs;
 		IDs++;
 		turistas.put(id, this);
